@@ -1,0 +1,22 @@
+.wrapper{
+  overflow-y: scroll;
+  height: 42vh;
+  /* height: inherit; */
+}
+
+.h5{
+  margin: 0;
+}
+
+.list{
+  height: 100%;
+  padding-bottom: 3rem;
+}
+.more{
+  justify-items: center;
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+}
+

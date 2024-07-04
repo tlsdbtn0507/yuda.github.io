@@ -1,0 +1,38 @@
+.div{
+  width: 65vw;
+  background-color: white;
+  border-radius: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+}
+.font{
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+input{
+  border-radius: 10px;
+  border: 1px solid gray;
+  height: 2rem;
+}
+
+.btn{
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  border:  1px solid white;
+  background-color: deepskyblue;
+  color: white;
+  padding: 10px;
+  width: fit-content;
+  margin-left: 50%;
+}
+.sign{
+  width: auto;
+}

@@ -1,0 +1,28 @@
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  margin: 2px;
+  border: 2px solid white;
+  border-top: 2px solid rgba(0, 191, 255, 1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
