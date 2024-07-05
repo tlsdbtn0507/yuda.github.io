@@ -34,7 +34,7 @@ const Diary = (props: { diaryInfo: DiaryType }) => {
         <p>{diaryInfo.diaryTitle}</p>
       </div>
       <div className={css.img}>
-        <img src={diary.img.url} />
+        <img src={diary.img.url} alt=''/>
       </div>
     </div>
   )
