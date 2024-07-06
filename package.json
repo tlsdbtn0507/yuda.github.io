@@ -38,6 +38,10 @@
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "warn",
+      "react-hooks/exhaustive-deps": "warn"
+    },
     "extends": [
       "react-app",
       "react-app/jest"
