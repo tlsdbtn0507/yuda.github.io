@@ -7,23 +7,26 @@ import { sendSign } from '../api/users/usersApi';
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<Root/>,
-    children:[
+    path: '/',
+    element: <Root />,
+    children: [
       {
-        path:'/login',
+        path: '/login',
         element: <Login />,
       },
       {
-        path:'/sign', 
+        path: '/sign',
         element: <Sign />,
-        action:sendSign
+        action: sendSign
       },
       {
-        path:"/main",
-        element:<HomePage/>
+        path: "/main",
+        element: <HomePage />
       }
     ]
   }
-])
+], {
+  basename: process.env.NODE_ENV === 'development' ? '' : process.env.PUBLIC_URL
+}
+);
 export default router
