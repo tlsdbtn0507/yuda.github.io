@@ -70,6 +70,8 @@ jobs:
           git config --global user.name "yusuShin"
 
       - name: Deploy to GitHub Pages
-        run: npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install -g gh-pages
+          gh-pages -d build -t $GITHUB_TOKEN
