@@ -64,15 +64,8 @@ jobs:
       - name: Build project
         run: CI=false npm run build
 
-      - name: Configure git
-        run: |
-          git config --global user.email "tlsdbtn0507@naver.com"
-          git config --global user.name "yusuShin"
-
       - name: Deploy to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm install -g gh-pages
-          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/tlsdbtn0507/yuda.github.io.git
-          gh-pages -d build
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
