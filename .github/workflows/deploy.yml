@@ -64,6 +64,11 @@ jobs:
       - name: Build project
         run: CI=false npm run build
 
+      - name: Configure git
+        run: |
+          git config --global user.email "tlsdbtn0507@naver.com"
+          git config --global user.name "yusuShin"
+
       - name: Deploy to GitHub Pages
         run: npm run deploy
         env:
