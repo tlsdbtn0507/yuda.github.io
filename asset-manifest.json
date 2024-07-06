@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/yuda.github.io/static/css/main.96b5e81c.css",
-    "main.js": "/yuda.github.io/static/js/main.32bd0d3a.js",
+    "main.js": "/yuda.github.io/static/js/main.cfe458c2.js",
     "index.html": "/yuda.github.io/index.html",
     "main.96b5e81c.css.map": "/yuda.github.io/static/css/main.96b5e81c.css.map",
-    "main.32bd0d3a.js.map": "/yuda.github.io/static/js/main.32bd0d3a.js.map"
+    "main.cfe458c2.js.map": "/yuda.github.io/static/js/main.cfe458c2.js.map"
   },
   "entrypoints": [
     "static/css/main.96b5e81c.css",
-    "static/js/main.32bd0d3a.js"
+    "static/js/main.cfe458c2.js"
   ]
 }
