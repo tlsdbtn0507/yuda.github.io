@@ -3,15 +3,14 @@
 <head>
     <meta http-equiv="refresh" content="0; URL='/yuda.github.io/'">
     <script type="text/javascript">
-        // JavaScript redirection
         setTimeout(function() {
-            var pathname = window.location.pathname;
-            var newUrl = window.location.origin + '/yuda.github.io' + (pathname ? '#' + pathname : '');
+            var path = window.location.pathname.replace("/yuda.github.io", "");
+            var newUrl = window.location.origin + '/yuda.github.io' + path;
             window.location.replace(newUrl);
         }, 0);
     </script>
 </head>
 <body>
-    <p>If you are not redirected automatically, follow the <a href="/">link to the homepage</a>.</p>
+    <p>If you are not redirected automatically, follow the <a href="/yuda.github.io">link to the homepage</a>.</p>
 </body>
 </html>
