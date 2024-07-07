@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
 
-  console.log(process.env.NODE_ENV)
   const queryClient = new QueryClient();
 
   return (
