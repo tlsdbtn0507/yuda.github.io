@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Page Not Found</title>
-    <meta http-equiv="refresh" content="0; URL=/#/" />
+<head>
+    <meta http-equiv="refresh" content="0; URL='/yuda.github.io/'">
     <script type="text/javascript">
-      // This redirects to the correct route when accessing directly
-      var path = window.location.pathname.replace("/yuda.github.io", "");
-      window.location.replace("/yuda.github.io/#" + path);
+        // JavaScript redirection
+        setTimeout(function() {
+            var pathname = window.location.pathname;
+            var newUrl = window.location.origin + '/yuda.github.io' + (pathname ? '#' + pathname : '');
+            window.location.replace(newUrl);
+        }, 0);
     </script>
-  </head>
-  <body></body>
+</head>
+<body>
+    <p>If you are not redirected automatically, follow the <a href="/">link to the homepage</a>.</p>
+</body>
 </html>
