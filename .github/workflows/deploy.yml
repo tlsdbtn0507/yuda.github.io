@@ -22,6 +22,8 @@ jobs:
         run: npm install
 
       - name: Build project
+        env:
+          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
         run: CI=false npm run build
         
       - name: Copy 404.html to build folder
