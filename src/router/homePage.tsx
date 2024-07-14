@@ -30,7 +30,6 @@ const HomePage = () => {
       navigate('/login');
       window.location.reload();
     }
-    console.log(process.env.REACT_APP_DELAY,1);
     if (data) fetchingDiary(data);
 
     tokenSet(token);
