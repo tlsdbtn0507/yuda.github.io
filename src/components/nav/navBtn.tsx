@@ -1,5 +1,5 @@
-import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
 import css from '../../css/lowNav.module.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons"
 
 const NavBtn = (props: { icon: IconDefinition, p: string, onClick:()=>void }) => {
