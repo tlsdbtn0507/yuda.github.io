@@ -5,8 +5,8 @@ import { fetchMoreDiaries } from "../../api/diary/diaryApi";
 type DiaryStore = {
   diaries: DiaryType[],
   getDiaries: (arr: []) => void,
-  getMoreDiaries:(id:number) => Promise<boolean>
-}
+  getMoreDiaries: (id: number) => Promise<boolean>
+};
 
 export const diaryStore = create<DiaryStore>((set) => ({
   diaries: [],
@@ -19,4 +19,4 @@ export const diaryStore = create<DiaryStore>((set) => ({
       return true
     }
   }
-}))
+}));
