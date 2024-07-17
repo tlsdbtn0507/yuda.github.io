@@ -5,7 +5,7 @@ import { BtnType } from '../../model/types';
 const IdCheckBtn = (props: BtnType) => {
   const { isIdVal } = props;
 
-  const [isClicked,setIsClicked] = useState(false)
+  const [isClicked, setIsClicked] = useState(false);
   
   const send = (e: React.FormEvent) => {
     e.preventDefault();
