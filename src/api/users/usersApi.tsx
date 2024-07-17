@@ -2,6 +2,13 @@ import API from "../api";
 import { redirect } from "react-router";
 import { sendObj } from '../../model/types';
 import { toSendData } from "../../utils/util";
+import axios, { isAxiosError } from "axios";
+
+interface ResponseDataType {
+  message: string;
+  code: number;
+}
+
 
 export const sendSign = async ({request}:sendObj) =>{
 
@@ -32,12 +39,15 @@ export const login = async (request: { id: string, pw: string }) => {
   }
 }
 
-export const renewToken = async (refreshToken: string) : Promise<boolean> => {
+export const renewToken = async (refreshToken: string) : Promise<boolean | undefined>  => {
   try {
     const { data } = await API.post('/user/renew', { refreshToken });
     return data
   } catch (error) {
-    throw new Error()
+    if (axios.isAxiosError(error)) {
+      console.log(error)
+      throw new Error();
+    }
   }
 };
 
