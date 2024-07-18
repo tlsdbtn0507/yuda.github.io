@@ -7,7 +7,7 @@ export const getDiaries = async () => {
     const { data } = await API.get('/diary');
     return data;
   } catch (error) {
-    throw new Error('다이어리 더 불러오는데 에러가 발생함')
+    throw new Error('다이러리 부르기 실패')
   }
 };
 

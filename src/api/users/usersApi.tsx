@@ -2,13 +2,6 @@ import API from "../api";
 import { redirect } from "react-router";
 import { sendObj } from '../../model/types';
 import { toSendData } from "../../utils/util";
-import axios, { isAxiosError } from "axios";
-
-interface ResponseDataType {
-  message: string;
-  code: number;
-}
-
 
 export const sendSign = async ({request}:sendObj) =>{
 
@@ -44,10 +37,7 @@ export const renewToken = async (refreshToken: string) : Promise<boolean | undef
     const { data } = await API.post('/user/renew', { refreshToken });
     return data
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log(error)
-      throw new Error();
-    }
+      throw new Error('토큰 갱신 실패');
   }
 };
 
