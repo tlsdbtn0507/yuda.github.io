@@ -15,7 +15,7 @@ const HomePage = () => {
 
   const navigate = useNavigate();
 
-  const { data, isError } = useQuery({
+  const { data, isError, error } = useQuery({
     queryKey: ['diaries'],
     queryFn: getDiaries,
   });
@@ -26,13 +26,13 @@ const HomePage = () => {
 
   useEffect(() => {
     if (isError) {
-      alert('로그인 후 사용해 주세요!');
+      alert('로그인 후 사용해 주세요!'+`${error}`);
       navigate('/login');
       window.location.reload();
+    } else {
+      if (data) fetchingDiary(data);
+      tokenSet(token);
     }
-    if (data) fetchingDiary(data);
-
-    tokenSet(token);
 
   }, [isError, data]);
   
