@@ -18,6 +18,7 @@ const HomePage = () => {
   const { data, isError, error } = useQuery({
     queryKey: ['diaries'],
     queryFn: getDiaries,
+    retry: 1
   });
 
   const { getDiaries: fetchingDiary } = diaryStore(state => state);
@@ -26,7 +27,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (isError) {
-      alert('로그인 후 사용해 주세요!'+`${error}`);
+      alert(error.message);
       navigate('/login');
       window.location.reload();
     } else {
