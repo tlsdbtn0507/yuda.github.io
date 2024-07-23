@@ -30,10 +30,11 @@ jobs:
       #   run : docker run -e CI=true yusushin/yuda npm test 
 
       - name: build dockers
-        run: docker build --platform=linux/amd64 \
-          --build-arg REACT_APP_SERVER="${{ secrets.REACT_APP_SERVER }}" \
-          --build-arg REACT_APP_DELAY="${{ secrets.REACT_APP_DELAY }}" \
-          -t yusushin/docker-frontend .
+        run: |
+          docker build --platform=linux/amd64 \
+            --build-arg REACT_APP_SERVER="${{ secrets.REACT_APP_SERVER }}" \
+            --build-arg REACT_APP_DELAY="${{ secrets.REACT_APP_DELAY }}" \
+            -t yusushin/docker-frontend .
 
       - name: authorizate ACR and login to ACR
         run: | 
