@@ -28,7 +28,7 @@ jobs:
         run: CI=false npm run build
 
       - name: Archive production artifacts
-        run: tar -czf build.tar.gz build
+        run: zip -r build.zip build
 
       - name: Copy 404.html to build folder
         run: cp public/404.html build/404.html
@@ -38,7 +38,7 @@ jobs:
         with:
           app-name: YudaFront
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: build.tar.gz
+          package: build.zip
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
