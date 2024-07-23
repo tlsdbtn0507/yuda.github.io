@@ -26,9 +26,19 @@ jobs:
           REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
           REACT_APP_DELAY: ${{ secrets.REACT_APP_DELAY }}
         run: CI=false npm run build
-        
+
+      - name: Archive production artifacts
+        run: tar -czf build.tar.gz build
+
       - name: Copy 404.html to build folder
         run: cp public/404.html build/404.html
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: YudaFront
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: build.tar.gz
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
