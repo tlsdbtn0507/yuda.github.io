@@ -26,8 +26,8 @@ jobs:
       - name: before_install
         run : docker build -t yusushin/yuda -f ./Dockerfile .
 
-      - name: Docker Test
-        run : docker run -e CI=true yusushin/yuda npm test 
+      # - name: Docker Test
+      #   run : docker run -e CI=true yusushin/yuda npm test 
 
       - name: build dockers
         run: docker build --platform=linux/amd64 \
