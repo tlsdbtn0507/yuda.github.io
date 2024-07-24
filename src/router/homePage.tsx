@@ -25,17 +25,17 @@ const HomePage = () => {
 
   const token = localStorage.getItem('refreshToken') as string;
 
-  useEffect(() => {
-    if (isError) {
-      alert(error.message);
-      navigate('/login');
-      window.location.reload();
-    } else {
-      if (data) fetchingDiary(data);
-      tokenSet(token);
-    }
+  // useEffect(() => {
+  //   if (isError) {
+  //     alert(error.message);
+  //     navigate('/login');
+  //     window.location.reload();
+  //   } else {
+  //     // if (data) fetchingDiary(data);
+  //     // tokenSet(token);
+  //   }
 
-  }, [isError, data]);
+  // }, [isError, data]);
   
   return (
     <>
