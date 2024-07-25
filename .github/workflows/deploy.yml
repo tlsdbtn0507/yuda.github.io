@@ -13,82 +13,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Login to Azure using service principal
-        uses: azure/login@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        env:
+          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
+          REACT_APP_DELAY: ${{ secrets.REACT_APP_DELAY }}
+        run: CI=false npm run build
+
+      - name: Archive production artifacts
+        run: zip -r build.zip build
+
+      - name: Copy 404.html to build folder
+        run: cp public/404.html build/404.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Login DockerHub
-        run: echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login -u "${{secrets.DOCKER_HUB_ID}}" --password-stdin 
-      - name: before_install
-        run : docker build -t yusushin/yuda -f ./Dockerfile .
-
-      # - name: Docker Test
-      #   run : docker run -e CI=true yusushin/yuda npm test 
-
-      - name: build dockers
-        run: |
-          docker build --platform=linux/amd64 \
-            --build-arg REACT_APP_SERVER="${{ secrets.REACT_APP_SERVER }}" \
-            --build-arg REACT_APP_DELAY="${{ secrets.REACT_APP_DELAY }}" \
-            -t yusushin/docker-frontend .
-
-      - name: authorizate ACR and login to ACR
-        run: | 
-          az acr update -n fronttest --admin-enabled true
-          az acr login --name fronttest
-
-      - name : tag and push docker
-        run : | 
-          docker tag yusushin/docker-frontend fronttest.azurecr.io/yudafront:${{ github.sha }} 
-          docker push fronttest.azurecr.io/yudafront:${{ github.sha }}
-
-
-      - name: Deploy to Azure front Web App
-        id: deploy-front-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: YudaFront
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: 'fronttest.azurecr.io/yudafront:${{ github.sha }}'
-
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '14'
-
-      # - name: Install dependencies
-      #   run: npm install
-
-      # - name: Build project
-      #   env:
-      #     REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
-      #     REACT_APP_DELAY: ${{ secrets.REACT_APP_DELAY }}
-      #   run: CI=false npm run build
-
-      # - name: Archive production artifacts
-      #   run: zip -r build.zip build
-
-      # - name: Copy 404.html to build folder
-      #   run: cp public/404.html build/404.html
-
-      # - name: Deploy to Azure Web App
-      #   uses: azure/webapps-deploy@v2
-      #   with:
-      #     app-name: YudaFront
-      #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-      #     package: build.zip
-
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./build
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
