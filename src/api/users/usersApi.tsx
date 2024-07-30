@@ -2,6 +2,7 @@ import API from "../api";
 import { redirect } from "react-router";
 import { sendObj } from '../../model/types';
 import { toSendData } from "../../utils/util";
+import axios from "axios";
 
 export const sendSign = async ({request}:sendObj) =>{
 
@@ -26,18 +27,22 @@ export const checkIdDuple = async (idToCheckDuple:string):Promise<boolean> => {
 export const login = async (request: { id: string, pw: string }) => {
   try {
     const { data } = await API.post(`/user/login`, request);
+
+    axios.defaults.headers['Authorization'] = data.accessToken
+
     return data;
   } catch (error) {
     console.log(error)
   }
 }
 
-export const renewToken = async (refreshToken: string) : Promise<boolean | undefined>  => {
+export const renewToken = async () : Promise<{accessToken:string} | boolean>  => {
   try {
-    const { data } = await API.post('/user/renew', { refreshToken });
+    const { data } = await API.post('/user/renew');
+    console.log(data)
     return data
   } catch (error) {
-      throw new Error('토큰 갱신 실패');
+    throw new Error('토큰 갱신 실패');
   }
 };
 
