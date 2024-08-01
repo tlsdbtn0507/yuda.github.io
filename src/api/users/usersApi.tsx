@@ -28,7 +28,7 @@ export const login = async (request: { id: string, pw: string }) => {
   try {
     const { data } = await API.post(`/user/login`, request);
 
-    axios.defaults.headers['Authorization'] = data.accessToken
+    API.defaults.headers['Authorization'] = data.accessToken;
 
     return data;
   } catch (error) {
@@ -36,19 +36,19 @@ export const login = async (request: { id: string, pw: string }) => {
   }
 }
 
-export const renewToken = async () : Promise<{accessToken:string} | boolean>  => {
+export const renewToken = async () : Promise<{accessToken:string}> => {
   try {
     const { data } = await API.post('/user/renew');
-    console.log(data)
     return data
   } catch (error) {
     throw new Error('토큰 갱신 실패');
   }
 };
 
-export const logoutPost =async (refreshToken:string) => {
+export const logoutPost =async () => {
   try {
-    const { data } = await API.post('/user/logout', { refreshToken });
+    const { data,status } = await API.post('/user/logout');
+    console.log(data, status);
     return data;
   } catch (error) {
     
