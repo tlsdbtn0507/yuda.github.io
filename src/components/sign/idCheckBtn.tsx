@@ -22,7 +22,7 @@ const IdCheckBtn = (props: BtnType) => {
   return (
     <button className=
       {btnContent === "아이디 중복 조회" || isIdVal ? css.checkBtn : css.checkBtnValid}
-      onClick={send}>
+        onClick={send}>
       {btnContent}
     </button>
   )
