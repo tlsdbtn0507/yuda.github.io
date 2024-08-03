@@ -10,7 +10,9 @@ import { useMutation } from '@tanstack/react-query';
 
 const Sign = () => {
 
-  const [idChecked, setIdChecked] = useState<boolean|string>('not');
+  const [idChecked, setIdChecked] = useState<boolean | string>('not');
+  
+  const [idInput, setIdInput] = useState<string>('');
 
   const idToCheckDuple = useRef<HTMLInputElement>(null);
 
@@ -32,8 +34,14 @@ const Sign = () => {
       idToCheckDuple.current!.value = '';
       return alert('ID를 확인해주세요')
     }
-    mutate(value)
+    mutate(value);
+    setIdInput(value);
   };
+
+  const checkId = () => {
+    const target = idToCheckDuple.current?.value as string;
+    if(idInput !== target) setIdChecked('not')
+  }
 
   const permitSub = (e: React.FormEvent) => {
     if (!idChecked) {
@@ -60,6 +68,7 @@ const Sign = () => {
           </label>
         <input
           required type="userId" id='userId' name='userId' ref={idToCheckDuple}
+          onChange={checkId}
           placeholder='한글 사용 불가 및 최소 4자'/>
         <label htmlFor="pw">비밀번호</label>
           <PwDiv type='pw' />

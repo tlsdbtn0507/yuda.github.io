@@ -17,9 +17,8 @@ const Nav = () => {
 
 
   const logoutHandler = () => {
-    const token = localStorage.getItem('refreshToken') as string;
     if (window.confirm('정말 로그 아웃 하시겠습니까?')) {
-      mutate(token);
+      const a = mutate();
       localStorage.clear();
       navigate('/')
     }
