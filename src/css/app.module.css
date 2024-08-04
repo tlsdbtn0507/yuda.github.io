@@ -14,7 +14,10 @@
   font-size: 3rem;
   font-weight: 800;
   text-decoration: none;
+  text-align: center;
+  width: 45vw;
 }
+
 .section{
   background-color: white;
   color: deepskyblue;
@@ -24,8 +27,16 @@
 
 }
 
-.yuda{
+.yuda20{
   margin-bottom: 20%;
+}
+.yuda{
+  margin-bottom: 5%;
+}
+
+.diaryMent{
+  font-size: 1rem;
+  margin: 0% 5% 0% 1%;
 }
 
 .button{
