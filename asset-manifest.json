@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/yuda.github.io/static/css/main.992ed9c1.css",
-    "main.js": "/yuda.github.io/static/js/main.a7ff7da1.js",
-    "static/js/453.80efc53e.chunk.js": "/yuda.github.io/static/js/453.80efc53e.chunk.js",
-    "index.html": "/yuda.github.io/index.html",
-    "main.992ed9c1.css.map": "/yuda.github.io/static/css/main.992ed9c1.css.map",
-    "main.a7ff7da1.js.map": "/yuda.github.io/static/js/main.a7ff7da1.js.map",
-    "453.80efc53e.chunk.js.map": "/yuda.github.io/static/js/453.80efc53e.chunk.js.map"
+    "main.css": "/static/css/main.4262b7da.css",
+    "main.js": "/static/js/main.acfdbb8c.js",
+    "static/js/453.80efc53e.chunk.js": "/static/js/453.80efc53e.chunk.js",
+    "index.html": "/index.html",
+    "main.4262b7da.css.map": "/static/css/main.4262b7da.css.map",
+    "main.acfdbb8c.js.map": "/static/js/main.acfdbb8c.js.map",
+    "453.80efc53e.chunk.js.map": "/static/js/453.80efc53e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.992ed9c1.css",
-    "static/js/main.a7ff7da1.js"
+    "static/css/main.4262b7da.css",
+    "static/js/main.acfdbb8c.js"
   ]
 }
