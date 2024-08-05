@@ -29,7 +29,7 @@ const Nav = () => {
   }
 
   const writeTodayRoute = () => { 
-
+    navigate('/write');
   };
   
   return (
