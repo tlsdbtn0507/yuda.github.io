@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,20 +9,10 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>YuDa</title>
-    <script>
-      (function (l) {
-        if (l.search.indexOf('redirect=true') !== -1) {
-          var urlParams = new URLSearchParams(l.search);
-          var originalPath = urlParams.get('p');
-          if (originalPath) {
-            window.history.replaceState(null, null, originalPath);
-          }
-        }
-      }(window.location));
-    </script>
-  </head>
-  <body>
+</head>
+<body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-  </body>
+    <script src="%PUBLIC_URL%/static/js/bundle.js"></script>
+</body>
 </html>
