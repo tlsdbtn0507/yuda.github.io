@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
     <meta http-equiv="refresh" content="0; URL='https://yourdiary.site'">
     <script type="text/javascript">
         (function (l) {
-            var redirectPath = '/';
-            if (l.pathname !== redirectPath && l.pathname !== '/') {
-                var path = l.pathname.slice(1);
-                var search = l.search.slice(1);
-                var hash = l.hash;
-                var newPath = path ? '/' + path : '';
-                var newSearch = search ? '?' + search : '';
-                var newUrl = 'https://yourdiary.site' + newPath + newSearch + hash;
-                l.replace(newUrl);
+            var baseUrl = 'https://yourdiary.site';
+            var path = l.pathname + l.search + l.hash;
+            var newUrl = baseUrl + path;
+            
+            if (l.href !== newUrl) {
+                window.location.replace(newUrl);
             }
-        }(window.location));
+        })(window.location);
     </script>
 </head>
 <body>
