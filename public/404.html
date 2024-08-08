@@ -4,13 +4,16 @@
     <meta http-equiv="refresh" content="0; URL='https://yourdiary.site'">
     <script type="text/javascript">
         (function (l) {
-            var path = l.pathname.slice(1);
-            var search = l.search.slice(1);
-            var hash = l.hash;
-            var newPath = path ? '/' + path : '';
-            var newSearch = search ? '?' + search : '';
-            var newUrl = 'https://yourdiary.site' + newPath + newSearch + hash;
-            l.replace(newUrl);
+            var redirectPath = '/';
+            if (l.pathname !== redirectPath && l.pathname !== '/') {
+                var path = l.pathname.slice(1);
+                var search = l.search.slice(1);
+                var hash = l.hash;
+                var newPath = path ? '/' + path : '';
+                var newSearch = search ? '?' + search : '';
+                var newUrl = 'https://yourdiary.site' + newPath + newSearch + hash;
+                l.replace(newUrl);
+            }
         }(window.location));
     </script>
 </head>
