@@ -8,10 +8,13 @@
         (function (l) {
             var baseUrl = 'https://yourdiary.site';
             var path = l.pathname + l.search + l.hash;
-            var newUrl = baseUrl + path;
-            
-            if (l.href !== newUrl) {
+
+            // 404.html에서 '/'로 리다이렉트하는 대신, 유효한 경로로만 리다이렉트
+            if (path !== '/' && path !== '/404.html') {
+                var newUrl = baseUrl + path;
                 window.location.replace(newUrl);
+            } else {
+                window.location.replace(baseUrl);
             }
         })(window.location);
     </script>
