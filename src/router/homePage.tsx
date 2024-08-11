@@ -18,7 +18,6 @@ const HomePage = () => {
   const { data, isError, error } = useQuery({
     queryKey: ['diaries'],
     queryFn: getDiaries,
-    retry: 1
   });
 
   const { getDiaries: fetchingDiary } = diaryStore(state => state);

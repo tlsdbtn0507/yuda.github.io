@@ -9,7 +9,7 @@ import NavBtn from "./navBtn"
 const Nav = () => {
   const navigate = useNavigate()
 
-  const { mutate } = useMutation({
+  const { mutate, data } = useMutation({
     mutationFn: logoutPost,
     mutationKey: ['logout']
   });
@@ -18,9 +18,11 @@ const Nav = () => {
 
   const logoutHandler = () => {
     if (window.confirm('정말 로그 아웃 하시겠습니까?')) {
-      const a = mutate();
-      localStorage.clear();
-      navigate('/')
+      if (data) {
+        localStorage.clear();
+        navigate('/')
+      }
+      alert('로그 아웃 오류')
     }
   }
 
