@@ -5,20 +5,24 @@ import { useNavigate } from "react-router"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
+import { LogoutReturnType } from "model/types"
 
 const Nav = () => {
   const navigate = useNavigate()
 
-  const { mutate, data } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: logoutPost,
-    mutationKey: ['logout']
+    mutationKey: ['logout'],
+    onSuccess: (data: LogoutReturnType) => {
+      logoutHandler(data.result);
+    }
   });
 
 
 
-  const logoutHandler = () => {
+  const logoutHandler = (result: boolean) => {
     if (window.confirm('정말 로그 아웃 하시겠습니까?')) {
-      if (data) {
+      if (result) {
         localStorage.clear();
         navigate('/')
       }
@@ -38,7 +42,7 @@ const Nav = () => {
     <div className={css.lowNav}>
       <NavBtn icon={faClipboard} onClick={todayRoute} p="오늘의 일기"/>
       <NavBtn icon={faCirclePlus} onClick={writeTodayRoute} p="일기 쓰기"/>
-      <NavBtn icon={faUser} onClick={logoutHandler} p="로그아웃"/>
+      <NavBtn icon={faUser} onClick={mutate} p="로그아웃"/>
     </div>
   )
 }
