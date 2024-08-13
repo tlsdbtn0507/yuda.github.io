@@ -28,7 +28,7 @@ export const login = async (request: { id: string, pw: string }) => {
   try {
     const { data } = await API.post(`/user/login`, request);
 
-    API.defaults.headers['Authorization'] = data.accessToken;
+    API.defaults.headers['Authorization'] = `Bearer ${data.accessToken}`;
 
     return data;
   } catch (error) {
