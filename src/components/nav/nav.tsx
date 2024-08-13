@@ -26,7 +26,7 @@ const Nav = () => {
         localStorage.clear();
         navigate('/')
       }
-      alert('로그 아웃 오류')
+      else alert('로그 아웃 오류')
     }
   }
 
