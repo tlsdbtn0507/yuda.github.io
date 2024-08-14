@@ -25,8 +25,8 @@ const HomePage = () => {
   useEffect(() => {
     if (isError) {
       alert(error.message);
-      // navigate('/login');
-      // window.location.reload();
+      navigate('/login');
+      window.location.reload();
     } else {
       if (data) fetchingDiary(data);
     }
