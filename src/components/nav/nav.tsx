@@ -5,9 +5,9 @@ import { useNavigate } from "react-router"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
-import { LogoutReturnType } from "model/types"
+import { LogoutReturnType, NavProps } from "model/types"
 
-const Nav = () => {
+const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   const navigate = useNavigate()
 
   const { mutate } = useMutation({
@@ -34,17 +34,20 @@ const Nav = () => {
     
   }
 
-  const writeTodayRoute = () => { 
-    navigate('/write');
+  const writeTodayRoute = () => {
+    onDiaryClick();
+    setTimeout(() => {
+      navigate('/write');
+    }, 500);
   };
   
   return (
     <div className={css.lowNav}>
-      <NavBtn icon={faClipboard} onClick={todayRoute} p="오늘의 일기"/>
-      <NavBtn icon={faCirclePlus} onClick={writeTodayRoute} p="일기 쓰기"/>
-      <NavBtn icon={faUser} onClick={mutate} p="로그아웃"/>
+      <NavBtn icon={faClipboard} onClick={todayRoute} p="오늘의 일기" />
+      <NavBtn icon={faCirclePlus} onClick={writeTodayRoute} p="일기 쓰기" />
+      <NavBtn icon={faUser} onClick={mutate} p="로그아웃" />
     </div>
   )
-}
+};
 
 export default Nav

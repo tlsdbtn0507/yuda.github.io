@@ -47,3 +47,7 @@ export interface LogoutReturnType {
   message: string,
   result: boolean
 }
+
+export interface NavProps{
+  onDiaryClick: () => void
+}

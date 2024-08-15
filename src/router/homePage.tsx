@@ -7,11 +7,12 @@ import css from '../css/main.module.css'
 import { useQuery } from '@tanstack/react-query'
 import { getDiaries } from '../api/diary/diaryApi'
 import { diaryStore } from '../store/diary/diaryStore'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { tokenSet } from '../utils/util'
 
-const HomePage = () => {
+const HomePage:React.FC = () => {
+  const [expend, setExpend] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,14 +36,14 @@ const HomePage = () => {
   
   return (
     <>
-      <div className={css.total}>
+      <div className={css.totalHome}>
         <div className={css.wrapper}>
           <DayMaker/> 
           <LastToday/>
           <MyDiaries/>
         </div>
       </div>
-      <Nav/>
+      <Nav onDiaryClick={()=>setExpend(!expend)}/>
     </>
   )
 }
