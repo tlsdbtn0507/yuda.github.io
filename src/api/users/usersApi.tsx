@@ -1,6 +1,6 @@
 import API from "../api";
 import { redirect } from "react-router";
-import { sendObj } from '../../model/types';
+import { LogoutReturnType, sendObj } from '../../model/types';
 import { toSendData } from "../../utils/util";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ export const login = async (request: { id: string, pw: string }) => {
   try {
     const { data } = await API.post(`/user/login`, request);
 
-    API.defaults.headers['Authorization'] = data.accessToken;
+    API.defaults.headers['Authorization'] = `Bearer ${data.accessToken}`;
 
     return data;
   } catch (error) {
@@ -36,7 +36,7 @@ export const login = async (request: { id: string, pw: string }) => {
   }
 }
 
-export const renewToken = async () : Promise<{accessToken:string}> => {
+export const renewToken = async (): Promise<{ accessToken: string }> => {
   try {
     const { data } = await API.post('/user/renew');
     return data
@@ -45,12 +45,11 @@ export const renewToken = async () : Promise<{accessToken:string}> => {
   }
 };
 
-export const logoutPost =async () => {
+export const logoutPost = async (): Promise<LogoutReturnType> => {
   try {
-    const { data,status } = await API.post('/user/logout');
-    console.log(data, status);
+    const { data } = await API.post('/user/logout');
     return data;
   } catch (error) {
-    
+    throw new Error('로그아웃 실패');
   }
-}
+};

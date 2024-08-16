@@ -42,3 +42,12 @@ export interface BtnType {
   onClick: (e: React.FormEvent) => void,
   isIdVal: boolean | string
 }
+
+export interface LogoutReturnType {
+  message: string,
+  result: boolean
+}
+
+export interface NavProps{
+  onDiaryClick: () => void
+}
