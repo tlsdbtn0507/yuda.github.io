@@ -1,12 +1,20 @@
-.totalHome{
+.total{
   background-color: white;
   border-radius: 20px;
-  width: 21rem;
-  height: 73vh;
   display: flex;
   flex-direction: column;
   font-family: JetBrains Mono;
   transition: all 0.5s ease;
+}
+
+.total.home{
+  width: 21rem;
+  height: 73vh;
+}
+
+.total.expand {
+  width: 90vw;
+  height: 82vh;
 }
 
 .wrapper{

@@ -36,9 +36,6 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
 
   const writeTodayRoute = () => {
     onDiaryClick();
-    setTimeout(() => {
-      navigate('/write');
-    }, 500);
   };
   
   return (

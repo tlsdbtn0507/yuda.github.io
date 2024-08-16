@@ -9,10 +9,10 @@ import { getDiaries } from '../api/diary/diaryApi'
 import { diaryStore } from '../store/diary/diaryStore'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { tokenSet } from '../utils/util'
+import Write from './write'
 
 const HomePage:React.FC = () => {
-  const [expend, setExpend] = useState(false);
+  const [expand, setExpend] = useState(false);
 
   const navigate = useNavigate();
 
@@ -33,17 +33,23 @@ const HomePage:React.FC = () => {
     }
 
   }, [isError, data]);
-  
+
   return (
     <>
-      <div className={css.totalHome}>
-        <div className={css.wrapper}>
-          <DayMaker/> 
-          <LastToday/>
-          <MyDiaries/>
-        </div>
+      <div
+        className={`${css.total} ${expand ? css.expand : css.home}`}
+        onClick={()=>setExpend(false)} >
+        {
+          expand ?
+            <Write/>:
+          <div className={css.wrapper}>
+            <DayMaker/> 
+            <LastToday/>
+            <MyDiaries/>
+          </div>
+        }
       </div>
-      <Nav onDiaryClick={()=>setExpend(!expend)}/>
+      { !expand && <Nav onDiaryClick={()=>setExpend(true)} /> }
     </>
   )
 }
