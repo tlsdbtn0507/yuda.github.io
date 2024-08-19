@@ -22,8 +22,12 @@ const Root = () =>{
   return (
     <div className={css.app}>
       <Link className={css.h1} to={"/"}>
-        <p className={writeDairy ? css.yuda : css.yuda20}>YuDa</p>
-        {writeDairy && <p className={css.diaryMent}>오늘의 일기를 작성해 봐요</p>}
+        <p className={writeDairy ? css.yuda20 : css.yuda}>
+          {
+            writeDairy ? '오늘의 일기를 작성해 봐요' : 'YuDa'
+          }
+        </p>
+        {/* {writeDairy && <p className={css.diaryMent}>오늘의 일기를 작성해 봐요</p>} */}
       </Link>
       <main>
         <Outlet/>
