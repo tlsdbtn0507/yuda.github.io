@@ -27,8 +27,8 @@ const Root = () =>{
             writeDairy ? '오늘의 일기를 작성해 봐요' : 'YuDa'
           }
         </p>
-        {/* {writeDairy && <p className={css.diaryMent}>오늘의 일기를 작성해 봐요</p>} */}
       </Link>
+      <button></button>
       <main>
         <Outlet/>
       </main>
