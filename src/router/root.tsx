@@ -4,11 +4,13 @@ import css from '../css/app.module.css';
 import { Outlet, useLocation, useNavigation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { diaryStore } from '../store/diary/diaryStore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Root = () =>{
   const { pathname } = useLocation();
   
-  const { writeDairy, toggleWriteDairy } = diaryStore(state => state);
+  const { writeDairy } = diaryStore(state => state);
 
   const setScreenSize = ()=> {
     let vh = window.innerHeight * 0.01;
@@ -19,6 +21,11 @@ const Root = () =>{
     setScreenSize();
   });
 
+  const closeBtn = writeDairy &&
+          <button className={css.closeBtn} >
+            <FontAwesomeIcon className={css.closeBtnIcon} icon={faXmark}/>
+          </button>
+
   return (
     <div className={css.app}>
       <Link className={css.h1} to={"/"}>
@@ -28,7 +35,7 @@ const Root = () =>{
           }
         </p>
       </Link>
-      <button></button>
+        {closeBtn}
       <main>
         <Outlet/>
       </main>

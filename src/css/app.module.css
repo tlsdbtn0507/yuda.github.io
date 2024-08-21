@@ -29,6 +29,7 @@
 
 .yuda20{
   font-size: 2rem;
+  margin-bottom: 2%;
 }
 .yuda{
   margin-bottom: 5%;
@@ -45,8 +46,21 @@
   padding: 2.5%;
 }
 
-
 .button:hover{
   font-size:larger;
   color: aqua;
+}
+
+.closeBtn{
+  background-color: white;
+  border-radius: 50px;
+  height: 2.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtnIcon{
+  color: black;
 }
