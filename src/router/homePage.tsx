@@ -7,12 +7,12 @@ import css from '../css/main.module.css'
 import { useQuery } from '@tanstack/react-query'
 import { getDiaries } from '../api/diary/diaryApi'
 import { diaryStore } from '../store/diary/diaryStore'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { tokenSet } from '../utils/util'
+import Write from 'components/diary/write'
+
 
 const HomePage:React.FC = () => {
-  const [expend, setExpend] = useState(false);
 
   const navigate = useNavigate();
 
@@ -21,7 +21,9 @@ const HomePage:React.FC = () => {
     queryFn: getDiaries,
   });
 
-  const { getDiaries: fetchingDiary } = diaryStore(state => state);
+  const { getDiaries: fetchingDiary, toggleWriteDairy, writeDairy } =
+    diaryStore(state => state);
+
 
   useEffect(() => {
     if (isError) {
@@ -33,17 +35,22 @@ const HomePage:React.FC = () => {
     }
 
   }, [isError, data]);
-  
+
   return (
     <>
-      <div className={css.totalHome}>
-        <div className={css.wrapper}>
-          <DayMaker/> 
-          <LastToday/>
-          <MyDiaries/>
-        </div>
+      <div
+        className={`${css.total} ${writeDairy ? css.expand : css.home}`}
+        onClick={()=>toggleWriteDairy(false)} >
+        {
+          writeDairy ? <Write/>:
+          <div className={css.wrapper}>
+            <DayMaker/> 
+            <LastToday/>
+            <MyDiaries/>
+          </div>
+        }
       </div>
-      <Nav onDiaryClick={()=>setExpend(!expend)}/>
+      { !writeDairy && <Nav onDiaryClick={()=>toggleWriteDairy(true)} /> }
     </>
   )
 }

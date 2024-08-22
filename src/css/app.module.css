@@ -28,15 +28,11 @@
 }
 
 .yuda20{
-  margin-bottom: 20%;
+  font-size: 2rem;
+  margin-bottom: 2%;
 }
 .yuda{
   margin-bottom: 5%;
-}
-
-.diaryMent{
-  font-size: 1rem;
-  margin: 0% 5% 0% 1%;
 }
 
 .button{
@@ -49,7 +45,6 @@
   border: 1px rgb(0, 115, 255);
   padding: 2.5%;
 }
-
 
 .button:hover{
   font-size:larger;

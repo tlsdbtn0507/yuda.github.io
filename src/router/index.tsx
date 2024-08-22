@@ -4,7 +4,6 @@ import Login from './login';
 import Sign from './sign';
 import HomePage from './homePage';
 import { sendSign } from '../api/users/usersApi';
-import Write from './write';
 
 const router = createHashRouter([
   {
@@ -24,10 +23,6 @@ const router = createHashRouter([
         path: "/main",
         element: <HomePage />
       },
-      {
-        path: "/write",
-        element: <Write />
-      }
     ]
   }
 ], {

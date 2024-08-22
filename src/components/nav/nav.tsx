@@ -34,17 +34,10 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
     
   }
 
-  const writeTodayRoute = () => {
-    onDiaryClick();
-    setTimeout(() => {
-      navigate('/write');
-    }, 500);
-  };
-  
   return (
     <div className={css.lowNav}>
       <NavBtn icon={faClipboard} onClick={todayRoute} p="오늘의 일기" />
-      <NavBtn icon={faCirclePlus} onClick={writeTodayRoute} p="일기 쓰기" />
+      <NavBtn icon={faCirclePlus} onClick={()=>onDiaryClick()} p="일기 쓰기" />
       <NavBtn icon={faUser} onClick={mutate} p="로그아웃" />
     </div>
   )
