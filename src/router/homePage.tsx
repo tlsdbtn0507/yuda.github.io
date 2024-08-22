@@ -9,7 +9,8 @@ import { getDiaries } from '../api/diary/diaryApi'
 import { diaryStore } from '../store/diary/diaryStore'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import Write from './write'
+import Write from 'components/diary/write'
+
 
 const HomePage:React.FC = () => {
 
@@ -41,8 +42,7 @@ const HomePage:React.FC = () => {
         className={`${css.total} ${writeDairy ? css.expand : css.home}`}
         onClick={()=>toggleWriteDairy(false)} >
         {
-          writeDairy ?
-            <Write/>:
+          writeDairy ? <Write/>:
           <div className={css.wrapper}>
             <DayMaker/> 
             <LastToday/>
