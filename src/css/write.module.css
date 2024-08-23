@@ -6,7 +6,7 @@
   transition: all 0.5s ease;
   display: flex;
   flex-direction: column;
-  transition: all 0.5s ease;
+  transition: all 0.7s ease;
 
 }
 
@@ -18,9 +18,11 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
+  transition-delay: 1s;
 }
 
 .closeBtnIcon{
+  transition: all 1s ease;
   color: black;
   margin: 1em 1em 0 0;
 }

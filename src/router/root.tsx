@@ -1,15 +1,17 @@
 import Intro from '../components/intro';
 import css from '../css/app.module.css';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { diaryStore } from '../store/diary/diaryStore';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 const Root = () =>{
   const { pathname } = useLocation();
   
   const { writeDairy } = diaryStore(state => state);
+  const [animated, setAnimated] = useState(false);
 
   const setScreenSize = ()=> {
     let vh = window.innerHeight * 0.01;
@@ -18,7 +20,13 @@ const Root = () =>{
   
   useEffect(() => {
     setScreenSize();
-  });
+    if (writeDairy) {
+      setAnimated(true);
+    } else {
+      setAnimated(false);
+    }
+    console.log(animated)
+  },[writeDairy]);
 
   return (
     <div className={css.app}>
