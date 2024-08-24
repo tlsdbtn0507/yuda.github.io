@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { diaryStore } from '../store/diary/diaryStore';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 
 const Root = () =>{
   const { pathname } = useLocation();
   
   const { writeDairy } = diaryStore(state => state);
-  const [animated, setAnimated] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const [displayText, setDisplayText] = useState('YuDa');
+
 
   const setScreenSize = ()=> {
     let vh = window.innerHeight * 0.01;
@@ -19,22 +20,30 @@ const Root = () =>{
   }
   
   useEffect(() => {
-    setScreenSize();
     if (writeDairy) {
-      setAnimated(true);
+      setAnimating(true);
+      // 애니메이션이 끝난 후에 writeDairy 상태 변경
+      setTimeout(() => {
+        setDisplayText('오늘의 일기를 작성해 봐요');
+        setAnimating(false);
+      }, 800); 
     } else {
-      setAnimated(false);
+      setAnimating(true);
+      setTimeout(() => {
+        setDisplayText('YuDa');
+        setAnimating(false);
+      }, 800); 
     }
-    console.log(animated)
+    setScreenSize()
   },[writeDairy]);
 
   return (
     <div className={css.app}>
       <Link className={css.h1} to={"/"}>
-        <p className={writeDairy ? css.yuda20 : css.yuda}>
-          {
-            writeDairy ? '오늘의 일기를 작성해 봐요' : 'YuDa'
-          }
+        <p className=
+          {`${writeDairy ? css.yuda20 : css.yuda} ${animating ? css.animating : ''}`}>
+          {/* { writeDairy ? '오늘의 일기를 작성해 봐요' : 'YuDa'} */}
+          {displayText}
         </p>
       </Link>
       <main>
