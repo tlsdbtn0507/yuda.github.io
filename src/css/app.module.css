@@ -14,8 +14,21 @@
   font-weight: 800;
   text-decoration: none;
   text-align: center;
-  width: 45vw;
-  height: 13vh;
+  font-size: 3rem;
+  width: max-content;
+  height: 9vh;
+  transition: all 0.8s ease;
+}
+
+.h2{
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+  text-align: center;
+  font-size: 3rem;
+  width: max-content;
+  height: 13vh;  
+  transition: all 0.8s ease;
 }
 
 .section{
@@ -26,7 +39,7 @@
   width: 80%;
 }
 
-.yuda20{
+.ment{
   font-size: 2rem;
   opacity: 1;
   transform: translateY(0);
@@ -40,14 +53,14 @@
   transition: all 0.8s ease;
 }
 
-.yuda20.animating {
+.ment.animating {
   font-size: 2rem;
-  transform: translatey(-100%);
+  transform: translatey(100%);
   opacity: 0;
 }
   
 .yuda.animating {
-  /* font-size: 1rem; */
+  font-size: 3rem;
   transform: translateY(-100%);
   opacity: 0;
 }
