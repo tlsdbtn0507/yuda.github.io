@@ -8,6 +8,8 @@
   align-items: center;
   gap: 3vh;
   font-family: JetBrains Mono;
+  justify-content: space-between;
+  height: 100vh;
 }
 .h1{
   color: white;

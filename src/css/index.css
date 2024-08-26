@@ -1,17 +1,17 @@
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: auto; 
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
 }
 
 body {
-  margin: 0;
+  /* margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
   background: linear-gradient(rgba(87, 245, 255, 1) 60% , rgba(0, 191, 255, 1));
 }
 
