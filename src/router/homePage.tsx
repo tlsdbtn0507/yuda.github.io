@@ -2,6 +2,7 @@ import LastToday from '../components/lastToday'
 import MyDiaries from '../components/myDiaries'
 import Nav from '../components/nav/nav'
 import DayMaker from '../components/util/dayMaker'
+import Write from '../components/diary/write/write'
 import css from '../css/main.module.css'
 
 import { useQuery } from '@tanstack/react-query'
@@ -9,8 +10,6 @@ import { getDiaries } from '../api/diary/diaryApi'
 import { diaryStore } from '../store/diary/diaryStore'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import Write from 'components/diary/write'
-
 
 const HomePage:React.FC = () => {
 
