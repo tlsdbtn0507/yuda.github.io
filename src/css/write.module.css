@@ -1,7 +1,7 @@
 .total{
   background-color: white;
   width: 90vw;
-  height: 82vh;
+  height: 100%;
   border-radius: 20px;
   transition: all 0.5s ease;
   display: flex;
@@ -25,4 +25,15 @@
   transition: all 1s ease;
   color: black;
   margin: 1em 1em 0 0;
+}
+
+.selectWrapper{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.sectionMent{
+  
 }

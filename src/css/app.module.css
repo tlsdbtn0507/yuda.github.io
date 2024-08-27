@@ -9,7 +9,6 @@
   gap: 3vh;
   font-family: JetBrains Mono;
   justify-content: space-between;
-  /* height: 100svh; */
 }
 .h1{
   color: white;
@@ -18,7 +17,7 @@
   text-align: center;
   font-size: 3rem;
   width: max-content;
-  height: 9vh;
+  height: 8%;
   transition: all 0.8s ease;
 }
 
@@ -29,7 +28,7 @@
   text-align: center;
   font-size: 3rem;
   width: max-content;
-  height: 13vh;  
+  height: 13%;  
   transition: all 0.8s ease;
 }
 
