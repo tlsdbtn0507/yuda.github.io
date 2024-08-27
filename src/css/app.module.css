@@ -9,7 +9,7 @@
   gap: 3vh;
   font-family: JetBrains Mono;
   justify-content: space-between;
-  height: 100svh;
+  /* height: 100svh; */
 }
 .h1{
   color: white;
