@@ -15,11 +15,6 @@ const Root = () =>{
   const [displayText, setDisplayText] = useState('YuDa');
   const [innerHeight, setInnerHeight] = useState<Number>(0);
 
-  const setScreenSize = () => {
-    typeof window !== 'undefined' && setInnerHeight(window.innerHeight);
-    console.log(window.innerHeight)
-  };
-
   const aniSetter = (str:string) => {
     setAnimating(true);
      // 애니메이션이 끝난 후에 writeDairy 상태 변경
@@ -35,9 +30,11 @@ const Root = () =>{
   const linkCssClass = writeDairy ? css.h1 : css.h2
   
   useEffect(() => {
+
     writeDairy ? aniSetter('오늘의 일기를 작성해 봐요') : aniSetter('YuDa');
-    // setScreenSize();
-    if(typeof window !== 'undefined') setInnerHeight(window.innerHeight);
+
+    if (typeof window !== 'undefined') setInnerHeight(window.innerHeight);
+    
   },[writeDairy,innerHeight]);
 
   return (
