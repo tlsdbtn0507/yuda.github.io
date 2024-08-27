@@ -10,13 +10,13 @@ const Root = () =>{
   const { pathname } = useLocation();
   
   const { writeDairy } = diaryStore(state => state);
+
   const [animating, setAnimating] = useState(false);
   const [displayText, setDisplayText] = useState('YuDa');
-
+  const [innerHeight, setInnerHeight] = useState<Number>(0);
 
   const setScreenSize = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
+    typeof window !== undefined && setInnerHeight(window.innerHeight);
   };
 
   const aniSetter = (str:string) => {
@@ -35,11 +35,11 @@ const Root = () =>{
   
   useEffect(() => {
     writeDairy ? aniSetter('오늘의 일기를 작성해 봐요') : aniSetter('YuDa');
-    setScreenSize()
+    setScreenSize();
   },[writeDairy]);
 
   return (
-    <div className={css.app}>
+    <div className={css.app} style={{ height: `${innerHeight}px` }}>
       <Link className={linkCssClass} to={"/"}>
         <p className={animaCssClass}> {displayText}</p>
       </Link>
