@@ -1,7 +1,7 @@
 .total{
   background-color: white;
   width: 90vw;
-  height: 100%;
+  height: 83svh;
   border-radius: 20px;
   transition: all 0.5s ease;
   display: flex;
@@ -18,11 +18,12 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.7s ease;
   transition-delay: 1s;
 }
 
 .closeBtnIcon{
-  transition: all 1s ease;
+  transition: all 0.7s ease;
   color: black;
   margin: 1em 1em 0 0;
 }
@@ -32,8 +33,4 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-}
-
-.sectionMent{
-  
 }
