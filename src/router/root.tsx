@@ -16,7 +16,8 @@ const Root = () =>{
   const [innerHeight, setInnerHeight] = useState<Number>(0);
 
   const setScreenSize = () => {
-    typeof window !== undefined && setInnerHeight(window.innerHeight);
+    typeof window !== 'undefined' && setInnerHeight(window.innerHeight);
+    console.log(window.innerHeight)
   };
 
   const aniSetter = (str:string) => {
@@ -35,8 +36,9 @@ const Root = () =>{
   
   useEffect(() => {
     writeDairy ? aniSetter('오늘의 일기를 작성해 봐요') : aniSetter('YuDa');
-    setScreenSize();
-  },[writeDairy]);
+    // setScreenSize();
+    if(typeof window !== 'undefined') setInnerHeight(window.innerHeight);
+  },[writeDairy,innerHeight]);
 
   return (
     <div className={css.app} style={{ height: `${innerHeight}px` }}>
