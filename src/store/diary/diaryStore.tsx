@@ -13,7 +13,10 @@ type DiaryStore = {
 export const diaryStore = create<DiaryStore>((set) => ({
   diaries: [],
   writeDairy: false,
-  toggleWriteDairy: (tog: boolean) => set(state => ({ writeDairy: tog })),
+  toggleWriteDairy: (tog: boolean) => {
+    window.scrollTo(0, 0)
+    set(state => ({ writeDairy: tog }))
+  },
   getDiaries: (arr: DiaryType[]) => set((state) => ({ ...state, diaries: arr })),
   getMoreDiaries: async (id: number) => {
     const res = await fetchMoreDiaries(id);
