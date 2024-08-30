@@ -33,4 +33,14 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  
+}
+
+.sectionMentS{
+  transition: all 2s ease;
+  opacity: 1;
+}
+
+.sectionMent{
+  opacity: 0;
 }
