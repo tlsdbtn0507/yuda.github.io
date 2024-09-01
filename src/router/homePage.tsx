@@ -37,9 +37,7 @@ const HomePage:React.FC = () => {
 
   return (
     <>
-      <div
-        className={`${css.total} ${writeDairy ? css.expand : css.home}`}
-        onClick={()=>toggleWriteDairy(false)} >
+      <div className={`${css.total} ${writeDairy ? css.expand : css.home}`}>
         {
           writeDairy ? <Write/>:
           <div className={css.wrapper}>
