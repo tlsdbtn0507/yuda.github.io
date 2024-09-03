@@ -3,7 +3,7 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  font-family: JetBrains Mono;
+  font-family: Arial;
   transition: all 0.8s ease; 
 }
 
@@ -25,7 +25,7 @@
 .today{
   text-align: center;
   color: #4C4C4C;
-  font-family: JetBrains Mono;
+  font-family: Arial;
   font-size: 1.1875rem;
   font-style: normal;
   font-weight: 800;
