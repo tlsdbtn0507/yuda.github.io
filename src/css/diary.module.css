@@ -18,7 +18,7 @@
   margin: 10% 0 10% 0;
   color: #4C4C4C;
   text-align: center;
-  font-family: JetBrains Mono;
+  font-family: Arial;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 800;
@@ -36,7 +36,7 @@
 }
 .content p{
   color: #4C4C4C;
-  font-family: JetBrains Mono;
+  font-family: Arial;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 800;
