@@ -1,5 +1,4 @@
-import { renewToken } from "../api/users/usersApi";
-import { toSendDataObj } from "../model/types";
+import { toSendDataObj } from "../model/interfaces";
 
 export const toSendData = (data: FormData) => {
   const toReturn: toSendDataObj = {};

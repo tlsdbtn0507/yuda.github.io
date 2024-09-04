@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import css from '../../css/sign.module.css'
-import { BtnType } from '../../model/types';
+import { BtnType } from '../../model/interfaces';
 
 const IdCheckBtn = (props: BtnType) => {
   const { isIdVal } = props;

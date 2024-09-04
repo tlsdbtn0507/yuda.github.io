@@ -1,5 +1,5 @@
 import css from '../../css/diary.module.css'
-import { DiarySummary, DiaryType } from '../../model/types'
+import { DiarySummary, DiaryType } from '../../model/interfaces'
 
 const Diary = (props: { diaryInfo: DiaryType }) => {
   

@@ -1,4 +1,4 @@
-import { DiaryType } from "../../model/types";
+import { DiaryType } from "../../model/interfaces";
 import API from "../api"
 
 export const getDiaries = async () => {

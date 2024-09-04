@@ -57,6 +57,11 @@ export interface WriteDiaryFeeling{
   level: number
 }
 
+export interface WriteDiaryWeather{
+  ment: string
+  value: string
+}
+
 export const FEELINGS:WriteDiaryFeeling[] = [
     {
       ment: '완전 행복!',
@@ -74,5 +79,6 @@ export const FEELINGS:WriteDiaryFeeling[] = [
 
 export interface WriteDiary {
   feeling: { ment: string, level: number },
+  weather: {},
   feelingReason: string,
 }
