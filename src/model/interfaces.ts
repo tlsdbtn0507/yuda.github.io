@@ -54,9 +54,14 @@ export interface NavProps{
 
 export type IsDiaryWritten = {
   feeling: WriteDiaryFeeling | {},
-  weather: WriteDiaryWeather | {},
-  feelingReason: string
+  weather?: WriteDiaryWeather | {},
+  feelingReason?: string
 }
+// export type IsDiaryWritten = {
+//   feeling: WriteDiaryFeeling | {},
+//   weather: WriteDiaryWeather | {},
+//   feelingReason: string
+// }
 
 export interface WriteDiaryFeeling{
   ment: string
@@ -70,6 +75,6 @@ export type WriteDiaryWeather = {
 
 export type WriteDiary = {
   feeling: WriteDiaryFeeling | {},
-  weather: WriteDiaryWeather | {},
-  feelingReason: string | null,
+  weather?: WriteDiaryWeather | {},
+  feelingReason?: string,
 }

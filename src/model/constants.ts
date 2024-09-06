@@ -56,5 +56,5 @@ export const WEATHERS: WriteDiaryWeather[] = [
 export const WRITING_DIARY: WriteDiary = {
   feeling: {},
   weather: {},
-  feelingReason: null
+  feelingReason: ''
 }
