@@ -25,8 +25,10 @@ const WriteButton: React.FC<WriteButtonProps> = ({ ment, type }): React.ReactEle
     }
   }
 
+  const btnCss = type === 'weather' ? css.selectBtnW : css.selectBtn
+
   return (
-    <button className={css.selectBtn} onClick={selectBtnHandler}>
+    <button className={btnCss} onClick={selectBtnHandler}>
       {ment}
     </button>
   )
