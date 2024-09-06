@@ -1,4 +1,4 @@
-import { toSendDataObj } from "../model/interfaces";
+import { WriteDiary, toSendDataObj } from "../model/interfaces";
 
 export const toSendData = (data: FormData) => {
   const toReturn: toSendDataObj = {};
@@ -8,8 +8,22 @@ export const toSendData = (data: FormData) => {
   return toReturn
 }
 
-export const isEmptyObj = (obj: Object) => {
-  if (obj === null || obj === undefined) {
+export const whichObjIsEmpty = (checkObj: WriteDiary) => {
+  const obj = Object.entries(checkObj);
+
+  let ret;
+
+  for (let i = 0; i < obj.length; i++) {
+    if (isEmptyObj(obj[i][1])) {
+      ret  = obj[i][0]
+      break
+    }
+  }
+  return ret
+}
+
+const isEmptyObj = (obj:{}) => {
+  if (obj === null || obj === undefined || obj === '') {
     return true;
   }
   return obj.constructor === Object && Object.keys(obj).length === 0 
