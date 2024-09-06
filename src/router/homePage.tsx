@@ -20,7 +20,7 @@ const HomePage:React.FC = () => {
     queryFn: getDiaries,
   });
 
-  const { getDiaries: fetchingDiary, toggleWriteDairy, writeDairy } =
+  const { getDiaries: fetchingDiary, toggleWriteDairy, isWritingDairy } =
     diaryStore(state => state);
 
 
@@ -37,9 +37,9 @@ const HomePage:React.FC = () => {
 
   return (
     <>
-      <div className={`${css.total} ${writeDairy ? css.expand : css.home}`}>
+      <div className={`${css.total} ${isWritingDairy ? css.expand : css.home}`}>
         {
-          writeDairy ? <Write/>:
+          isWritingDairy ? <Write/>:
           <div className={css.wrapper}>
             <DayMaker/> 
             <LastToday/>
@@ -47,7 +47,7 @@ const HomePage:React.FC = () => {
           </div>
         }
       </div>
-      { !writeDairy && <Nav onDiaryClick={()=>toggleWriteDairy(true)} /> }
+      { !isWritingDairy && <Nav onDiaryClick={()=>toggleWriteDairy(true)} /> }
     </>
   )
 }

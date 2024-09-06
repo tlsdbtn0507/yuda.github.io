@@ -9,7 +9,7 @@ import { diaryStore } from '../store/diary/diaryStore';
 const Root = () =>{
   const { pathname } = useLocation();
   
-  const { writeDairy } = diaryStore(state => state);
+  const { isWritingDairy } = diaryStore(state => state);
 
   const [animating, setAnimating] = useState(false);
   const [displayText, setDisplayText] = useState('YuDa');
@@ -17,7 +17,7 @@ const Root = () =>{
 
   const aniSetter = (str:string) => {
     setAnimating(true);
-     // 애니메이션이 끝난 후에 writeDairy 상태 변경
+     // 애니메이션이 끝난 후에 isWritingDairy 상태 변경
     setTimeout(() => {
       setDisplayText(str);
       setAnimating(false);
@@ -25,17 +25,17 @@ const Root = () =>{
   };
 
   const animaCssClass =
-    `${writeDairy ? css.ment : css.yuda} ${animating ? css.animating : ''}`;
+    `${isWritingDairy ? css.ment : css.yuda} ${animating ? css.animating : ''}`;
   
-  const linkCssClass = writeDairy ? css.h1 : css.h2
+  const linkCssClass = isWritingDairy ? css.h1 : css.h2
   
   useEffect(() => {
 
-    writeDairy ? aniSetter('오늘의 일기를 작성해 봐요') : aniSetter('YuDa');
+    isWritingDairy ? aniSetter('오늘의 일기를 작성해 봐요') : aniSetter('YuDa');
 
     if (typeof window !== 'undefined') setInnerHeight(window.innerHeight);
     
-  },[writeDairy,innerHeight]);
+  },[isWritingDairy,innerHeight]);
 
   return (
     <div className={css.app} style={{ height: `${innerHeight}px` }}>
