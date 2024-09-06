@@ -52,27 +52,29 @@ export interface NavProps{
   onDiaryClick: () => void
 }
 
+export type IsDiaryWritten = {
+  feeling: WriteDiaryFeeling | {},
+  weather?: WriteDiaryWeather | {},
+  feelingReason?: string
+}
+// export type IsDiaryWritten = {
+//   feeling: WriteDiaryFeeling | {},
+//   weather: WriteDiaryWeather | {},
+//   feelingReason: string
+// }
+
 export interface WriteDiaryFeeling{
   ment: string
   level: number
 }
 
-export const FEELINGS:WriteDiaryFeeling[] = [
-    {
-      ment: '완전 행복!',
-      level:3
-    },
-    {
-      ment: '그냥 그랬어',
-      level:2
-    },
-    {
-      ment: '별로..',
-      level:1
-    },
-]
+export type WriteDiaryWeather = {
+  weatherCond: string
+  weatherLevel: WriteDiaryFeeling[]
+}
 
-export interface WriteDiary {
-  feeling: { ment: string, level: number },
-  feelingReason: string,
+export type WriteDiary = {
+  feeling: WriteDiaryFeeling | {},
+  weather?: WriteDiaryWeather | {},
+  feelingReason?: string,
 }

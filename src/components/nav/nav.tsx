@@ -5,7 +5,7 @@ import { useNavigate } from "react-router"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
-import { LogoutReturnType, NavProps } from "model/types"
+import { LogoutReturnType, NavProps } from "model/interfaces"
 
 const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   const navigate = useNavigate()
