@@ -22,7 +22,7 @@ export const whichObjIsEmpty = (checkObj: WriteDiary) => {
   return ret
 }
 
-const isEmptyObj = (obj:{}) => {
+export const isEmptyObj = (obj:{}) => {
   if (obj === null || obj === undefined || obj === '') {
     return true;
   }
