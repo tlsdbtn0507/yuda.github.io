@@ -1,7 +1,6 @@
 import CloseBtn from 'components/util/closeBtn';
 import css from '../../../css/write.module.css'
 import WriteSelect from './writeSelect';
-import Selected from './selected';
 
 import { useEffect, useState } from 'react';
 import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
@@ -52,6 +51,7 @@ const Write = () => {
       default:
         break;
     }
+
     
   }, [isDiaryWritten,setWritingDiary]);
 
@@ -59,7 +59,6 @@ const Write = () => {
   return (
     <div className={css.total}>
       <CloseBtn />
-      <Selected/>
       {content}
     </div>
   )
