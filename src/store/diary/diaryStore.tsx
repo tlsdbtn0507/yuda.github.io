@@ -18,6 +18,7 @@ export const diaryStore = create<DiaryStore>((set) => ({
   diaries: [],
   isWritingDairy: false,
   isDiaryWritten: JSON.parse(localStorage.getItem('writingDiary') as string),
+  // isDiaryWritten:null,
   but: 1,
   isButWork:()=>set(state=>({but:state.but+=1})),
   toggleWriteDairy: (tog: boolean) => {
