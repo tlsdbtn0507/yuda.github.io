@@ -9,6 +9,9 @@ export const toSendData = (data: FormData) => {
 }
 
 export const whichObjIsEmpty = (checkObj: WriteDiary) => {
+
+  if (checkObj === null) return checkObj;
+
   const obj = Object.entries(checkObj);
 
   let ret;

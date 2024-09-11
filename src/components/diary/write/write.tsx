@@ -32,13 +32,6 @@ const Write = () => {
 
   useEffect(() => {
 
-    if (isDiaryWritten === null) {
-      const writingDiary: WriteDiary = { feeling: {} };
-      setWritingDiary(writingDiary);
-      return whichSelectRender('f');
-    };
-    
-
     switch (whichObjIsEmpty(isDiaryWritten)) {
       case 'feeling':
         whichSelectRender('f')
@@ -47,6 +40,11 @@ const Write = () => {
       case 'weather':
         whichSelectRender('w');
         break;
+      
+      case null:
+        const writingDiary: WriteDiary = { feeling: {} };
+        setWritingDiary(writingDiary);
+        return whichSelectRender('f');
       
       default:
         break;
