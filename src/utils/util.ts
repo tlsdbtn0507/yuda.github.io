@@ -1,4 +1,4 @@
-import { WriteDiary, toSendDataObj } from "../model/interfaces";
+import { WriteDiary, WriteDiaryWeather, toSendDataObj } from "../model/interfaces";
 
 export const toSendData = (data: FormData) => {
   const toReturn: toSendDataObj = {};
@@ -17,17 +17,25 @@ export const whichObjIsEmpty = (checkObj: WriteDiary) => {
   let ret;
 
   for (let i = 0; i < obj.length; i++) {
+    
+    const a = obj[i][0] === 'weather' && obj[i][1] as WriteDiaryWeather;
+
+    if (typeof a !== "boolean" && isEmptyObj(a.weatherLevel)) {
+      ret = 'weatherLevel';
+      break
+    }
     if (isEmptyObj(obj[i][1])) {
-      ret  = obj[i][0]
+      ret = obj[i][0];
       break
     }
   }
   return ret
 }
 
-export const isEmptyObj = (obj:{}) => {
+export const isEmptyObj = (obj:{} | []) => {
   if (obj === null || obj === undefined || obj === '') {
     return true;
   }
-  return obj.constructor === Object && Object.keys(obj).length === 0 
+  return (obj.constructor === Object || obj.constructor === Array)
+    && Object.keys(obj).length === 0 
 }
