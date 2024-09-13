@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../../css/write.module.css'
 import { diaryStore } from 'store/diary/diaryStore';
 import { WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
-import { FEELINGS, WEATHERS } from 'model/constants';
+import { FEELINGS, WEATHERS, WEATHER_LEVELS } from 'model/constants';
 
 interface WriteButtonProps {
   ment: string,
@@ -24,6 +24,20 @@ const WriteButton: React.FC<WriteButtonProps> = ({ ment, type }): React.ReactEle
         const weather = WEATHERS.find(e => e.weatherCond === ment) as WriteDiaryWeather;
         const diary = { ...isDiaryWritten, weather };
         setWritingDiary(diary);
+        break;
+      
+      case 'weatherLevel':
+        const weatherLevel = WEATHER_LEVELS.find(e => e.ment === ment) as WriteDiaryFeeling;
+        const { weatherCond } = isDiaryWritten.weather as WriteDiaryWeather;
+        const toPut = {
+          ...isDiaryWritten,
+          weather: {
+            weatherCond,
+            weatherLevel
+          },
+          feelingReason:''
+        }
+        setWritingDiary(toPut);
         break;
     
       default:
