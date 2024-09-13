@@ -1,12 +1,15 @@
-import { WriteDiary, WriteDiaryWeather, toSendDataObj } from "../model/interfaces";
+import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, toSendDataObj } from "../model/interfaces";
 
 export const toSendData = (data: FormData) => {
   const toReturn: toSendDataObj = {};
   data.forEach((e, i) => {
-    if(i !== 'pwCheck') toReturn[`${i}`] = e as string
+    if (i !== 'pwCheck') toReturn[`${i}`] = e as string
   });
   return toReturn
-}
+};
+
+
+type ObjEntryType = [string, string | {} | WriteDiaryFeeling | WriteDiaryWeather];
 
 export const whichObjIsEmpty = (checkObj: WriteDiary) => {
 
@@ -17,15 +20,15 @@ export const whichObjIsEmpty = (checkObj: WriteDiary) => {
   let ret;
 
   for (let i = 0; i < obj.length; i++) {
-    
-    const a = obj[i][0] === 'weather' && obj[i][1] as WriteDiaryWeather;
 
-    if (typeof a !== "boolean" && isEmptyObj(a.weatherLevel)) {
+    const [key, values]: ObjEntryType = obj[i];
+    const isValueWeather = values as WriteDiaryWeather;
+    if (Array.isArray(isValueWeather.weatherLevel)) {
       ret = 'weatherLevel';
       break
     }
-    if (isEmptyObj(obj[i][1])) {
-      ret = obj[i][0];
+    if (isEmptyObj(values)) {
+      ret = key;
       break
     }
   }
