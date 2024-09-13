@@ -3,6 +3,7 @@ import { WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
 
 import React, { useEffect, useState } from 'react';
 import WriteButton from './writeButton';
+import { diaryStore } from 'store/diary/diaryStore';
 
 interface WriteSelectProps{
   type: string,
@@ -12,6 +13,7 @@ interface WriteSelectProps{
 const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactElement => {
 
   const [renderAnima, setRenderAnima] = useState<boolean>(false);
+  const { isDiaryWritten } = diaryStore(state => state);
 
   let h2;
   let content;
@@ -36,8 +38,15 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
       content = weatherSelection.map(e =>
         <WriteButton type={type} key={e.weatherCond} ment={e.weatherCond}/>)
       break;
-    case 'weatherDetail':
+    
+    case 'weatherLevel':
+      const { weatherCond } = isDiaryWritten.weather as WriteDiaryWeather;
+      h2 = `얼마나 ${weatherCond.slice(0, -1)}나요?`;
+      const weatherLevelSelection = selections as WriteDiaryFeeling[];
+      content =  weatherLevelSelection.map(e =>
+        <WriteButton type={type} key={e.level} ment={e.ment} />)
       break;
+    
     
     default:
       break;

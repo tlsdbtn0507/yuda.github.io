@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
 import { whichObjIsEmpty } from 'utils/util';
 import { diaryStore } from 'store/diary/diaryStore';
-import { FEELINGS, WEATHERS } from 'model/constants';
+import { FEELINGS, WEATHERS, WEATHER_LEVELS } from 'model/constants';
 
 const Write = () => {
 
@@ -25,20 +25,17 @@ const Write = () => {
         setContent(<WriteSelect type={'weather'} selections={weathers} />);
         break;
       
+      case 'wl':
+        const weatherLevel = WEATHER_LEVELS as WriteDiaryFeeling[];
+        setContent(<WriteSelect type={'weatherLevel'} selections={weatherLevel} />);
+        break;
+      
       default:
         break;
     };
   };
 
   useEffect(() => {
-
-    if (isDiaryWritten === null) {
-      const writingDiary: WriteDiary = { feeling: {} };
-      setWritingDiary(writingDiary);
-      return whichSelectRender('f');
-    };
-    
-
     switch (whichObjIsEmpty(isDiaryWritten)) {
       case 'feeling':
         whichSelectRender('f')
@@ -47,6 +44,15 @@ const Write = () => {
       case 'weather':
         whichSelectRender('w');
         break;
+      
+      case 'weatherLevel':
+        whichSelectRender('wl');
+        break;
+      
+      case null:
+        const writingDiary: WriteDiary = { feeling: {} };
+        setWritingDiary(writingDiary);
+        return whichSelectRender('f');
       
       default:
         break;
