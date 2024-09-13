@@ -36,7 +36,6 @@ const Write = () => {
   };
 
   useEffect(() => {
-
     switch (whichObjIsEmpty(isDiaryWritten)) {
       case 'feeling':
         whichSelectRender('f')
