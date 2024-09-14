@@ -31,14 +31,34 @@ export const whichObjIsEmpty = (checkObj: WriteDiary) => {
       ret = key;
       break
     }
+    ret = 'feelingReason'
   }
   return ret
 }
 
-export const isEmptyObj = (obj:{} | []) => {
+export const isEmptyObj = (obj: {} | []) => {
   if (obj === null || obj === undefined || obj === '') {
     return true;
   }
   return (obj.constructor === Object || obj.constructor === Array)
-    && Object.keys(obj).length === 0 
-}
+    && Object.keys(obj).length === 0
+};
+
+export const mentMaker = (feeling: WriteDiaryFeeling): string => {
+  let ment: string = ''
+  switch (feeling.level) {
+    case 1:
+      ment = feeling.ment.slice(0,2) + '였'
+      break;
+    case 2:
+      ment = feeling.ment.slice(0, -1);
+      break;
+    case 3:
+      ment = feeling.ment.replace('!', '했');
+      break;
+  
+    default:
+      break;
+  }
+  return ment;
+};

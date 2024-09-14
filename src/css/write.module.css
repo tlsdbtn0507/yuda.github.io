@@ -153,3 +153,20 @@
   font-size: 1rem;
   background-color: rgba(132, 248, 255, 1);
 }
+
+.textAreaDiv{
+  vertical-align: middle;
+}
+
+.textArea{
+  width: 60vw;
+  height: 100%;
+  border: 6px solid rgba(132, 248, 255, 1);
+  border-radius: 5%;
+  padding-top: 5%;
+}
+
+.textArea::placeholder{
+  text-align: center;
+  margin-top: 10vh;
+}
