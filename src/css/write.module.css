@@ -164,6 +164,7 @@
   border: 6px solid rgba(132, 248, 255, 1);
   border-radius: 5%;
   padding-top: 5%;
+  font-size: 1rem;
 }
 
 .textArea::placeholder{
