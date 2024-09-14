@@ -1,13 +1,15 @@
 import css from '../../../css/write.module.css'
-import { WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
+import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
 
 import React, { useEffect, useState } from 'react';
 import WriteButton from './writeButton';
 import { diaryStore } from 'store/diary/diaryStore';
+import { mentMaker } from 'utils/util';
+import WriteTextArea from './writeTextArea';
 
 interface WriteSelectProps{
   type: string,
-  selections: WriteDiaryFeeling[] | WriteDiaryWeather[]
+  selections?: WriteDiaryFeeling[] | WriteDiaryWeather[]
 }
 
 const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactElement => {
@@ -26,27 +28,36 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
     
   switch (type) {
     case 'feeling':
-      h2 = '오늘 하루는 어떠셨나요?';
       const feelingsSelection = selections as WriteDiaryFeeling[];
+
+      h2 = '오늘 하루는 어떠셨나요?';
       content = feelingsSelection.map(e =>
           <WriteButton type={type} key={e.level} ment={e.ment} />);
       break;
     
     case 'weather':
-      h2 = '오늘 날씨는 어땠나요?';
       const weatherSelection = selections as WriteDiaryWeather[];
+
+      h2 = '오늘 날씨는 어땠나요?';
       content = weatherSelection.map(e =>
         <WriteButton type={type} key={e.weatherCond} ment={e.weatherCond}/>)
       break;
     
     case 'weatherLevel':
       const { weatherCond } = isDiaryWritten.weather as WriteDiaryWeather;
-      h2 = `얼마나 ${weatherCond.slice(0, -1)}나요?`;
       const weatherLevelSelection = selections as WriteDiaryFeeling[];
+
+      h2 = `얼마나 ${weatherCond.slice(0, -1)}나요?`;
       content =  weatherLevelSelection.map(e =>
         <WriteButton type={type} key={e.level} ment={e.ment} />)
       break;
     
+    case 'feelingReason':
+      const { feeling } = isDiaryWritten as WriteDiary;
+
+      h2 = `왜 ${mentMaker(feeling as WriteDiaryFeeling)}나요?`;
+      content = <WriteTextArea/>
+      break;
     
     default:
       break;

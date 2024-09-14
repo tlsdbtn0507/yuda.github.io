@@ -30,6 +30,10 @@ const Write = () => {
         setContent(<WriteSelect type={'weatherLevel'} selections={weatherLevel} />);
         break;
       
+      case 'fr':
+        setContent(<WriteSelect type={'feelingReason'} />)
+        break;
+      
       default:
         break;
     };
@@ -47,6 +51,10 @@ const Write = () => {
       
       case 'weatherLevel':
         whichSelectRender('wl');
+        break;
+      
+      case 'feelingReason':
+        whichSelectRender('fr')
         break;
       
       case null:
