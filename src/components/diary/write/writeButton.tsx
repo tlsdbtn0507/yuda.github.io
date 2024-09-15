@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../../css/write.module.css'
 import { diaryStore } from 'store/diary/diaryStore';
-import { WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
+import { WriteDiaryFeeling, WriteDiaryWeather, WriteDiaryEnum } from 'model/interfaces';
 import { FEELINGS, WEATHERS, WEATHER_LEVELS } from 'model/constants';
 
 interface WriteButtonProps {
@@ -15,18 +15,18 @@ const WriteButton: React.FC<WriteButtonProps> = ({ ment, type }): React.ReactEle
   
   const selectBtnHandler = () => {
     switch (type) {
-      case 'feeling':
+      case WriteDiaryEnum.Feeling:
         const feeling = FEELINGS.find(e => e.ment === ment) as WriteDiaryFeeling;
         setWritingDiary({ feeling, weather: {} });
         break;
       
-      case 'weather':
+      case WriteDiaryEnum.Weather:
         const weather = WEATHERS.find(e => e.weatherCond === ment) as WriteDiaryWeather;
         const diary = { ...isDiaryWritten, weather };
         setWritingDiary(diary);
         break;
       
-      case 'weatherLevel':
+      case WriteDiaryEnum.WeatherLevel:
         const weatherLevel = WEATHER_LEVELS.find(e => e.ment === ment) as WriteDiaryFeeling;
         const { weatherCond } = isDiaryWritten.weather as WriteDiaryWeather;
         const toPut = {

@@ -1,5 +1,5 @@
 import css from '../../../css/write.module.css'
-import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
+import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, WriteDiaryEnum } from 'model/interfaces';
 
 import React, { useEffect, useState } from 'react';
 import WriteButton from './writeButton';
@@ -27,7 +27,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
   }, [renderAnima]);
     
   switch (type) {
-    case 'feeling':
+    case WriteDiaryEnum.Feeling:
       const feelingsSelection = selections as WriteDiaryFeeling[];
 
       h2 = '오늘 하루는 어떠셨나요?';
@@ -35,7 +35,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
           <WriteButton type={type} key={e.level} ment={e.ment} />);
       break;
     
-    case 'weather':
+    case WriteDiaryEnum.Weather:
       const weatherSelection = selections as WriteDiaryWeather[];
 
       h2 = '오늘 날씨는 어땠나요?';
@@ -43,7 +43,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
         <WriteButton type={type} key={e.weatherCond} ment={e.weatherCond}/>)
       break;
     
-    case 'weatherLevel':
+    case WriteDiaryEnum.WeatherLevel:
       const { weatherCond } = isDiaryWritten.weather as WriteDiaryWeather;
       const weatherLevelSelection = selections as WriteDiaryFeeling[];
 
@@ -52,7 +52,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
         <WriteButton type={type} key={e.level} ment={e.ment} />)
       break;
     
-    case 'feelingReason':
+    case WriteDiaryEnum.FeelingReason:
       const { feeling } = isDiaryWritten as WriteDiary;
 
       h2 = `왜 ${mentMaker(feeling as WriteDiaryFeeling)}나요?`;

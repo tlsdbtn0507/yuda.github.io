@@ -1,4 +1,4 @@
-import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, toSendDataObj } from "../model/interfaces";
+import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, toSendDataObj, WriteDiaryEnum} from "../model/interfaces";
 
 export const toSendData = (data: FormData) => {
   const toReturn: toSendDataObj = {};
@@ -24,14 +24,14 @@ export const whichObjIsEmpty = (checkObj: WriteDiary) => {
     const [key, values]: ObjEntryType = obj[i];
     const isValueWeather = values as WriteDiaryWeather;
     if (Array.isArray(isValueWeather.weatherLevel)) {
-      ret = 'weatherLevel';
+      ret = WriteDiaryEnum.WeatherLevel;
       break
     }
     if (isEmptyObj(values)) {
       ret = key;
       break
     }
-    ret = 'feelingReason'
+    ret = WriteDiaryEnum.FeelingReason;
   }
   return ret
 }

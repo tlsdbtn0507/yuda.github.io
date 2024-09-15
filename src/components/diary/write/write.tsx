@@ -3,7 +3,11 @@ import css from '../../../css/write.module.css'
 import WriteSelect from './writeSelect';
 
 import { useEffect, useState } from 'react';
-import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather } from 'model/interfaces';
+
+import
+{ WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, WriteDiaryEnum }
+from 'model/interfaces';
+
 import { whichObjIsEmpty } from 'utils/util';
 import { diaryStore } from 'store/diary/diaryStore';
 import { FEELINGS, WEATHERS, WEATHER_LEVELS } from 'model/constants';
@@ -17,21 +21,21 @@ const Write = () => {
     switch (which) {
       case 'f':
         const feelings = FEELINGS as WriteDiaryFeeling[];
-        setContent(<WriteSelect type={'feeling'} selections={feelings} />);
+        setContent(<WriteSelect type={WriteDiaryEnum.Feeling} selections={feelings} />);
         break;
       
       case 'w':
         const weathers = WEATHERS as WriteDiaryWeather[];
-        setContent(<WriteSelect type={'weather'} selections={weathers} />);
+        setContent(<WriteSelect type={WriteDiaryEnum.Weather} selections={weathers} />);
         break;
       
       case 'wl':
         const weatherLevel = WEATHER_LEVELS as WriteDiaryFeeling[];
-        setContent(<WriteSelect type={'weatherLevel'} selections={weatherLevel} />);
+        setContent(<WriteSelect type={WriteDiaryEnum.WeatherLevel} selections={weatherLevel} />);
         break;
       
       case 'fr':
-        setContent(<WriteSelect type={'feelingReason'} />)
+        setContent(<WriteSelect type={WriteDiaryEnum.FeelingReason} />)
         break;
       
       default:
@@ -41,19 +45,19 @@ const Write = () => {
 
   useEffect(() => {
     switch (whichObjIsEmpty(isDiaryWritten)) {
-      case 'feeling':
+      case WriteDiaryEnum.Feeling:
         whichSelectRender('f')
         break;
     
-      case 'weather':
+      case WriteDiaryEnum.Weather:
         whichSelectRender('w');
         break;
       
-      case 'weatherLevel':
+      case WriteDiaryEnum.WeatherLevel:
         whichSelectRender('wl');
         break;
       
-      case 'feelingReason':
+      case WriteDiaryEnum.FeelingReason:
         whichSelectRender('fr')
         break;
       
