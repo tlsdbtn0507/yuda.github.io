@@ -69,6 +69,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
       <div className={renderAnima ? css.selectBtnWrapS : css.selectBtnWrap}>
         {content}
       </div>
+      <button>adasdfadfasdff</button>
     </div>
   )
 };
