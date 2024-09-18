@@ -63,13 +63,17 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
       break;
   };
 
+  const showNextBtn =
+    type === WriteDiaryEnum.FeelingReason &&
+    isDiaryWritten.feelingReason?.length as number > 0
+
   return (
     <div className={css.selectWrapper}>
       <h2 className={renderAnima ? css.sectionMentS : css.sectionMent}>{h2}</h2>
       <div className={renderAnima ? css.selectBtnWrapS : css.selectBtnWrap}>
         {content}
       </div>
-      <button>adasdfadfasdff</button>
+      { showNextBtn && <button>adasdfadfasdff</button> }
     </div>
   )
 };
