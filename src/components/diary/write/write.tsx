@@ -1,6 +1,6 @@
 import CloseBtn from 'components/util/closeBtn';
 import css from '../../../css/write.module.css'
-import WriteSelect from './writeSelect';
+import WriteSelect from './diary/writeSelect';
 
 import { useEffect, useState } from 'react';
 

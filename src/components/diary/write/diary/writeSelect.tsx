@@ -1,4 +1,4 @@
-import css from '../../../css/write.module.css'
+import css from '../../../../css/write.module.css'
 import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, WriteDiaryEnum } from 'model/interfaces';
 
 import React, { useEffect, useState } from 'react';
@@ -6,6 +6,7 @@ import WriteButton from './writeButton';
 import { diaryStore } from 'store/diary/diaryStore';
 import { mentMaker } from 'utils/util';
 import WriteTextArea from './writeTextArea';
+import WriteDoneBtn from './writeDoneBtn';
 
 interface WriteSelectProps{
   type: string,
@@ -73,7 +74,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
       <div className={renderAnima ? css.selectBtnWrapS : css.selectBtnWrap}>
         {content}
       </div>
-      { showNextBtn && <button>adasdfadfasdff</button> }
+      { showNextBtn && <WriteDoneBtn/> }
     </div>
   )
 };

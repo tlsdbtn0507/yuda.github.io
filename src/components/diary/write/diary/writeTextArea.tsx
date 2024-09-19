@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import css from '../../../css/write.module.css'
+import css from '../../../../css/write.module.css'
 import { diaryStore } from 'store/diary/diaryStore';
 
 const WriteTextArea = () => {
