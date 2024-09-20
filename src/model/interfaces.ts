@@ -73,3 +73,10 @@ export type WriteDiary = {
   weather?: WriteDiaryWeather | {},
   feelingReason?: string,
 }
+
+export const enum WriteDiaryEnum{
+  Feeling ='feeling',
+  Weather ='weather',
+  WeatherLevel ='weatherLevel',
+  FeelingReason ='feelingReason',
+}

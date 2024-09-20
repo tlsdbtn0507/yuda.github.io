@@ -38,7 +38,7 @@ input{
   color: white;
   margin-left: 49%;
   margin-bottom: 5%;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   border-radius: 10px;
   padding: 3%;
 }
@@ -46,7 +46,7 @@ input{
 .checkBtn{
   margin-left: 49%;
   margin-bottom: 5%;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   border-radius: 10px;
   border: 1px solid deepskyblue;
   background-color: deepskyblue;
