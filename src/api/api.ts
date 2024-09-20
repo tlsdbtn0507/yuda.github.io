@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { tokenSet } from "utils/util";
 import { renewToken } from "./users/usersApi";
 
 const API = axios.create({

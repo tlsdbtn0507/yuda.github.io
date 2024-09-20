@@ -1,29 +1,64 @@
-import { renewToken } from "../api/users/usersApi";
-import { toSendDataObj } from "../model/types";
+import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, toSendDataObj, WriteDiaryEnum} from "../model/interfaces";
 
 export const toSendData = (data: FormData) => {
   const toReturn: toSendDataObj = {};
   data.forEach((e, i) => {
-    if(i !== 'pwCheck') toReturn[`${i}`] = e as string
+    if (i !== 'pwCheck') toReturn[`${i}`] = e as string
   });
   return toReturn
+};
+
+
+type ObjEntryType = [string, string | {} | WriteDiaryFeeling | WriteDiaryWeather];
+
+export const whichObjIsEmpty = (checkObj: WriteDiary) => {
+
+  if (checkObj === null) return checkObj;
+
+  const obj = Object.entries(checkObj);
+
+  let ret;
+
+  for (let i = 0; i < obj.length; i++) {
+
+    const [key, values]: ObjEntryType = obj[i];
+    const isValueWeather = values as WriteDiaryWeather;
+    if (Array.isArray(isValueWeather.weatherLevel)) {
+      ret = WriteDiaryEnum.WeatherLevel;
+      break
+    }
+    if (isEmptyObj(values)) {
+      ret = key;
+      break
+    }
+    ret = WriteDiaryEnum.FeelingReason;
+  }
+  return ret
 }
 
-export const tokenSet = (token: string) => {
-  // localStorage.setItem('refreshToken', token);
+export const isEmptyObj = (obj: {} | []) => {
+  if (obj === null || obj === undefined || obj === '') {
+    return true;
+  }
+  return (obj.constructor === Object || obj.constructor === Array)
+    && Object.keys(obj).length === 0
+};
 
-  // const refreshToken = localStorage.getItem('refreshToken') as string;
-
-  // const timer = process.env.REACT_APP_DELAY as string;
-
-  // const refCondition = localStorage.getItem('nonRef');
-
-  // if (refCondition === 'nonRef') {
-  //   renewToken(refreshToken)
-  //     .then(() => setTimeout(() => tokenSet(refreshToken), +timer));
-  //   return 
-  // } else setTimeout( async() => {
-  //   const res = await renewToken(token);
-  //   res && tokenSet(refreshToken);
-  // }, +timer);
-}
+export const mentMaker = (feeling: WriteDiaryFeeling): string => {
+  let ment: string = ''
+  switch (feeling.level) {
+    case 1:
+      ment = feeling.ment.slice(0,2) + '였'
+      break;
+    case 2:
+      ment = feeling.ment.slice(0, -1);
+      break;
+    case 3:
+      ment = feeling.ment.replace('!', '했');
+      break;
+  
+    default:
+      break;
+  }
+  return ment;
+};

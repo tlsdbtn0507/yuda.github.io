@@ -1,6 +1,6 @@
 import API from "../api";
 import { redirect } from "react-router";
-import { LogoutReturnType, sendObj } from '../../model/types';
+import { LogoutReturnType, sendObj } from '../../model/interfaces';
 import { toSendData } from "../../utils/util";
 import axios from "axios";
 

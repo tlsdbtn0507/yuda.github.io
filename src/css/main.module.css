@@ -3,18 +3,18 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  font-family: JetBrains Mono;
+  font-family: Arial;
   transition: all 0.8s ease; 
 }
 
 .total.home{
   width: 21rem;
-  height: 73vh;
+  height: 83svh;
 }
 
 .total.expand {
   width: 90vw;
-  height: 85vh;
+  height: 83svh;
 }
 
 .wrapper{
@@ -25,7 +25,7 @@
 .today{
   text-align: center;
   color: #4C4C4C;
-  font-family: JetBrains Mono;
+  font-family: Arial;
   font-size: 1.1875rem;
   font-style: normal;
   font-weight: 800;

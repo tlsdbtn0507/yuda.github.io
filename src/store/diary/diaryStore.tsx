@@ -1,19 +1,25 @@
 import { create } from "zustand";
-import { DiaryType } from "../../model/types";
+import { DiaryType, IsDiaryWritten } from "../../model/interfaces";
 import { fetchMoreDiaries } from "../../api/diary/diaryApi";
 
 type DiaryStore = {
   diaries: DiaryType[],
-  writeDairy:boolean
-  toggleWriteDairy:(tog:boolean)=>void,
+  isWritingDairy: boolean,
+  isDiaryWritten:IsDiaryWritten,
+  toggleWriteDairy: (tog: boolean) => void,
   getDiaries: (arr: []) => void,
-  getMoreDiaries: (id: number) => Promise<boolean>
-};
+  getMoreDiaries: (id: number) => Promise<boolean>,
+  setWritingDiary: (writingDiary: IsDiaryWritten) => void,
+}
 
 export const diaryStore = create<DiaryStore>((set) => ({
   diaries: [],
-  writeDairy: false,
-  toggleWriteDairy: (tog: boolean) => set(state => ({ writeDairy: tog })),
+  isWritingDairy: false,
+  isDiaryWritten: JSON.parse(localStorage.getItem('writingDiary') as string),
+  toggleWriteDairy: (tog: boolean) => {
+    window.scrollTo(0, 0)
+    set(state => ({ isWritingDairy: tog }))
+  },
   getDiaries: (arr: DiaryType[]) => set((state) => ({ ...state, diaries: arr })),
   getMoreDiaries: async (id: number) => {
     const res = await fetchMoreDiaries(id);
@@ -22,5 +28,9 @@ export const diaryStore = create<DiaryStore>((set) => ({
       set(state => ({ diaries: state.diaries.concat(res) }))
       return true
     }
-  }
+  },
+  setWritingDiary: (writingDiary:IsDiaryWritten) => {
+    localStorage.setItem('writingDiary', JSON.stringify(writingDiary));
+    set(state => ({ isDiaryWritten: writingDiary }));
+  },
 }));

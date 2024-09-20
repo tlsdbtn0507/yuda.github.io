@@ -1,8 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  padding: 0;
-  overflow: hidden; 
+  padding: 0; 
 }
 
 body {
@@ -16,10 +15,10 @@ body {
 }
 
 :root {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: auto; 
+  height: 110svh;
+  margin: 0;
+  padding: 0;
+  overflow: auto; 
 }
 
 code {

@@ -51,3 +51,32 @@ export interface LogoutReturnType {
 export interface NavProps{
   onDiaryClick: () => void
 }
+
+export type IsDiaryWritten = {
+  feeling: WriteDiaryFeeling | {},
+  weather?: WriteDiaryWeather | {},
+  feelingReason?: string
+}
+
+export interface WriteDiaryFeeling{
+  ment: string
+  level: number
+}
+
+export type WriteDiaryWeather = {
+  weatherCond: string
+  weatherLevel: WriteDiaryFeeling[]
+}
+
+export type WriteDiary = {
+  feeling: WriteDiaryFeeling | {},
+  weather?: WriteDiaryWeather | {},
+  feelingReason?: string,
+}
+
+export const enum WriteDiaryEnum{
+  Feeling ='feeling',
+  Weather ='weather',
+  WeatherLevel ='weatherLevel',
+  FeelingReason ='feelingReason',
+}
