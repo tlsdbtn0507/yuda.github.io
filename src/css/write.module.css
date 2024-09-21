@@ -29,12 +29,16 @@
 }
 
 .selectWrapper{
+  transition: all 2s ease;
+  opacity: 1;
   margin-top: 6%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  
+}
+.selectWrapperS{
+  opacity: 0;
 }
 
 .sectionMentS{
@@ -55,6 +59,17 @@
   height: 14rem;
   overflow: overlay;
 }
+
+.selectDoneBtn{
+  opacity: 0;
+}
+
+.selectDoneBtnS{
+  transition: all 3s ease;
+  opacity: 1;
+
+}
+
 .selectBtnWrap{
   opacity: 0;
 }

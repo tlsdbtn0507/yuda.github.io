@@ -16,6 +16,7 @@ interface WriteSelectProps{
 const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactElement => {
 
   const [renderAnima, setRenderAnima] = useState<boolean>(false);
+  const [renderAnima2, setRenderAnima2] = useState<boolean>(false);
   const { isDiaryWritten } = diaryStore(state => state);
 
   let h2;
@@ -25,6 +26,9 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
     setTimeout(() => {
       setRenderAnima(true);
     }, 1500);
+    setTimeout(() => {
+      setRenderAnima2(true)
+    }, 2500);
   }, [renderAnima]);
     
   switch (type) {
@@ -74,7 +78,12 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
       <div className={renderAnima ? css.selectBtnWrapS : css.selectBtnWrap}>
         {content}
       </div>
-      { showNextBtn && <WriteDoneBtn/> }
+      {
+        showNextBtn &&
+        <div className={renderAnima2 ? css.selectDoneBtnS : css.selectDoneBtn}>
+          <WriteDoneBtn />
+        </div>
+      }
     </div>
   )
 };
