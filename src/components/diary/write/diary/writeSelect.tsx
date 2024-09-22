@@ -17,19 +17,21 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
 
   const [renderAnima, setRenderAnima] = useState<boolean>(false);
   const [renderAnima2, setRenderAnima2] = useState<boolean>(false);
+  const [renderAnima3, setRenderAnima3] = useState<boolean>(false);
   const { isDiaryWritten } = diaryStore(state => state);
 
   let h2;
   let content;
 
+  const animationArray = [
+    { func: setRenderAnima, time: 1500 },
+    { func: setRenderAnima2, time: 2000 },
+    { func: setRenderAnima3, time: 2500 },
+  ];
+
   useEffect(() => {
-    setTimeout(() => {
-      setRenderAnima(true);
-    }, 1500);
-    setTimeout(() => {
-      setRenderAnima2(true)
-    }, 2500);
-  }, [renderAnima]);
+    animationArray.forEach(e => setTimeout(() => e.func(true), e.time));
+  },);
     
   switch (type) {
     case WriteDiaryEnum.Feeling:
@@ -68,19 +70,17 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
       break;
   };
 
-  const showNextBtn =
-    type === WriteDiaryEnum.FeelingReason &&
-    isDiaryWritten.feelingReason?.length as number > 0
+  const showNextBtn = type === WriteDiaryEnum.FeelingReason;
 
   return (
     <div className={css.selectWrapper}>
       <h2 className={renderAnima ? css.sectionMentS : css.sectionMent}>{h2}</h2>
-      <div className={renderAnima ? css.selectBtnWrapS : css.selectBtnWrap}>
+      <div className={renderAnima2 ? css.selectBtnWrapS : css.selectBtnWrap}>
         {content}
       </div>
       {
         showNextBtn &&
-        <div className={renderAnima2 ? css.selectDoneBtnS : css.selectDoneBtn}>
+        <div className={renderAnima3 ? css.selectDoneBtnS : css.selectDoneBtn}>
           <WriteDoneBtn />
         </div>
       }
