@@ -16,7 +16,9 @@ const WriteTextArea = () => {
   return (
     <textarea
       ref={textRef}
-      className={css.textArea} placeholder='직접 적어보아요'
+      className={css.textArea}
+      placeholder='직접 적어보아요'
+      defaultValue={isDiaryWritten.feelingReason}
       onBlur={writeDairyFeelingReason}>
     </textarea>
   )
