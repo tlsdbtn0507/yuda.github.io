@@ -29,16 +29,12 @@
 }
 
 .selectWrapper{
-  transition: all 2s ease;
-  opacity: 1;
   margin-top: 6%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-}
-.selectWrapperS{
-  opacity: 0;
+  
 }
 
 .sectionMentS{
@@ -187,7 +183,26 @@
   margin-top: 10vh;
 }
 
-.doneBtn{
-  background-color: white;
+.notDoneBtn{
+  opacity: 0.5;
+  background-color: rgba(222, 253, 255, 1);
   color: black;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  width: 35vw;
+  height: 8vh;
+  align-content: center;
+  font-weight: bolder;
+  margin-top: 10%;
+}
+.doneBtn{
+  background-color: rgba(222, 253, 255, 1);
+  color: black;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  width: 35vw;
+  height: 8vh;
+  align-content: center;
+  font-weight: bolder;
+  margin-top: 10%;
 }
