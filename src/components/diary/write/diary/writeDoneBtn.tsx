@@ -1,23 +1,22 @@
 import { diaryStore } from 'store/diary/diaryStore'
 import css from '../../../../css/write.module.css'
-import { whichObjIsEmpty } from 'utils/util';
 
 const WriteDoneBtn = () => {
 
-  const { isDiaryWritten } = diaryStore(state => state);
+  const { isDiaryWritten, setWritingDiary, diaryFeelingReason } =
+    diaryStore(state => state);
 
-  const isBtnDisabled = isDiaryWritten.feelingReason?.length === 0;
+  const isBtnDisabled = diaryFeelingReason.length === 0;
 
   const handleDoneBtn = () => {
     switch (isBtnDisabled) {
       case true:
         const checkReasonNull = window.confirm('정말 아무것도 안적으시게요?');
-        if (checkReasonNull) return console.log('go all selected');
+        if (checkReasonNull) setWritingDiary({ ...isDiaryWritten, feelingReason: ' ' });
         break;
       
       case false:
-        console.log('go all selected');
-        console.log(whichObjIsEmpty(isDiaryWritten));
+        setWritingDiary({ ...isDiaryWritten, feelingReason: diaryFeelingReason });
         break;
     
       default:

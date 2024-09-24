@@ -23,15 +23,16 @@ export const whichObjIsEmpty = (checkObj: WriteDiary) => {
 
     const [key, values]: ObjEntryType = obj[i];
     const isValueWeather = values as WriteDiaryWeather;
+
     if (Array.isArray(isValueWeather.weatherLevel)) {
       ret = WriteDiaryEnum.WeatherLevel;
-      break
-    }
+      break;
+    };
     if (isEmptyObj(values)) {
       ret = key;
-      break
-    }
-    ret = WriteDiaryEnum.FeelingReason;
+      break;
+    };
+    ret = 'done';
   }
   return ret
 }

@@ -34,6 +34,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
   },);
     
   switch (type) {
+    
     case WriteDiaryEnum.Feeling:
       const feelingsSelection = selections as WriteDiaryFeeling[];
 
@@ -70,7 +71,7 @@ const WriteSelect:React.FC<WriteSelectProps> = ({type,selections}):React.ReactEl
       break;
   };
 
-  const showNextBtn = type === WriteDiaryEnum.FeelingReason;
+  const showNextBtn = type === WriteDiaryEnum.FeelingReason || type === 'done';
 
   return (
     <div className={css.selectWrapper}>

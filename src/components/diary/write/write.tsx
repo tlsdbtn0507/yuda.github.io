@@ -21,17 +21,20 @@ const Write = () => {
     switch (which) {
       case 'f':
         const feelings = FEELINGS as WriteDiaryFeeling[];
-        setContent(<WriteSelect type={WriteDiaryEnum.Feeling} selections={feelings} />);
+        setContent(
+          <WriteSelect type={WriteDiaryEnum.Feeling} selections={feelings} />);
         break;
       
       case 'w':
         const weathers = WEATHERS as WriteDiaryWeather[];
-        setContent(<WriteSelect type={WriteDiaryEnum.Weather} selections={weathers} />);
+        setContent(
+          <WriteSelect type={WriteDiaryEnum.Weather} selections={weathers} />);
         break;
       
       case 'wl':
         const weatherLevel = WEATHER_LEVELS as WriteDiaryFeeling[];
-        setContent(<WriteSelect type={WriteDiaryEnum.WeatherLevel} selections={weatherLevel} />);
+        setContent(
+          <WriteSelect type={WriteDiaryEnum.WeatherLevel} selections={weatherLevel} />);
         break;
       
       case 'fr':
@@ -65,6 +68,10 @@ const Write = () => {
         const writingDiary: WriteDiary = { feeling: {} };
         setWritingDiary(writingDiary);
         return whichSelectRender('f');
+      
+      case 'done':
+
+        break;
       
       default:
         break;
