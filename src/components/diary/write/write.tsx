@@ -11,6 +11,7 @@ from 'model/interfaces';
 import { whichObjIsEmpty } from 'utils/util';
 import { diaryStore } from 'store/diary/diaryStore';
 import { FEELINGS, WEATHERS, WEATHER_LEVELS } from 'model/constants';
+import WriteSum from './summary/writeSum';
 
 const Write = () => {
 
@@ -39,6 +40,10 @@ const Write = () => {
       
       case 'fr':
         setContent(<WriteSelect type={WriteDiaryEnum.FeelingReason} />)
+        break;
+      
+      case 'd':
+        setContent(<WriteSum/>)
         break;
       
       default:
@@ -70,7 +75,7 @@ const Write = () => {
         return whichSelectRender('f');
       
       case 'done':
-
+        whichSelectRender('d');
         break;
       
       default:

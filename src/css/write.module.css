@@ -206,3 +206,9 @@
   font-weight: bolder;
   margin-top: 10%;
 }
+
+.writeSumWrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
