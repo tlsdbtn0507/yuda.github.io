@@ -5,19 +5,17 @@ import { diaryStore } from 'store/diary/diaryStore';
 const WriteTextArea = () => {
 
   const textRef = useRef<HTMLTextAreaElement>(null);
-  const { setWritingDiary , isDiaryWritten } = diaryStore(state => state);
+  const { writeDiaryFeelingReason, isDiaryWritten } = diaryStore(state => state);
   
-  const writeDairyFeelingReason = () => {
-    const feelingReason = textRef.current!.value;
-    const writing = { ...isDiaryWritten, feelingReason };
-    setWritingDiary(writing);
-  };
+  const setDiaryReason = () => writeDiaryFeelingReason(textRef.current!.value);
 
   return (
     <textarea
       ref={textRef}
-      className={css.textArea} placeholder='직접 적어보아요'
-      onBlur={writeDairyFeelingReason}>
+      className={css.textArea}
+      placeholder='직접 적어보아요'
+      defaultValue={isDiaryWritten.feelingReason}
+      onBlur={setDiaryReason}>
     </textarea>
   )
 }

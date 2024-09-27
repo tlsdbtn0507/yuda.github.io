@@ -11,6 +11,7 @@ from 'model/interfaces';
 import { whichObjIsEmpty } from 'utils/util';
 import { diaryStore } from 'store/diary/diaryStore';
 import { FEELINGS, WEATHERS, WEATHER_LEVELS } from 'model/constants';
+import WriteSum from './summary/writeSum';
 
 const Write = () => {
 
@@ -21,21 +22,28 @@ const Write = () => {
     switch (which) {
       case 'f':
         const feelings = FEELINGS as WriteDiaryFeeling[];
-        setContent(<WriteSelect type={WriteDiaryEnum.Feeling} selections={feelings} />);
+        setContent(
+          <WriteSelect type={WriteDiaryEnum.Feeling} selections={feelings} />);
         break;
       
       case 'w':
         const weathers = WEATHERS as WriteDiaryWeather[];
-        setContent(<WriteSelect type={WriteDiaryEnum.Weather} selections={weathers} />);
+        setContent(
+          <WriteSelect type={WriteDiaryEnum.Weather} selections={weathers} />);
         break;
       
       case 'wl':
         const weatherLevel = WEATHER_LEVELS as WriteDiaryFeeling[];
-        setContent(<WriteSelect type={WriteDiaryEnum.WeatherLevel} selections={weatherLevel} />);
+        setContent(
+          <WriteSelect type={WriteDiaryEnum.WeatherLevel} selections={weatherLevel} />);
         break;
       
       case 'fr':
         setContent(<WriteSelect type={WriteDiaryEnum.FeelingReason} />)
+        break;
+      
+      case 'd':
+        setContent(<WriteSum/>)
         break;
       
       default:
@@ -65,6 +73,10 @@ const Write = () => {
         const writingDiary: WriteDiary = { feeling: {} };
         setWritingDiary(writingDiary);
         return whichSelectRender('f');
+      
+      case 'done':
+        whichSelectRender('d');
+        break;
       
       default:
         break;

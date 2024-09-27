@@ -16,9 +16,9 @@ export const FEELINGS: WriteDiaryFeeling[] = [
 ];
 
 export const WEATHER_LEVELS: WriteDiaryFeeling[] = [
-  { ment: '너무!', level: 1 },
+  { ment: '너무!', level: 3 },
   { ment: '보통 ', level: 2 },
-  { ment: '쪼금!', level: 3 },
+  { ment: '쪼금!', level: 1 },
 ]
 
 export const WEATHERS: WriteDiaryWeather[] = [
