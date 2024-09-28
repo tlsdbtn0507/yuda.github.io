@@ -4,8 +4,8 @@ import Selected from './selected'
 const WriteSum = () => {
 
   return (
-    <div className={css.writeSumWrapper}>
-      <h2>오늘 하루는</h2>
+    <div className={css.writeSumWrap}>
+      <h2>오늘 하루의</h2>
       <Selected />
     </div>
   )

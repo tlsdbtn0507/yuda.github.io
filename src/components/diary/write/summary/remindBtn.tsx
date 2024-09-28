@@ -1,23 +1,14 @@
 import React from "react"
-import css from '../../../css/write.module.css'
-import { diaryStore } from "store/diary/diaryStore"
+import css from '../../../../css/write.module.css'
 
-interface WriteDiaryRemind{
-  content:string
-  title:string
+interface WriteDiaryRemind {
 }
 
-const RemindBtn:React.FC<WriteDiaryRemind> = ({content,title}) => {
-
-  const {isDiaryWritten} = diaryStore(state=>state)
-
-  const moveToSelect = () => {
-    console.log(isDiaryWritten);
-  }
+const RemindBtn: React.FC<WriteDiaryRemind> = () => {
 
   return (
-    <button className={css.remindBtn} onClick={moveToSelect}>
-      {title === 'feeling' ? '하루' : '날씨' } : {content}
+    <button className={css.remindBtn}>
+      {'`${기분}`'}
     </button>
   )
 }
