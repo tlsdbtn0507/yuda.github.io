@@ -68,6 +68,11 @@ export type WriteDiaryWeather = {
   weatherLevel: WriteDiaryFeeling[]
 }
 
+export type SelectedDiaryWeahter = {
+  weatherCond: string
+  weatherLevel: WriteDiaryFeeling
+}
+
 export type WriteDiary = {
   feeling: WriteDiaryFeeling | {},
   weather?: WriteDiaryWeather | {},
