@@ -63,3 +63,24 @@ export const mentMaker = (feeling: WriteDiaryFeeling): string => {
   }
   return ment;
 };
+
+export const selectedSumTitle = (level: string, ment: string) => {
+  let toReturn = '';
+  switch (ment) {
+    case '비가 왔어':
+    case '눈이 왔어':
+      const [subject, verb] = ment.split(' ');
+      toReturn = `${subject} ${level} ${verb}`;
+      break;
+  
+    default:
+      toReturn = `${level} ${ment}`;
+      break;
+  }
+  return toReturn
+};
+
+export const lessThan7letters = (sen: string) => {
+  return sen.length > 7 ? sen.slice(0, 6) + '...' : sen;
+}
+

@@ -201,7 +201,7 @@
 .remindBtn{
   color: rgba(76, 76, 76, 1);
   height: 6vh;
-  width: 35vw;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -2,6 +2,7 @@ import { diaryStore } from 'store/diary/diaryStore';
 import css from '../../../../css/write.module.css'
 import RemindBtn from './remindBtn'
 import { SelectedDiaryWeahter, WriteDiaryEnum, WriteDiaryFeeling } from 'model/interfaces';
+import { lessThan7letters, selectedSumTitle } from 'utils/util';
 
 const Selected = () => {
 
@@ -24,13 +25,13 @@ const Selected = () => {
 
         const weatherLevelCond = level === 2 ? '' : wMent.slice(0, -1);
 
-        toReturn.title = `${weatherLevelCond} ${weatherCond}`;
+        toReturn.title = `${selectedSumTitle(weatherLevelCond, weatherCond)}`;
         toReturn.type = WriteDiaryEnum.Weather;
         break;
 
       case 2:
         const { feelingReason } = isDiaryWritten;
-        toReturn.title = feelingReason as string;
+        toReturn.title = lessThan7letters(feelingReason as string);
         toReturn.type = WriteDiaryEnum.FeelingReason;
         break;
       default:
