@@ -6,6 +6,22 @@ const API = axios.create({
   withCredentials: true,
 })
 
+// const LOC_API = axios.create({
+//   baseURL: ,
+//   withCredentials:true
+// })
+
+export const getLocation = async () => {
+  const { data } = await axios.get(process.env.REACT_APP_IPINFO_URL as string);
+  const [lat, long] = data.loc.split(',') as string;
+  console.log(typeof lat, typeof long);
+}
+
+
+
+
+
+
 let isRefreshing = false; // Token refresh 상태를 추적하는 플래그
 let failedQueue:
   Array<{ resolve: (token: string) => void; reject: (error: AxiosError) => void }> = [];
