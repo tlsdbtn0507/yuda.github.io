@@ -16,9 +16,9 @@ export const userStore = create<UserState>((set) => ({
   pwCheck: false,
   accessToken: '',
   currentLoc: { long: '', lat: '' },
-  setCurrentLoc: () => async () => {
+  setCurrentLoc: async () => {
     const [lat,long] = await getLocation();
-    set(state => ({ currentLoc: { lat, long } }))
+    set(state => ({ currentLoc: { lat, long } }));
   },
   setUserPw: (pw) => set(state => ({ pw })),
   setUserPWCheck: (check) => set(state => ({ pwCheck: check })),

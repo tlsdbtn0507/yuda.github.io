@@ -10,8 +10,10 @@ import { getDiaries } from '../api/diary/diaryApi'
 import { diaryStore } from '../store/diary/diaryStore'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { userStore } from 'store/user/userStore'
+import { isEmptyObj } from 'utils/util'
 
-const HomePage:React.FC = () => {
+const HomePage: React.FC = () => {
 
   const navigate = useNavigate();
 
@@ -23,6 +25,9 @@ const HomePage:React.FC = () => {
   const { getDiaries: fetchingDiary, toggleWriteDairy, isWritingDairy } =
     diaryStore(state => state);
 
+  const { setCurrentLoc, currentLoc } = userStore(state => state);
+
+  const currentLocDiaries = !isEmptyObj(currentLoc) && <p>지금 위치에 있던 기록들</p>;
 
   useEffect(() => {
     if (isError) {
@@ -33,21 +38,24 @@ const HomePage:React.FC = () => {
       if (data) fetchingDiary(data);
     }
 
+    setCurrentLoc();
+
   }, [isError, data]);
 
   return (
     <>
       <div className={`${css.total} ${isWritingDairy ? css.expand : css.home}`}>
         {
-          isWritingDairy ? <Write/>:
-          <div className={css.wrapper}>
-            <DayMaker/> 
-            <LastToday/>
-            <MyDiaries/>
-          </div>
+          isWritingDairy ? <Write /> :
+            <div className={css.wrapper}>
+              <DayMaker />
+              <LastToday />
+              <MyDiaries />
+              {currentLocDiaries}
+            </div>
         }
       </div>
-      { !isWritingDairy && <Nav onDiaryClick={()=>toggleWriteDairy(true)} /> }
+      {!isWritingDairy && <Nav onDiaryClick={() => toggleWriteDairy(true)} />}
     </>
   )
 }
