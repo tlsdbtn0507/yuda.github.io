@@ -4,7 +4,6 @@ import Selected from './selected'
 import { diaryStore } from 'store/diary/diaryStore'
 import { useEffect, useState } from 'react'
 import { userStore } from 'store/user/userStore'
-import { getRealWeather } from 'api/api'
 
 const WriteSum = () => {
 
@@ -13,11 +12,7 @@ const WriteSum = () => {
   const [showSelected, setShowSelected] = useState(false);
 
   useEffect(() => {
-    if (whichObjIsEmpty(isDiaryWritten) === 'done') {
-      setShowSelected(true);
-      Object.entries(currentLoc).every(e => e[1] === '') ?
-        setCurrentLoc() : getRealWeather(currentLoc);
-    }
+    if (whichObjIsEmpty(isDiaryWritten) === 'done') setShowSelected(true);
   }, [isDiaryWritten, currentLoc, setCurrentLoc]);
 
   return (
