@@ -14,14 +14,14 @@ export type Img = {
 }
 
 export type DiaryType = {
-  id:number
-  diaryTitle:string
-  diaryContent:string
-  diaryDate:string
-  diaryDay:string
-  temp:number
-  rain:number
-  main:string
+  id: number,
+  userId: number,
+  feeling:WriteDiaryFeeling,
+  weather:SelectedDiaryWeahter,
+  feelingReason:string,
+  diaryDate: string,
+  lat: number,
+  long:number
 }
 
 export interface DiarySummary{
