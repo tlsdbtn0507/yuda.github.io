@@ -73,6 +73,7 @@ export const mentMaker = (feeling: WriteDiaryFeeling): string => {
 };
 
 export const selectedSumTitle = (level: string, ment: string) => {
+
   let toReturn = "";
   switch (ment) {
     case "비가 왔어":
@@ -85,9 +86,11 @@ export const selectedSumTitle = (level: string, ment: string) => {
       toReturn = `${level} ${ment}`;
       break;
   }
+
   return toReturn;
 };
 
 export const lessThan7letters = (sen: string) => {
-  return sen.length > 7 ? sen.slice(0, 6) + "..." : sen;
-};
+  return sen.length > 7 ? sen.slice(0, 6) + '...' : sen;
+}
+
