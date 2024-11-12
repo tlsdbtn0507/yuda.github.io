@@ -1,10 +1,15 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { renewToken } from "./users/usersApi";
 
 const API = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
   withCredentials: true,
-})
+});
+
+export const getLocation = async () => {
+  const { data } = await axios.get(process.env.REACT_APP_IPINFO_URL as string);
+  return data.loc.split(",") as string[];
+};
 
 export const getLocation = async () => {
   const { data } = await axios.get(process.env.REACT_APP_IPINFO_URL as string);
@@ -13,12 +18,16 @@ export const getLocation = async () => {
 
 
 let isRefreshing = false; // Token refresh 상태를 추적하는 플래그
-let failedQueue:
-  Array<{ resolve: (token: string) => void; reject: (error: AxiosError) => void }> = [];
+let failedQueue: Array<{
+  resolve: (token: string) => void;
+  reject: (error: AxiosError) => void;
+}> = [];
 // 실패한 요청 큐
 
-
-const processQueue = (error: AxiosError | null, token: string | null = null) => {
+const processQueue = (
+  error: AxiosError | null,
+  token: string | null = null
+) => {
   failedQueue.forEach(({ resolve, reject }) => {
     if (token) {
       resolve(token);
@@ -28,8 +37,6 @@ const processQueue = (error: AxiosError | null, token: string | null = null) => 
   });
   failedQueue = [];
 };
-
-
 
 API.interceptors.response.use(
   (response: AxiosResponse) => response,
@@ -47,7 +54,7 @@ API.interceptors.response.use(
         })
           .then((token: string) => {
             if (!originalRequest.headers) originalRequest.headers = {};
-            originalRequest.headers['Authorization'] = `Bearer ${token}`;
+            originalRequest.headers["Authorization"] = `Bearer ${token}`;
             return API(originalRequest);
           })
           .catch((err: AxiosError) => Promise.reject(err));
@@ -68,7 +75,7 @@ API.interceptors.response.use(
         })
           .then((token: string) => {
             if (!originalRequest.headers) originalRequest.headers = {};
-            originalRequest.headers['Authorization'] = `Bearer ${token}`;
+            originalRequest.headers["Authorization"] = `Bearer ${token}`;
             return API(originalRequest);
           })
           .catch((err: AxiosError) => Promise.reject(err));
@@ -80,9 +87,9 @@ API.interceptors.response.use(
         const { accessToken } = await renewToken();
 
         // API의 기본 헤더와 원래 요청 헤더에 새 토큰 설정
-        API.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        API.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
         if (!originalRequest.headers) originalRequest.headers = {};
-        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
 
         processQueue(null, accessToken);
 
@@ -100,5 +107,4 @@ API.interceptors.response.use(
   }
 );
 
-export default API
-
+export default API;
