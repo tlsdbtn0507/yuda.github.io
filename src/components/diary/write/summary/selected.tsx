@@ -50,7 +50,7 @@ const Selected = () => {
 
   return (
     <div className={css.selected}>
-
+      {selectedMaker}
       <button className={css.sumDoneBtn} onClick={submitDiary}>끝내기!</button>
     </div>
   )
