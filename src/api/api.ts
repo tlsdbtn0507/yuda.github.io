@@ -11,12 +11,6 @@ export const getLocation = async () => {
   return data.loc.split(",") as string[];
 };
 
-export const getLocation = async () => {
-  const { data } = await axios.get(process.env.REACT_APP_IPINFO_URL as string);
-  return data.loc.split(',') as string[];
-}
-
-
 let isRefreshing = false; // Token refresh 상태를 추적하는 플래그
 let failedQueue: Array<{
   resolve: (token: string) => void;
