@@ -20,18 +20,16 @@ const Diary = (props: { diaryInfo: DiaryType }) => {
     }
   }
 
-  const [_, month, date] = diaryInfo.diaryDate.split('-');
+  const [, month, date] = diaryInfo.diaryDate.split('-');
 
 
   return (
     <div className={css.diary}>
       <div className={css.date}>
-        {/* <p>{diaryInfo.diaryDay}</p> */}
         <p>{month[0] === '0' ? month[1] : month}<span>월</span> </p>
         <p>{date[0] === '0' ? date[1] : date}<span>일</span></p>
       </div>
       <div className={css.content}>
-        {/* <p>{diaryInfo.diaryTitle}</p> */}
       </div>
       <div className={css.img}>
         <img src={diary.img.url} alt='' />
