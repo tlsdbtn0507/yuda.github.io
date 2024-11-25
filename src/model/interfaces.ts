@@ -1,87 +1,88 @@
 export type Dates = {
-  date:string,
-  day:string,
-  month:string
-}
+  date: string;
+  day: string;
+  month: string;
+};
 
 export type Contents = {
-  title:string,
-  body:string
-}
+  title: string;
+  body: string;
+};
 
 export type Img = {
-  url:string
-}
+  url: string;
+};
 
 export type DiaryType = {
-  id: number,
-  userId: number,
-  feeling:WriteDiaryFeeling,
-  weather:SelectedDiaryWeahter,
-  feelingReason:string,
-  diaryDate: string,
-  lat: number,
-  long:number
-}
+  id: number;
+  userId: number;
+  feeling: WriteDiaryFeeling;
+  weather: SelectedDiaryWeahter;
+  feelingReason: string;
+  diaryDate: string;
+  lat: number;
+  long: number;
+};
 
-export interface DiarySummary{
-  date:Dates,
-  content:Contents,
-  img:Img 
+export interface DiarySummary {
+  date: Dates;
+  content: Contents;
+  img: Img;
 }
 
 export interface sendObj {
-  request:Request
+  request: Request;
 }
 
 export interface toSendDataObj {
-  [index:string]:string
+  [index: string]: string;
 }
 
 export interface BtnType {
-  onClick: (e: React.FormEvent) => void,
-  isIdVal: boolean | string
+  onClick: (e: React.FormEvent) => void;
+  isIdVal: boolean | string;
 }
 
 export interface LogoutReturnType {
-  message: string,
-  result: boolean
+  message: string;
+  result: boolean;
 }
 
-export interface NavProps{
-  onDiaryClick: () => void
+export interface NavProps {
+  onDiaryClick: () => void;
 }
 
 export type IsDiaryWritten = {
-  feeling: WriteDiaryFeeling | {},
-  weather?: WriteDiaryWeather | {},
-  feelingReason?: string
-}
+  feeling: WriteDiaryFeeling | {};
+  weather?: WriteDiaryWeather | {};
+  feelingReason?: string;
+};
 
-export interface WriteDiaryFeeling{
-  ment: string
-  level: number
+export interface WriteDiaryFeeling {
+  ment: string;
+  level: number;
 }
 
 export type WriteDiaryWeather = {
-  weatherCond: string
-  weatherLevel: WriteDiaryFeeling[]
-}
+  weatherCond: string;
+  weatherLevel: WriteDiaryFeeling[];
+};
 
 export type SelectedDiaryWeahter = {
-  weatherCond: string
-  weatherLevel: WriteDiaryFeeling
-}
+  weatherCond: string;
+  weatherLevel: WriteDiaryFeeling;
+};
 
 export type WriteDiary = {
-  feeling: WriteDiaryFeeling | {},
-  weather?: WriteDiaryWeather | {},
-  feelingReason?: string,
-}
+  feeling: WriteDiaryFeeling | {};
+  weather?: WriteDiaryWeather | {};
+  feelingReason?: string;
+};
 
-export const enum WriteDiaryEnum{
-  Feeling ='feeling',
-  Weather ='weather',
-  WeatherLevel ='weatherLevel',
-  FeelingReason ='feelingReason',
+/* eslint-disable no-unused-vars */
+export const enum WriteDiaryEnum {
+  Feeling = "feeling",
+  Weather = "weather",
+  WeatherLevel = "weatherLevel",
+  FeelingReason = "feelingReason",
 }
