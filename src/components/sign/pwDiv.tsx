@@ -1,11 +1,16 @@
-import css from "../../css/sign.module.css";
 import { useState } from "react";
-import Icons from "./icons";
 import { userStore } from "../../store/user/userStore";
+
+import css from "../../css/sign.module.css";
+import Icons from "./icons";
+import UI from "constants/uiConstants";
 
 interface PwDivType {
   type: string;
 }
+
+const { STRING_UNDER_SIX, CHECK_PW } = UI.PwDivTsx;
+const LOWER_CASE_PW = "pw";
 
 const PwDiv = (props: PwDivType) => {
   const [isValid, setIsValid] = useState(true);
@@ -18,8 +23,8 @@ const PwDiv = (props: PwDivType) => {
   const checkPwValid = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsInitial(false);
     const { value } = e.target;
-    const pwRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_])/;
-    if (value.length < 6 || !pwRegex.test(value)) {
+    const PW_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_])/;
+    if (value.length < 6 || !PW_REGEX.test(value)) {
       setIsValid(false);
     } else {
       setIsValid(true);
@@ -29,7 +34,7 @@ const PwDiv = (props: PwDivType) => {
 
   const isPwCheck = {
     placeholder:
-      type === "pw" ? "영문, 숫자, 특수기호 포함 6글자" : "비밀번호 확인",
+      type === LOWER_CASE_PW ? STRING_UNDER_SIX : CHECK_PW,
   };
 
   const checkPwAcc = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,8 +58,8 @@ const PwDiv = (props: PwDivType) => {
         id={type}
         name={type}
         placeholder={isPwCheck.placeholder}
-        onChange={type === "pw" ? checkPwValid : checkPwAcc}
-        onBlur={type === "pw" ? () => { } : checkPwAcc}
+        onChange={type === LOWER_CASE_PW ? checkPwValid : checkPwAcc}
+        onBlur={type === LOWER_CASE_PW ? () => { } : checkPwAcc}
       />
       <Icons isInit={isInitial} isVal={isValid} />
     </div>

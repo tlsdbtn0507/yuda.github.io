@@ -1,24 +1,27 @@
 import { diaryStore } from 'store/diary/diaryStore'
+
 import css from '../../../../css/write.module.css'
+import UI from 'constants/uiConstants';
+import APIS from 'constants/apiConstants';
 
 const WriteDoneBtn = () => {
-
+  const { WriteDoneBtnTsx: { NOTHING, DONE_STRING, MARKS }, SPACE_STRING } = UI;
   const { isDiaryWritten, setWritingDiary, diaryFeelingReason } =
     diaryStore(state => state);
 
-  const isBtnDisabled = diaryFeelingReason.length === 0;
+  const isBtnDisabled = diaryFeelingReason.length === APIS.NUM_ZERO;
 
   const handleDoneBtn = () => {
     switch (isBtnDisabled) {
       case true:
-        const checkReasonNull = window.confirm('정말 아무것도 안적으시게요?');
-        if (checkReasonNull) setWritingDiary({ ...isDiaryWritten, feelingReason: ' ' });
+        const checkReasonNull = window.confirm(NOTHING);
+        if (checkReasonNull) setWritingDiary({ ...isDiaryWritten, feelingReason: SPACE_STRING });
         break;
-      
+
       case false:
         setWritingDiary({ ...isDiaryWritten, feelingReason: diaryFeelingReason });
         break;
-    
+
       default:
         break;
     }
@@ -31,7 +34,7 @@ const WriteDoneBtn = () => {
     <button
       className={doneBtnClass}
       onClick={handleDoneBtn}>
-      작성완료{isBtnDisabled ? '?' :'!'}
+      {DONE_STRING}{isBtnDisabled ? MARKS.QEUSTION : MARKS.EXCLAMATION}
     </button>
   )
 }

@@ -1,3 +1,4 @@
+import ERROR from "constants/ErrorConstants";
 import { DiaryType } from "../../model/interfaces";
 import API from "../api";
 
@@ -6,7 +7,7 @@ export const getDiaries = async () => {
     const { data } = await API.get("/diary");
     return data;
   } catch (error) {
-    throw new Error("다이러리 부르기 실패");
+    throw new Error(ERROR.FETCH_DIARY);
   }
 };
 

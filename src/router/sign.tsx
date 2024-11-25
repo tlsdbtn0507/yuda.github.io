@@ -1,18 +1,32 @@
-import PwDiv from '../components/sign/pwDiv';
-import IdCheckBtn from '../components/sign/idCheckBtn';
-import css from '../css/sign.module.css'
-
 import { Form } from 'react-router-dom'
 import { userStore } from '../store/user/userStore';
 import { useRef, useState } from 'react';
 import { checkIdDuple } from '../api/users/usersApi';
 import { useMutation } from '@tanstack/react-query';
 
+import PwDiv from '../components/sign/pwDiv';
+import IdCheckBtn from '../components/sign/idCheckBtn';
+import css from '../css/sign.module.css'
+import UI from 'constants/uiConstants';
+import APIS from 'constants/apiConstants';
+
+const { EMPTY_STRING, IdCheckBtnTsx: { STRING_NOT }, SignTsx } = UI;
+const {
+  CHECK_ID,
+  ASK_CHECK_ID_DUPLE,
+  ASK_CHECK_PW_DUPLE,
+  H1_TITLE,
+  INPUT_LABEL: { NAME, ID, PW, PW_CHECK },
+  PLACE_HOLDER,
+  SIGN_DONE
+} = SignTsx;
+const { STRING_PWCHECK } = APIS;
+
 const Sign = () => {
 
-  const [idChecked, setIdChecked] = useState<boolean | string>('not');
-  
-  const [idInput, setIdInput] = useState<string>('');
+  const [idChecked, setIdChecked] = useState<boolean | string>(STRING_NOT);
+
+  const [idInput, setIdInput] = useState<string>(EMPTY_STRING);
 
   const idToCheckDuple = useRef<HTMLInputElement>(null);
 
@@ -26,13 +40,13 @@ const Sign = () => {
   const doOtherThing = (e: React.FormEvent) => {
     e.preventDefault();
     const { value } = idToCheckDuple.current as HTMLInputElement;
-    const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-    
-    if (value === '' || korean.test(value) || value.length < 4) {
+    const KOREAN_REGEX = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+    if (value === EMPTY_STRING || KOREAN_REGEX.test(value) || value.length < 4) {
       idToCheckDuple.current?.focus();
-      setIdChecked('not');
-      idToCheckDuple.current!.value = '';
-      return alert('ID를 확인해주세요')
+      setIdChecked(STRING_NOT);
+      idToCheckDuple.current!.value = EMPTY_STRING;
+      return alert(CHECK_ID);
     }
     mutate(value);
     setIdInput(value);
@@ -40,42 +54,51 @@ const Sign = () => {
 
   const checkId = () => {
     const target = idToCheckDuple.current?.value as string;
-    if(idInput !== target) setIdChecked('not')
+    if (idInput !== target) setIdChecked(STRING_NOT)
   }
 
   const permitSub = (e: React.FormEvent) => {
     if (!idChecked) {
-      alert('아이디 중복검사를 체크해주세요!')
+      alert(ASK_CHECK_ID_DUPLE);
       idToCheckDuple.current?.focus();
       e.preventDefault();
     }
     if (!pwCheck) {
-      alert('비밀번호 중복 검사를 해주세요')
-      document.getElementById('pwCheck')?.focus()
+      alert(ASK_CHECK_PW_DUPLE);
+      document.getElementById(STRING_PWCHECK)?.focus()
       e.preventDefault();
     }
-    if(idChecked && pwCheck) return
+    if (idChecked && pwCheck) return
   }
 
-  return(
+  return (
     <div className={css.total}>
       <Form className={css.div} method='post'>
-        <h1>회원가입</h1> 
-          <label htmlFor="userName">이름</label>
-            <input required type="userName" id='name' name='name'/>
-          <label htmlFor="userId">아이디
+        <h1>{H1_TITLE}</h1>
+        <label htmlFor="userName">
+          {NAME}
+        </label>
+        <input required type="userName" id='name' name='name' />
+        <label htmlFor="userId">
+          {ID}
           <IdCheckBtn onClick={doOtherThing} isIdVal={idChecked} />
-          </label>
+        </label>
         <input
           required type="userId" id='userId' name='userId' ref={idToCheckDuple}
           onChange={checkId}
-          placeholder='한글 사용 불가 및 최소 4자'/>
-        <label htmlFor="pw">비밀번호</label>
-          <PwDiv type='pw' />
-        <label htmlFor="pwCheck">비밀번호 확인</label>
-          <PwDiv type='pwCheck' />
-        <button type='submit' onClick={permitSub} className={css.sendBtn}>회원가입 완료</button>
-       </Form>
+          placeholder={PLACE_HOLDER} />
+        <label htmlFor="pw">
+          {PW}
+        </label>
+        <PwDiv type='pw' />
+        <label htmlFor="pwCheck">
+          {PW_CHECK}
+        </label>
+        <PwDiv type='pwCheck' />
+        <button type='submit' onClick={permitSub} className={css.sendBtn}>
+          {SIGN_DONE}
+        </button>
+      </Form>
     </div>
   )
 }

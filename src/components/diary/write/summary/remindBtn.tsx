@@ -1,7 +1,9 @@
-import React from "react"
-import css from '../../../../css/write.module.css'
 import { diaryStore } from "store/diary/diaryStore"
 import { WriteDiaryEnum } from "model/interfaces"
+
+import React from "react"
+import css from '../../../../css/write.module.css'
+import UI from "constants/uiConstants"
 
 interface WriteDiaryRemind {
   content: {
@@ -23,7 +25,7 @@ const RemindBtn: React.FC<WriteDiaryRemind> = ({ content }) => {
         setWritingDiary({ ...isDiaryWritten, weather: {} });
         break;
       case WriteDiaryEnum.FeelingReason:
-        setWritingDiary({ ...isDiaryWritten, feelingReason: '' });
+        setWritingDiary({ ...isDiaryWritten, feelingReason: UI.EMPTY_STRING });
         break;
 
       default:
