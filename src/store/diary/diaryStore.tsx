@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { DiaryType, IsDiaryWritten } from "../../model/interfaces";
 import { fetchMoreDiaries } from "../../api/diary/diaryApi";
 
+import UI from "constants/uiConstants";
+
 type DiaryStore = {
   diaries: DiaryType[],
   isWritingDairy: boolean,
@@ -18,7 +20,7 @@ export const diaryStore = create<DiaryStore>((set) => ({
   diaries: [],
   isWritingDairy: false,
   isDiaryWritten: JSON.parse(localStorage.getItem('writingDiary') as string),
-  diaryFeelingReason: '',
+  diaryFeelingReason: UI.EMPTY_STRING,
   writeDiaryFeelingReason: (fr: string) => set((state) => ({ diaryFeelingReason: fr })),
   toggleWriteDairy: (tog: boolean) => {
     window.scrollTo(0, 0)
@@ -33,7 +35,7 @@ export const diaryStore = create<DiaryStore>((set) => ({
       return true
     }
   },
-  setWritingDiary: (writingDiary:IsDiaryWritten) => {
+  setWritingDiary: (writingDiary: IsDiaryWritten) => {
     localStorage.setItem('writingDiary', JSON.stringify(writingDiary));
     set(state => ({ isDiaryWritten: writingDiary }));
   },

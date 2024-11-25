@@ -1,20 +1,26 @@
-import { redirect, useNavigate } from 'react-router';
-import css from '../css/app.module.css';
+import { useNavigate } from 'react-router';
 
-const Intro = () =>{
+import APIS from 'constants/apiConstants';
+import css from '../css/app.module.css';
+import UI from 'constants/uiConstants';
+
+const { INTRO_P_TEXTS, START } = UI.IntroTsx;
+
+const Intro = () => {
   const navigate = useNavigate()
 
-  const goToMain = () =>{
-    navigate('login')
-  }
-  return(
+  const goToMain = () => {
+    navigate(APIS.ROUTES.LOGIN);
+  };
+
+  const texts = INTRO_P_TEXTS.map(text => <p>{text}</p>);
+
+  return (
     <>
       <section className={css.section}>
-          <p>주저리 주저리</p>
-          <p>주절 주절</p>
-          <p>대충 일기 앱이다 이거야~</p>
+        {texts}
       </section>
-      <button onClick={goToMain} className={css.button}>시작하기</button>
+      <button onClick={goToMain} className={css.button}>{START}</button>
     </>
   )
 }

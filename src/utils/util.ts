@@ -1,3 +1,4 @@
+import APIS from "constants/apiConstants";
 import {
   WriteDiary,
   WriteDiaryFeeling,
@@ -6,10 +7,20 @@ import {
   WriteDiaryEnum,
 } from "../model/interfaces";
 
+import UI from "constants/uiConstants";
+
+const { STRING_PWCHECK } = APIS;
+const {
+  SPACE_STRING,
+  EMPTY_STRING,
+  DONE,
+  WriteDoneBtnTsx: { MARKS },
+} = UI;
+
 export const toSendData = (data: FormData) => {
   const toReturn: toSendDataObj = {};
   data.forEach((e, i) => {
-    if (i !== "pwCheck") toReturn[`${i}`] = e as string;
+    if (i !== STRING_PWCHECK) toReturn[`${i}`] = e as string;
   });
   return toReturn;
 };
@@ -38,14 +49,14 @@ export const whichObjIsEmpty = (checkObj: WriteDiary) => {
       ret = key;
       break;
     }
-    ret = "done";
+    ret = DONE;
   }
   return ret;
 };
 
 export const isEmptyObj = (obj: {} | []) => {
   //null값을 받을 수 있기 때문
-  if (obj === null || obj === undefined || obj === "") {
+  if (obj === null || obj === undefined || obj === EMPTY_STRING) {
     return true;
   }
   return (
@@ -55,16 +66,20 @@ export const isEmptyObj = (obj: {} | []) => {
 };
 
 export const mentMaker = (feeling: WriteDiaryFeeling): string => {
-  let ment: string = "";
+  const REPLACE_STR = "했";
+  const SLICE_STR = "였";
+  const { EXCLAMATION } = MARKS;
+
+  let ment: string = EMPTY_STRING;
   switch (feeling.level) {
     case 1:
-      ment = feeling.ment.slice(0, 2) + "였";
+      ment = feeling.ment.slice(0, 2) + SLICE_STR;
       break;
     case 2:
       ment = feeling.ment.slice(0, -1);
       break;
     case 3:
-      ment = feeling.ment.replace("!", "했");
+      ment = feeling.ment.replace(EXCLAMATION, REPLACE_STR);
       break;
 
     default:
@@ -74,11 +89,11 @@ export const mentMaker = (feeling: WriteDiaryFeeling): string => {
 };
 
 export const selectedSumTitle = (level: string, ment: string) => {
-  let toReturn = "";
+  let toReturn = EMPTY_STRING;
   switch (ment) {
     case "비가 왔어":
     case "눈이 왔어":
-      const [subject, verb] = ment.split(" ");
+      const [subject, verb] = ment.split(SPACE_STRING);
       toReturn = `${subject} ${level} ${verb}`;
       break;
 
@@ -91,5 +106,6 @@ export const selectedSumTitle = (level: string, ment: string) => {
 };
 
 export const lessThan7letters = (sen: string) => {
-  return sen.length > 7 ? sen.slice(0, 6) + "..." : sen;
+  const THREE_DOTS = "...";
+  return sen.length > 7 ? sen.slice(0, 6) + THREE_DOTS : sen;
 };

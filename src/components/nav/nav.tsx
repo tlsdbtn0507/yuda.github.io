@@ -2,38 +2,43 @@ import { faCirclePlus, faClipboard, faUser } from "@fortawesome/free-solid-svg-i
 import { useMutation } from "@tanstack/react-query"
 import { logoutPost } from "../../api/users/usersApi"
 import { useNavigate } from "react-router"
+import { LogoutReturnType, NavProps } from "model/interfaces"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
-import { LogoutReturnType, NavProps } from "model/interfaces"
+import APIS from "constants/apiConstants"
+import ERROR from "constants/ErrorConstants"
+import UI from "constants/uiConstants"
+
+const { CONFIRM_LOGOUT, TODAY_DIARY, WRITE_DIARY, LOGOUT } = UI.NavTsx;
 
 const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { mutate } = useMutation({
     mutationFn: logoutPost,
-    mutationKey: ['logout'],
+    mutationKey: [APIS.QUERIES.LOGOUT],
     onSuccess: (data: LogoutReturnType) => logoutHandler(data.result)
   });
 
   const logoutHandler = (result: boolean) => {
     if (result) {
       localStorage.clear();
-      navigate('/')
+      navigate(APIS.ROUTES.HOME)
     }
-    else alert('로그 아웃 오류')
+    else alert(ERROR.LOGOUT_ALERT)
   }
 
-  const logoutConfirm = () => window.confirm('정말 로그 아웃 하시겠습니까?') && mutate();
+  const logoutConfirm = () => window.confirm(CONFIRM_LOGOUT) && mutate();
 
 
   const todayRoute = () => { };
 
   return (
     <div className={css.lowNav}>
-      <NavBtn icon={faClipboard} onClick={todayRoute} p="오늘의 일기" />
-      <NavBtn icon={faCirclePlus} onClick={()=>onDiaryClick()} p="일기 쓰기" />
-      <NavBtn icon={faUser} onClick={logoutConfirm} p="로그아웃" />
+      <NavBtn icon={faClipboard} onClick={todayRoute} p={TODAY_DIARY} />
+      <NavBtn icon={faCirclePlus} onClick={() => onDiaryClick()} p={WRITE_DIARY} />
+      <NavBtn icon={faUser} onClick={logoutConfirm} p={LOGOUT} />
     </div>
   )
 };
