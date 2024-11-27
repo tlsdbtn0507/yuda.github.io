@@ -1,16 +1,19 @@
 const APIS = {
   STRING_PWCHECK: "pwCheck",
+  IS_USER_LOGINED_STR: "isUserLogin",
+  IS_USER_LOGINED_TRUE: true,
+  IS_USER_LOGINED_FALSE: false,
   NUM_ZERO: 0,
   TIMEOUT: {
     ANIMATION: {
       FIRST: 1500,
       SECOND: 2000,
       THIRD: 2500,
-      ROOT: 800,
+      AT_ROOT: 800,
     },
   },
   ROUTES: {
-    HOME: "/",
+    ROOT: "/",
     LOGIN: "/login",
     SIGN: "/sign",
     MAIN: "/main",

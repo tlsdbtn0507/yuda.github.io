@@ -24,7 +24,7 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   const logoutHandler = (result: boolean) => {
     if (result) {
       localStorage.clear();
-      navigate(APIS.ROUTES.HOME)
+      navigate(APIS.ROUTES.ROOT)
     }
     else alert(ERROR.LOGOUT_ALERT)
   }

@@ -8,13 +8,13 @@ import HomePage from './homePage';
 import UI from 'constants/uiConstants';
 import APIS from 'constants/apiConstants';
 
-const { HOME, LOGIN, SIGN, MAIN } = APIS.ROUTES;
+const { ROOT, LOGIN, SIGN, MAIN } = APIS.ROUTES;
 
 const DEV = "development";
 
 const router = createHashRouter([
   {
-    path: HOME,
+    path: ROOT,
     element: <Root />,
     children: [
       {
