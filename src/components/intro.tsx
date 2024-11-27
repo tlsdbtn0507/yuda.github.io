@@ -13,7 +13,7 @@ const Intro = () => {
     navigate(APIS.ROUTES.LOGIN);
   };
 
-  const texts = INTRO_P_TEXTS.map(text => <p>{text}</p>);
+  const texts = INTRO_P_TEXTS.map(text => <p key={text}>{text}</p>);
 
   return (
     <>
