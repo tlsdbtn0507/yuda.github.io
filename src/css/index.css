@@ -11,6 +11,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none; /* iOS에서의 스크롤 관련 이슈 방지 */
+  -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
   background: linear-gradient(rgba(87, 245, 255, 1) 60%, rgba(0, 191, 255, 1));
 }
 

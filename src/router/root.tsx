@@ -14,6 +14,7 @@ const {
   IS_USER_LOGINED_STR
 } = APIS;
 const { YUDA, SUGGEST_WRITE } = UI.RootTsx.HEADER;
+const TOTAL_HEIGHT = '100vh';
 
 const Root = () => {
   const { pathname } = useLocation();
@@ -60,7 +61,7 @@ const Root = () => {
   }, [isWritingDairy, innerHeight, navigate, toRootOrMain]);
 
   return (
-    <div className={css.app} style={{ height: `${innerHeight}px` }}>
+    <div className={css.app} style={{ height: TOTAL_HEIGHT }}>
       <Link className={linkCssClass} to={toRootOrMain()}>
         <p className={animaCssClass}> {displayText}</p>
       </Link>
