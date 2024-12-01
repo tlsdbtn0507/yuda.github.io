@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router';
+import { useCallback, useEffect, useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { diaryStore } from '../store/diary/diaryStore';
 
@@ -8,9 +8,12 @@ import css from '../css/app.module.css';
 import UI from 'constants/uiConstants';
 import APIS from 'constants/apiConstants';
 
-const { ROUTES: { HOME }, TIMEOUT: { ANIMATION: { ROOT } } } = APIS;
+const {
+  ROUTES: { ROOT, MAIN },
+  TIMEOUT: { ANIMATION: { AT_ROOT } },
+  IS_USER_LOGINED_STR
+} = APIS;
 const { YUDA, SUGGEST_WRITE } = UI.RootTsx.HEADER;
-const UNDEFINED_STRING = "undefined";
 
 const Root = () => {
   const { pathname } = useLocation();
@@ -21,37 +24,50 @@ const Root = () => {
   const [displayText, setDisplayText] = useState(YUDA);
   const [innerHeight, setInnerHeight] = useState<Number>(0);
 
+  const navigate = useNavigate();
+
   const aniSetter = (str: string) => {
     setAnimating(true);
     // 애니메이션이 끝난 후에 isWritingDairy 상태 변경
     setTimeout(() => {
       setDisplayText(str);
       setAnimating(false);
-    }, ROOT);
+    }, AT_ROOT);
   };
 
   const animaCssClass =
     `${isWritingDairy ? css.ment : css.yuda} ${animating ? css.animating : UI.EMPTY_STRING}`;
 
-  const linkCssClass = isWritingDairy ? css.h1 : css.h2
+  const linkCssClass = isWritingDairy ? css.h1 : css.h2;
+
+  const toRootOrMain = useCallback(() => {
+    const isLogined = localStorage.getItem(IS_USER_LOGINED_STR);
+    if (isLogined) {
+      return MAIN;
+    }
+    return ROOT;
+  }, []);
 
   useEffect(() => {
+    navigate(toRootOrMain());
 
-    isWritingDairy ? aniSetter(SUGGEST_WRITE) : aniSetter(YUDA);
+    if (isWritingDairy) return aniSetter(SUGGEST_WRITE);
 
-    if (typeof window !== UNDEFINED_STRING) setInnerHeight(window.innerHeight);
+    setInnerHeight(window.innerHeight);
 
-  }, [isWritingDairy, innerHeight]);
+    return aniSetter(YUDA);
+
+  }, [isWritingDairy, innerHeight, navigate, toRootOrMain]);
 
   return (
     <div className={css.app} style={{ height: `${innerHeight}px` }}>
-      <Link className={linkCssClass} to={HOME}>
+      <Link className={linkCssClass} to={toRootOrMain()}>
         <p className={animaCssClass}> {displayText}</p>
       </Link>
       <main>
         <Outlet />
       </main>
-      {pathname === HOME && <Intro />}
+      {pathname === ROOT && <Intro />}
       <div className={css.footer}></div>
     </div>
   );

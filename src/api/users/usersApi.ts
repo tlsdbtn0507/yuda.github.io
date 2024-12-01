@@ -4,6 +4,9 @@ import { toSendData } from "../../utils/util";
 
 import API from "../api";
 import ERROR from "constants/ErrorConstants";
+import APIS from "constants/apiConstants";
+
+const { LOGIN } = APIS.ROUTES;
 
 export const sendSign = async ({ request }: sendObj) => {
 
@@ -12,7 +15,7 @@ export const sendSign = async ({ request }: sendObj) => {
   try {
     await API.post(`/user/signup`, toSendData(formData));
     alert('회원 가입이 완료되었습니다.')
-    return redirect(`/login`)
+    return redirect(LOGIN)
   } catch (error) {
     //에러 처리 핸들러 추가하기!
     throw new Error()

@@ -1,5 +1,6 @@
-import ERROR from "constants/ErrorConstants";
 import { DiaryType } from "../../model/interfaces";
+
+import ERROR from "constants/ErrorConstants";
 import API from "../api";
 
 export const getDiaries = async () => {

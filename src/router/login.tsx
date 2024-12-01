@@ -12,7 +12,7 @@ import ERROR from 'constants/ErrorConstants'
 import APIS from 'constants/apiConstants'
 
 const { EMPTY_STRING, LOGIN: { HEAD, ID, PW, UI_LOGIN, GO_SIGN, SIGN } } = UI;
-const { MAIN } = APIS.ROUTES;
+const { ROUTES: { MAIN }, IS_USER_LOGINED_STR, IS_USER_LOGINED_TRUE } = APIS;
 
 const Login = () => {
 
@@ -25,6 +25,7 @@ const Login = () => {
     mutationFn: login,
     onSuccess(data) {
       if (data) {
+        localStorage.setItem(IS_USER_LOGINED_STR, `${IS_USER_LOGINED_TRUE}`);
         return navigate(MAIN);
       }
       alert(ERROR.LOGIN_FAIL);
