@@ -2,14 +2,15 @@
 @media (prefers-reduced-motion: no-preference) {
 } */
 
-.app{
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4vh;
   font-family: Arial;
+  margin-top: 2rem;
 }
-.h1{
+.h1 {
   color: white;
   font-weight: 800;
   text-decoration: none;
@@ -20,18 +21,18 @@
   transition: all 0.8s ease;
 }
 
-.h2{
+.h2 {
   color: white;
   font-weight: 800;
   text-decoration: none;
   text-align: center;
   font-size: 3rem;
   width: max-content;
-  height: 11svh;  
+  height: 11svh;
   transition: all 0.8s ease;
 }
 
-.section{
+.section {
   background-color: white;
   color: deepskyblue;
   text-align: center;
@@ -39,14 +40,14 @@
   width: 80%;
 }
 
-.ment{
+.ment {
   font-size: 2rem;
   opacity: 1;
   transform: translateY(0);
   transition: all 0.8s ease;
 }
-  
-.yuda{
+
+.yuda {
   opacity: 1;
   font-size: 3rem;
   transform: translateY(0);
@@ -59,15 +60,14 @@
   transform: translatey(100%);
   opacity: 0;
 }
-  
+
 .yuda.animating {
   font-size: 3rem;
   transform: translateY(-100%);
   opacity: 0;
 }
 
-
-.button{
+.button {
   color: white;
   color: rgb(0, 115, 255);
   width: 25%;
@@ -78,7 +78,7 @@
   padding: 2.5%;
 }
 
-.button:hover{
-  font-size:larger;
+.button:hover {
+  font-size: larger;
   color: aqua;
 }
