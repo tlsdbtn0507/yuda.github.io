@@ -28,7 +28,14 @@ const Login = () => {
         localStorage.setItem(IS_USER_LOGINED_STR, `${IS_USER_LOGINED_TRUE}`);
         return navigate(MAIN);
       }
-      alert(ERROR.LOGIN_FAIL);
+
+      // WKWebView 메시지 전달
+      if (window.webkit?.messageHandlers?.nativeAlert) {
+        window.webkit.messageHandlers.nativeAlert.postMessage(ERROR.LOGIN_FAIL);
+      } else {
+        alert(ERROR.LOGIN_FAIL); // 브라우저 환경
+      }
+
       idRef.current!.value = EMPTY_STRING;
       pwRef.current!.value = EMPTY_STRING;
     },

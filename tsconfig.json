@@ -19,5 +19,5 @@
     "baseUrl": "src",
     "typeRoots": ["./node_modules/@types", "src/css"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "global.d.ts"]
 }
