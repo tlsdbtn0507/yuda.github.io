@@ -1,5 +1,4 @@
-
-.total{
+.total {
   background-color: white;
   font-family: Arial;
   border-radius: 20px;
@@ -8,31 +7,31 @@
   flex-direction: column;
 }
 
-.div{
+.div {
   display: flex;
   flex-direction: column;
   margin: 10%;
 }
 
-input{
+input {
   margin-bottom: 10%;
-  width:26vh;
+  width: 50vw;
 }
 
-.divpw{
+.divpw {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   justify-content: space-between;
 }
-.pwInput{
+.pwInput {
   width: 31vh;
-  }
-.pwInputVal{
+}
+.pwInputVal {
   width: 31vh;
   border: 1px solid red;
 }
-.checkBtnValid{
+.checkBtnValid {
   border: 1px solid red;
   background-color: red;
   color: white;
@@ -43,7 +42,7 @@ input{
   padding: 3%;
 }
 
-.checkBtn{
+.checkBtn {
   margin-left: 49%;
   margin-bottom: 5%;
   font-size: 0.9rem;
@@ -54,7 +53,7 @@ input{
   padding: 3%;
 }
 
-.sendBtn{
+.sendBtn {
   border-radius: 10px;
   border: 1px solid deepskyblue;
   background-color: deepskyblue;
