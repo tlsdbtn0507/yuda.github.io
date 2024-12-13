@@ -10,6 +10,7 @@ import css from '../css/login.module.css'
 import UI from 'constants/uiConstants'
 import ERROR from 'constants/ErrorConstants'
 import APIS from 'constants/apiConstants'
+import { handleAlertPerDevice } from 'utils/util'
 
 const { EMPTY_STRING, LOGIN: { HEAD, ID, PW, UI_LOGIN, GO_SIGN, SIGN } } = UI;
 const { ROUTES: { MAIN }, IS_USER_LOGINED_STR, IS_USER_LOGINED_TRUE } = APIS;
@@ -29,12 +30,7 @@ const Login = () => {
         return navigate(MAIN);
       }
 
-      // WKWebView 메시지 전달
-      if (window.webkit?.messageHandlers?.nativeAlert) {
-        window.webkit.messageHandlers.nativeAlert.postMessage(ERROR.LOGIN_FAIL);
-      } else {
-        alert(ERROR.LOGIN_FAIL); // 브라우저 환경
-      }
+      handleAlertPerDevice(ERROR.LOGIN_FAIL);
 
       idRef.current!.value = EMPTY_STRING;
       pwRef.current!.value = EMPTY_STRING;
