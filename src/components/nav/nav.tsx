@@ -9,6 +9,7 @@ import NavBtn from "./navBtn"
 import APIS from "constants/apiConstants"
 import ERROR from "constants/ErrorConstants"
 import UI from "constants/uiConstants"
+import { handleAlertPerDevice } from "utils/util"
 
 const { CONFIRM_LOGOUT, TODAY_DIARY, WRITE_DIARY, LOGOUT } = UI.NavTsx;
 
@@ -24,9 +25,9 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   const logoutHandler = (result: boolean) => {
     if (result) {
       localStorage.clear();
-      navigate(APIS.ROUTES.ROOT)
+      return navigate(APIS.ROUTES.ROOT)
     }
-    else alert(ERROR.LOGOUT_ALERT)
+    handleAlertPerDevice(ERROR.LOGOUT_FAIL);
   }
 
   const logoutConfirm = () => window.confirm(CONFIRM_LOGOUT) && mutate();
