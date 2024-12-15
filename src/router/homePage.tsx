@@ -11,6 +11,7 @@ import DayMaker from "../components/util/dayMaker";
 import Write from "../components/diary/write/write";
 import css from "../css/main.module.css";
 import APIS from "constants/apiConstants";
+import { handleAlertPerDevice } from "utils/util";
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     if (isError) {
-      alert(error.message);
+      handleAlertPerDevice(error.message);
       navigate(APIS.ROUTES.LOGIN);
       window.location.reload();
       return
