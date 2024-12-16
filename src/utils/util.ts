@@ -8,7 +8,6 @@ import {
 } from "../model/interfaces";
 
 import UI from "constants/uiConstants";
-import ERROR from "constants/ErrorConstants";
 
 const { STRING_PWCHECK } = APIS;
 const {
