@@ -1,15 +1,15 @@
-.total{
+.total {
   background-color: white;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   font-family: Arial;
-  transition: all 0.8s ease; 
+  transition: all 0.8s ease;
 }
 
-.total.home{
+.total.home {
   width: 21rem;
-  height: 83svh;
+  height: 70vh;
 }
 
 .total.expand {
@@ -17,14 +17,14 @@
   height: 83svh;
 }
 
-.wrapper{
-  color: #4C4C4C;
-  margin: 0 2.5rem ;
+.wrapper {
+  color: #4c4c4c;
+  margin: 0 2.5rem;
 }
 
-.today{
+.today {
   text-align: center;
-  color: #4C4C4C;
+  color: #4c4c4c;
   font-family: Arial;
   font-size: 1.1875rem;
   font-style: normal;

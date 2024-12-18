@@ -1,11 +1,11 @@
-.lowNav{
+.lowNav {
   display: flex;
   justify-content: space-evenly;
   margin-top: 0.5rem;
-  height: 1svh;
+  height: 10vh;
 }
 
-button{
+button {
   background-color: inherit;
   color: white;
   border: inherit;
@@ -13,11 +13,11 @@ button{
   justify-items: center;
 }
 
-.icon{
-  font-size:xx-large
+.icon {
+  font-size: xx-large;
 }
 
-.btnP{
+.btnP {
   margin-top: 0.5rem;
   font-size: large;
 }
