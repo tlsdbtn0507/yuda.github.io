@@ -3,13 +3,13 @@ import { useMutation } from "@tanstack/react-query"
 import { logoutPost } from "../../api/users/usersApi"
 import { useNavigate } from "react-router"
 import { LogoutReturnType, NavProps } from "model/interfaces"
+import { handleAlertPerDevice } from "utils/util"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
 import APIS from "constants/apiConstants"
 import ERROR from "constants/ErrorConstants"
 import UI from "constants/uiConstants"
-import { handleAlertPerDevice } from "utils/util"
 
 const { CONFIRM_LOGOUT, TODAY_DIARY, WRITE_DIARY, LOGOUT } = UI.NavTsx;
 

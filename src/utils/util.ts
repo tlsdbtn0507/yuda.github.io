@@ -115,6 +115,7 @@ export const handleAlertPerDevice = (alertMsg: string) => {
   if (window.webkit?.messageHandlers?.nativeAlert) {
     window.webkit.messageHandlers.nativeAlert.postMessage(alertMsg);
   } else {
-    alert(alertMsg); // 브라우저 환경
+    // 브라우저 환경
+    alert(alertMsg);
   }
 };

@@ -3,6 +3,7 @@ import { userStore } from '../store/user/userStore';
 import { useRef, useState } from 'react';
 import { checkIdDuple } from '../api/users/usersApi';
 import { useMutation } from '@tanstack/react-query';
+import { handleAlertPerDevice } from 'utils/util';
 
 import PwDiv from '../components/sign/pwDiv';
 import IdCheckBtn from '../components/sign/idCheckBtn';
@@ -39,6 +40,7 @@ const Sign = () => {
 
   const doOtherThing = (e: React.FormEvent) => {
     e.preventDefault();
+
     const { value } = idToCheckDuple.current as HTMLInputElement;
     const KOREAN_REGEX = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
@@ -46,7 +48,7 @@ const Sign = () => {
       idToCheckDuple.current?.focus();
       setIdChecked(STRING_NOT);
       idToCheckDuple.current!.value = EMPTY_STRING;
-      return alert(CHECK_ID);
+      return handleAlertPerDevice(CHECK_ID);
     }
     mutate(value);
     setIdInput(value);
@@ -59,14 +61,14 @@ const Sign = () => {
 
   const permitSub = (e: React.FormEvent) => {
     if (!idChecked) {
-      alert(ASK_CHECK_ID_DUPLE);
+      handleAlertPerDevice(ASK_CHECK_ID_DUPLE);
       idToCheckDuple.current?.focus();
-      e.preventDefault();
+      return e.preventDefault();
     }
     if (!pwCheck) {
-      alert(ASK_CHECK_PW_DUPLE);
+      handleAlertPerDevice(ASK_CHECK_PW_DUPLE);
       document.getElementById(STRING_PWCHECK)?.focus()
-      e.preventDefault();
+      return e.preventDefault();
     }
     if (idChecked && pwCheck) return
   }
