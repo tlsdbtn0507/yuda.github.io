@@ -18,17 +18,21 @@ const IdCheckBtn = (props: BtnType) => {
     setIsClicked(true);
   };
 
-  let btnContent = CHECK_ID_DUPLE;
+  const makeBtnContent = () => {
+    let btnContent = CHECK_ID_DUPLE;
 
-  if (!isClicked && isIdVal === STRING_NOT) btnContent = CHECK_ID_DUPLE;
-  if (isClicked && isIdVal !== STRING_NOT) btnContent = CAN_USE;
-  if (isClicked && isIdVal !== null && !isIdVal) btnContent = CANT_USE;
+    if (!isClicked && isIdVal === STRING_NOT) btnContent = CHECK_ID_DUPLE;
+    if (isClicked && isIdVal !== STRING_NOT) btnContent = CAN_USE;
+    if (isClicked && isIdVal !== null && !isIdVal) btnContent = CANT_USE;
+    return btnContent;
+  }
+
 
   return (
     <button className=
-      {btnContent === CHECK_ID_DUPLE || isIdVal ? css.checkBtn : css.checkBtnValid}
+      {makeBtnContent() === CHECK_ID_DUPLE || isIdVal ? css.checkBtn : css.checkBtnValid}
       onClick={send}>
-      {btnContent}
+      {makeBtnContent()}
     </button>
   )
 }

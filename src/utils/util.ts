@@ -109,3 +109,13 @@ export const lessThan7letters = (sen: string) => {
   const THREE_DOTS = "...";
   return sen.length > 7 ? sen.slice(0, 6) + THREE_DOTS : sen;
 };
+
+export const handleAlertPerDevice = (alertMsg: string) => {
+  // WKWebView 메시지 전달
+  if (window.webkit?.messageHandlers?.nativeAlert) {
+    window.webkit.messageHandlers.nativeAlert.postMessage(alertMsg);
+  } else {
+    // 브라우저 환경
+    alert(alertMsg);
+  }
+};
