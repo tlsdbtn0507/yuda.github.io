@@ -41,6 +41,7 @@ export interface toSendDataObj {
 export interface BtnType {
   onClick: (e: React.FormEvent) => void;
   isIdVal: boolean | string;
+  isSpinActivate: boolean;
 }
 
 export interface LogoutReturnType {

@@ -26,28 +26,31 @@ const { STRING_PWCHECK } = APIS;
 const Sign = () => {
 
   const [idChecked, setIdChecked] = useState<boolean | string>(STRING_NOT);
-
   const [idInput, setIdInput] = useState<string>(EMPTY_STRING);
+  const [spinActivate, setSpinActivate] = useState<boolean>(false);
 
-  const idToCheckDuple = useRef<HTMLInputElement>(null);
+  const idInputRef = useRef<HTMLInputElement>(null);
 
   const { pwCheck } = userStore(state => state);
 
   const { mutate } = useMutation({
     mutationFn: checkIdDuple,
+    onSettled: () => setSpinActivate(false),
     onSuccess: (data) => setIdChecked(data)
   });
 
-  const doOtherThing = (e: React.FormEvent) => {
+  const checkIsIdDuplicated = (e: React.FormEvent) => {
     e.preventDefault();
+    setSpinActivate(true)
 
-    const { value } = idToCheckDuple.current as HTMLInputElement;
+    const { value } = idInputRef.current as HTMLInputElement;
     const KOREAN_REGEX = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
     if (value === EMPTY_STRING || KOREAN_REGEX.test(value) || value.length < 4) {
-      idToCheckDuple.current?.focus();
+      idInputRef.current!.value = EMPTY_STRING;
+      idInputRef.current?.focus();
       setIdChecked(STRING_NOT);
-      idToCheckDuple.current!.value = EMPTY_STRING;
+
       return handleAlertPerDevice(CHECK_ID);
     }
     mutate(value);
@@ -55,14 +58,16 @@ const Sign = () => {
   };
 
   const checkId = () => {
-    const target = idToCheckDuple.current?.value as string;
+    const target = idInputRef.current?.value as string;
+
+    //먼저 사용불가된 id를 또 입력할 때를 대비한 코드
     if (idInput !== target) setIdChecked(STRING_NOT)
   }
 
   const permitSub = (e: React.FormEvent) => {
     if (!idChecked) {
       handleAlertPerDevice(ASK_CHECK_ID_DUPLE);
-      idToCheckDuple.current?.focus();
+      idInputRef.current?.focus();
       return e.preventDefault();
     }
     if (!pwCheck) {
@@ -83,10 +88,10 @@ const Sign = () => {
         <input required type="userName" id='name' name='name' />
         <label htmlFor="userId">
           {ID}
-          <IdCheckBtn onClick={doOtherThing} isIdVal={idChecked} />
+          <IdCheckBtn onClick={checkIsIdDuplicated} isIdVal={idChecked} isSpinActivate={spinActivate} />
         </label>
         <input
-          required type="userId" id='userId' name='userId' ref={idToCheckDuple}
+          required type="userId" id='userId' name='userId' ref={idInputRef}
           onChange={checkId}
           placeholder={PLACE_HOLDER} />
         <label htmlFor="pw">

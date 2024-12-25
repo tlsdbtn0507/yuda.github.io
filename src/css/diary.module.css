@@ -1,6 +1,6 @@
-.diary{
-  background-color: #DEFDFF;
-  height: 6.625rem;
+.diary {
+  background-color: #defdff;
+  height: 10vh;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -8,15 +8,15 @@
   margin: 5%;
 }
 
-.date{
+.date {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-grow: 1.5;
 }
-.date p{
+.date p {
   margin: 10% 0 10% 0;
-  color: #4C4C4C;
+  color: #4c4c4c;
   text-align: center;
   font-family: Arial;
   font-size: 0.875rem;
@@ -25,17 +25,17 @@
   line-height: normal;
 }
 
-.date span{
+.date span {
   font-size: 0.6rem;
 }
-.content{
+.content {
   display: flex;
   flex-direction: column;
   height: 100%;
   flex-grow: 2;
 }
-.content p{
-  color: #4C4C4C;
+.content p {
+  color: #4c4c4c;
   font-family: Arial;
   font-size: 1.5rem;
   font-style: normal;
@@ -44,26 +44,24 @@
   line-height: normal;
 }
 
-
-
-.img{
+.img {
   width: 15%;
   flex-grow: 1.5;
 }
 
-.img img{
+.img img {
   width: 100%;
   height: 100%;
 }
 
-.nullDiv{
+.nullDiv {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   margin-top: 10%;
 }
-.nullMsg{
+.nullMsg {
   color: black;
   font-weight: 900;
   font-size: small;
