@@ -25,26 +25,22 @@ input {
   justify-content: space-between;
 }
 .pwInput {
-  width: 31vh;
+  width: 52vw;
 }
 .pwInputVal {
-  width: 31vh;
+  width: 52vw;
   border: 1px solid red;
 }
 .checkBtnValid {
   border: 1px solid red;
   background-color: red;
   color: white;
-  margin-left: 49%;
-  margin-bottom: 5%;
   font-size: 0.9rem;
   border-radius: 10px;
   padding: 3%;
 }
 
 .checkBtn {
-  margin-left: 49%;
-  margin-bottom: 5%;
   font-size: 0.9rem;
   border-radius: 10px;
   border: 1px solid deepskyblue;
@@ -62,4 +58,12 @@ input {
   width: fit-content;
   padding: 5%;
   margin-left: 15%;
+}
+
+.idDupleSpinDiv {
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: center;
 }
