@@ -2,7 +2,7 @@
   background-color: white;
   font-family: Arial;
   border-radius: 20px;
-  width: 73vw;
+  width: 75vw;
   display: flex;
   flex-direction: column;
 }
@@ -25,10 +25,11 @@ input {
   justify-content: space-between;
 }
 .pwInput {
-  width: 52vw;
+  width: 50vw;
+  margin-bottom: 3%;
 }
 .pwInputVal {
-  width: 52vw;
+  width: 50vw;
   border: 1px solid red;
 }
 .checkBtnValid {
@@ -66,4 +67,8 @@ input {
   flex-direction: row-reverse;
   justify-content: space-evenly;
   align-items: center;
+}
+.pwConditionString {
+  margin-top: 0;
+  font-size: 0.8rem;
 }
