@@ -62,10 +62,10 @@ input {
 }
 
 .idDupleSpinDiv {
-  margin-bottom: 5%;
   display: flex;
+  margin-bottom: 5%;
   flex-direction: row-reverse;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
 }
 .pwConditionString {

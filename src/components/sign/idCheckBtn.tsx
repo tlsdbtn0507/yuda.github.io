@@ -28,19 +28,17 @@ const IdCheckBtn = (props: BtnType) => {
     return btnContent;
   }
 
-  console.log(isSpinActivate);
-
 
   return (
     <div className={css.idDupleSpinDiv}>
-      {/* {isSpinActivate && <LoadingSpin />} */}
-
       <button className=
         {makeBtnContent() === CHECK_ID_DUPLE || isIdVal ? css.checkBtn : css.checkBtnValid}
         onClick={send}>
         {makeBtnContent()}
       </button>
-      <LoadingSpin />
+      <div style={{ opacity: Number(isSpinActivate) }}>
+        <LoadingSpin />
+      </div>
     </div>
   )
 }

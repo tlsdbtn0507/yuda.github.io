@@ -50,7 +50,7 @@ const Root = () => {
   }, []);
 
   useEffect(() => {
-    navigate(toRootOrMain());
+    // navigate(toRootOrMain());
 
     if (isWritingDairy) return aniSetter(SUGGEST_WRITE);
 
