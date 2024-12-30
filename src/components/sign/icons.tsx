@@ -7,7 +7,7 @@ const Icons = (props: { isInit: boolean, isVal: boolean }) => {
 
   return (
     isInit ?
-      <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'white' }} /> :
+      <FontAwesomeIcon icon={faCircleCheck} style={{ opacity: 0 }} /> :
       isVal ?
         <FontAwesomeIcon icon={faCircleCheck} style={{ color: "rgba(87, 245, 255, 1)", opacity: isInit ? 0 : 1 }} /> :
         <FontAwesomeIcon icon={faCircleXmark} style={{ color: "red" }} />

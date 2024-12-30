@@ -9,7 +9,7 @@ interface PwDivType {
   type: string;
 }
 
-const { STRING_UNDER_SIX, CHECK_PW } = UI.PwDivTsx;
+const { CHECK_PW } = UI.PwDivTsx;
 const LOWER_CASE_PW = "pw";
 
 const PwDiv = (props: PwDivType) => {
@@ -34,7 +34,7 @@ const PwDiv = (props: PwDivType) => {
 
   const isPwCheck = {
     placeholder:
-      type === LOWER_CASE_PW ? STRING_UNDER_SIX : CHECK_PW,
+      type === LOWER_CASE_PW ? UI.EMPTY_STRING : CHECK_PW,
   };
 
   const checkPwAcc = (e: React.ChangeEvent<HTMLInputElement>) => {

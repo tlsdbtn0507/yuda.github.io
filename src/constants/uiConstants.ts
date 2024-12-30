@@ -53,7 +53,7 @@ const UI = {
     FEELING_REASON: "feelingReason",
   },
   PwDivTsx: {
-    STRING_UNDER_SIX: "영문, 숫자, 특수기호 포함 6글자",
+    STRING_UNDER_SIX: "🔒 영문, 숫자, 특수기호 포함 6글자 이상",
     CHECK_PW: "비밀번호 확인",
   },
   IntroTsx: {
