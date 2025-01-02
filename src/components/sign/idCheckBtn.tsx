@@ -13,7 +13,7 @@ const IdCheckBtn = (props: BtnType) => {
 
   const [isClicked, setIsClicked] = useState(false);
 
-  const send = (e: React.FormEvent) => {
+  const sendIsIdInputDuplicated = (e: React.FormEvent) => {
     e.preventDefault();
     props.onClick(e);
     setIsClicked(true);
@@ -33,7 +33,7 @@ const IdCheckBtn = (props: BtnType) => {
     <div className={css.idDupleSpinDiv}>
       <button className=
         {makeBtnContent() === CHECK_ID_DUPLE || isIdVal ? css.checkBtn : css.checkBtnValid}
-        onClick={send}>
+        onClick={sendIsIdInputDuplicated}>
         {makeBtnContent()}
       </button>
       <div style={{ opacity: Number(isSpinActivate) }}>
