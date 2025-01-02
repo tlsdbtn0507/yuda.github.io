@@ -23,8 +23,7 @@ const Selected = () => {
         break;
 
       case 1:
-        const { weatherCond, weatherLevel: { ment: wMent, level } } =
-          isDiaryWritten.weather as SelectedDiaryWeahter;
+        const { weatherCond, weatherLevel: { ment: wMent, level } } = isDiaryWritten.weather as SelectedDiaryWeahter;
 
         const weatherLevelCond = level === 2 ? EMPTY_STRING : wMent.slice(0, -1);
 
