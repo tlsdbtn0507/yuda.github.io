@@ -5,16 +5,19 @@ import {
   WriteDiaryWeather,
   toSendDataObj,
   WriteDiaryEnum,
+  Days,
 } from "../model/interfaces";
 
 import UI from "constants/uiConstants";
 
-const { STRING_PWCHECK } = APIS;
+const { STRING_PWCHECK, DATE_LITERAL_METHODS } = APIS;
 const {
   SPACE_STRING,
   EMPTY_STRING,
   DONE,
   WriteDoneBtnTsx: { MARKS },
+  DAYS_OF_WEEK,
+  STRING_ZERO,
 } = UI;
 
 export const toSendData = (data: FormData) => {
@@ -118,4 +121,30 @@ export const handleAlertPerDevice = (alertMsg: string) => {
     // 브라우저 환경
     alert(alertMsg);
   }
+};
+
+export const whichDayIsitToday = (): Days => {
+  return DAYS_OF_WEEK[new Date().getDay()];
+};
+
+const datesForStringMaker = () => {
+  const now = new Date();
+  const methods = DATE_LITERAL_METHODS;
+
+  return methods
+    .map((method) => now[method]())
+    .map((content, index) => (index === 1 ? content + 1 : content))
+    .map((date) => String(date).padStart(2, STRING_ZERO));
+};
+
+export const dayMakerToPage = (): string => {
+  const [year, month, date] = datesForStringMaker();
+
+  return `${year} . ${month} . ${date} . ${whichDayIsitToday()}`;
+};
+
+export const dayMakerToSend = () => {
+  const [year, month, date] = datesForStringMaker();
+
+  return `${year}-${month}-${date}`;
 };
