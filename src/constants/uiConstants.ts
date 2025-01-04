@@ -1,3 +1,5 @@
+import { Days } from "model/interfaces";
+
 const UI = {
   EMPTY_STRING: "",
   SPACE_STRING: " ",
@@ -88,6 +90,7 @@ const UI = {
     PLACE_HOLDER: "한글 사용 불가 및 최소 4자",
     SIGN_DONE: "회원가입 완료",
   },
+  DAYS_OF_WEEK: Object.values(Days),
 };
 
 export default UI;
