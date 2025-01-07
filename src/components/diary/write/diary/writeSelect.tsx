@@ -1,4 +1,7 @@
-import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather, WriteDiaryEnum } from 'model/interfaces';
+import {
+  // WriteDiary,
+  WriteDiaryFeeling, WriteDiaryWeather, WriteDiaryEnum, IsDiaryWritten
+} from 'model/interfaces';
 import { diaryStore } from 'store/diary/diaryStore';
 import { mentMaker } from 'utils/util';
 
@@ -64,7 +67,7 @@ const WriteSelect: React.FC<WriteSelectProps> = ({ type, selections }): React.Re
       break;
 
     case WriteDiaryEnum.FeelingReason:
-      const { feeling } = isDiaryWritten as WriteDiary;
+      const { feeling } = isDiaryWritten as IsDiaryWritten;
 
       h2 = `왜 ${mentMaker(feeling as WriteDiaryFeeling)}나요?`;
       content = <WriteTextArea />

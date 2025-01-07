@@ -1,4 +1,8 @@
-import { WriteDiary, WriteDiaryFeeling, WriteDiaryWeather } from "./interfaces";
+import {
+  IsDiaryWritten,
+  WriteDiaryFeeling,
+  WriteDiaryWeather,
+} from "./interfaces";
 import UI from "constants/uiConstants";
 
 export const FEELINGS: WriteDiaryFeeling[] = [
@@ -53,8 +57,9 @@ export const WEATHERS: WriteDiaryWeather[] = [
   },
 ];
 
-export const WRITING_DIARY: WriteDiary = {
+export const WRITING_DIARY: IsDiaryWritten = {
   feeling: {},
   weather: {},
   feelingReason: UI.EMPTY_STRING,
+  diaryDate: "",
 };

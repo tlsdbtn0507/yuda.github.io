@@ -1,11 +1,11 @@
 import APIS from "constants/apiConstants";
 import {
-  WriteDiary,
   WriteDiaryFeeling,
   WriteDiaryWeather,
   toSendDataObj,
   WriteDiaryEnum,
   Days,
+  IsDiaryWritten,
 } from "../model/interfaces";
 
 import UI from "constants/uiConstants";
@@ -33,7 +33,7 @@ type ObjEntryType = [
   string | {} | WriteDiaryFeeling | WriteDiaryWeather
 ];
 
-export const whichObjIsEmpty = (checkObj: WriteDiary) => {
+export const whichObjIsEmpty = (checkObj: IsDiaryWritten) => {
   if (checkObj === null) return checkObj;
 
   const obj = Object.entries(checkObj);

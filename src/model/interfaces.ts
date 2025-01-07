@@ -57,6 +57,7 @@ export type IsDiaryWritten = {
   feeling: WriteDiaryFeeling | {};
   weather?: WriteDiaryWeather | {};
   feelingReason?: string;
+  diaryDate: string;
 };
 
 export interface WriteDiaryFeeling {
@@ -74,11 +75,12 @@ export type SelectedDiaryWeahter = {
   weatherLevel: WriteDiaryFeeling;
 };
 
-export type WriteDiary = {
-  feeling: WriteDiaryFeeling | {};
-  weather?: WriteDiaryWeather | {};
-  feelingReason?: string;
-};
+export interface DiaryToSendToSurver extends Required<IsDiaryWritten> {
+  lat: string;
+  long: string;
+  diaryDate: string;
+  dayOfWeek: Days;
+}
 
 /* eslint-disable no-unused-vars */
 export const enum WriteDiaryEnum {
