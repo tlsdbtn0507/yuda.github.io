@@ -22,7 +22,7 @@ const Root = () => {
   const { isWritingDairy } = diaryStore(state => state);
 
   const [animating, setAnimating] = useState(false);
-  const [displayText, setDisplayText] = useState(YUDA);
+  const [displayText, setDisplayText] = useState(UI.EMPTY_STRING);
   const [innerHeight, setInnerHeight] = useState<Number>(0);
 
   const navigate = useNavigate();
