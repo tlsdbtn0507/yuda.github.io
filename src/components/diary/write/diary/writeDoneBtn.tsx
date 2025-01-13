@@ -3,6 +3,7 @@ import { diaryStore } from 'store/diary/diaryStore'
 import css from '../../../../css/write.module.css'
 import UI from 'constants/uiConstants';
 import APIS from 'constants/apiConstants';
+import { handleConfirmPerDevice } from 'utils/util';
 
 const WriteDoneBtn = () => {
   const { WriteDoneBtnTsx: { NOTHING, DONE_STRING, MARKS }, SPACE_STRING } = UI;
@@ -14,7 +15,7 @@ const WriteDoneBtn = () => {
   const handleDoneBtn = () => {
     switch (isBtnDisabled) {
       case true:
-        const checkReasonNull = window.confirm(NOTHING);
+        const checkReasonNull = handleConfirmPerDevice(NOTHING);
         if (checkReasonNull) setWritingDiary({ ...isDiaryWritten, feelingReason: SPACE_STRING });
         break;
 

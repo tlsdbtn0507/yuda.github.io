@@ -10,4 +10,7 @@ declare global {
       };
     };
   }
+  interface Window {
+    confirmCallback: (result: boolean) => void;
+  }
 }

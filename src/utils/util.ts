@@ -123,6 +123,16 @@ export const handleAlertPerDevice = (alertMsg: string) => {
   }
 };
 
+export const handleConfirmPerDevice = (message:string,callback = (result:boolean)=>{}) => {
+    if (window.webkit?.messageHandlers?.nativeConfirm) {
+      window.webkit.messageHandlers.nativeConfirm.postMessage(message);
+      window.confirmCallback = callback; // 콜백 저장
+    } else {
+      const result = window.confirm(message); // 브라우저 환경에서는 기본 confirm 사용
+      return result
+    }
+}
+
 export const whichDayIsitToday = (): Days => {
   return DAYS_OF_WEEK[new Date().getDay()];
 };
