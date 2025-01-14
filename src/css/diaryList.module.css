@@ -10,8 +10,14 @@
 
 .wrapper {
   overflow-y: scroll;
-  height: 40vh;
-  /* height: inherit; */
+  height: 36vh;
+}
+
+/* 화면 높이가 650px 이하일 때 숨김 */
+@media (max-height: 690px) {
+  .wrapper {
+    height: 25vh;
+  }
 }
 
 .h5 {
@@ -22,6 +28,7 @@
   height: 100%;
   padding-bottom: 3rem;
 }
+
 .more {
   justify-items: center;
   flex: 1 0 auto;
