@@ -1,20 +1,23 @@
 import APIS from "constants/apiConstants";
 import {
-  WriteDiary,
   WriteDiaryFeeling,
   WriteDiaryWeather,
   toSendDataObj,
   WriteDiaryEnum,
+  Days,
+  IsDiaryWritten,
 } from "../model/interfaces";
 
 import UI from "constants/uiConstants";
 
-const { STRING_PWCHECK } = APIS;
+const { STRING_PWCHECK, DATE_LITERAL_METHODS } = APIS;
 const {
   SPACE_STRING,
   EMPTY_STRING,
   DONE,
   WriteDoneBtnTsx: { MARKS },
+  DAYS_OF_WEEK,
+  STRING_ZERO,
 } = UI;
 
 export const toSendData = (data: FormData) => {
@@ -30,7 +33,7 @@ type ObjEntryType = [
   string | {} | WriteDiaryFeeling | WriteDiaryWeather
 ];
 
-export const whichObjIsEmpty = (checkObj: WriteDiary) => {
+export const whichObjIsEmpty = (checkObj: IsDiaryWritten) => {
   if (checkObj === null) return checkObj;
 
   const obj = Object.entries(checkObj);
@@ -118,4 +121,40 @@ export const handleAlertPerDevice = (alertMsg: string) => {
     // 브라우저 환경
     alert(alertMsg);
   }
+};
+
+export const handleConfirmPerDevice = (message:string,callback = (result:boolean)=>{}) => {
+    if (window.webkit?.messageHandlers?.nativeConfirm) {
+      window.webkit.messageHandlers.nativeConfirm.postMessage(message);
+      window.confirmCallback = callback; // 콜백 저장
+    } else {
+      const result = window.confirm(message); // 브라우저 환경에서는 기본 confirm 사용
+      return result
+    }
+}
+
+export const whichDayIsitToday = (): Days => {
+  return DAYS_OF_WEEK[new Date().getDay()];
+};
+
+const datesForStringMaker = () => {
+  const now = new Date();
+  const methods = DATE_LITERAL_METHODS;
+
+  return methods
+    .map((method) => now[method]())
+    .map((content, index) => (index === 1 ? content + 1 : content))
+    .map((date) => String(date).padStart(2, STRING_ZERO));
+};
+
+export const dayMakerToPage = (): string => {
+  const [year, month, date] = datesForStringMaker();
+
+  return `${year} . ${month} . ${date} . ${whichDayIsitToday()}`;
+};
+
+export const dayMakerToSend = () => {
+  const [year, month, date] = datesForStringMaker();
+
+  return `${year}-${month}-${date}`;
 };

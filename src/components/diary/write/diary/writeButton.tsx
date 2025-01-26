@@ -21,9 +21,13 @@ const WriteButton: React.FC<WriteButtonProps> = ({ ment, type }): React.ReactEle
       //감정 고를때
       case WriteDiaryEnum.Feeling:
         const feeling = FEELINGS.find(e => e.ment === ment) as WriteDiaryFeeling;
-        if (isDiaryWritten.weather)
-          return setWritingDiary({ ...isDiaryWritten, feeling });
-        setWritingDiary({ feeling, weather: {} });
+
+        //감정 재 선택시 고려한 if문
+        if (isDiaryWritten.weather) {
+          return setWritingDiary({ ...isDiaryWritten, feeling })
+        };
+
+        setWritingDiary({ feeling, weather: {}, diaryDate: isDiaryWritten.diaryDate });
         break;
 
       //날씨 고를떄

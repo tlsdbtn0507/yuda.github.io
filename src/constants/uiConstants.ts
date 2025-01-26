@@ -1,3 +1,5 @@
+import { Days } from "model/interfaces";
+
 const UI = {
   EMPTY_STRING: "",
   SPACE_STRING: " ",
@@ -88,6 +90,11 @@ const UI = {
     PLACE_HOLDER: "한글 사용 불가 및 최소 4자",
     SIGN_DONE: "회원가입 완료",
   },
+  SelectedTsx: {
+    SUCCESS_ALERT:"일기 작성이 완료되었습니다!",
+    FAIL_ALERT:"일기 작성이 실패했습니다!"
+  },
+  DAYS_OF_WEEK: Object.values(Days),
 };
 
 export default UI;

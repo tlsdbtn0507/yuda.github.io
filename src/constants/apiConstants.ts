@@ -25,6 +25,7 @@ const APIS = {
   DATA: {
     FETCHING: "fetching",
   },
+  DATE_LITERAL_METHODS: ["getFullYear", "getMonth", "getDate"] as const,
 };
 
 export default APIS;

@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import {
-  WriteDiary,
+  // WriteDiary,
   WriteDiaryFeeling,
   WriteDiaryWeather,
-  WriteDiaryEnum
+  WriteDiaryEnum,
+  IsDiaryWritten
 }
   from 'model/interfaces';
-import { whichObjIsEmpty } from 'utils/util';
+import { dayMakerToSend, whichObjIsEmpty } from 'utils/util';
 import { diaryStore } from 'store/diary/diaryStore';
 import { FEELINGS, WEATHERS, WEATHER_LEVELS } from 'model/constants';
 
@@ -60,7 +61,7 @@ const Write = () => {
     const whichComponentRender = whichObjIsEmpty(isDiaryWritten);
 
     if (!whichComponentRender) {
-      const writingDiary: WriteDiary = { feeling: {} };
+      const writingDiary: IsDiaryWritten = { feeling: {}, diaryDate: dayMakerToSend() };
       setWritingDiary(writingDiary);
       return whichSelectRender(FEELING);
     }

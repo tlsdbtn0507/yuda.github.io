@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query"
 import { logoutPost } from "../../api/users/usersApi"
 import { useNavigate } from "react-router"
 import { LogoutReturnType, NavProps } from "model/interfaces"
-import { handleAlertPerDevice } from "utils/util"
+import { handleAlertPerDevice, handleConfirmPerDevice } from "utils/util"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
@@ -30,7 +30,7 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
     handleAlertPerDevice(ERROR.LOGOUT_FAIL);
   }
 
-  const logoutConfirm = () => window.confirm(CONFIRM_LOGOUT) && mutate();
+  const logoutConfirm = () => handleConfirmPerDevice(CONFIRM_LOGOUT) && mutate();
 
 
   const todayRoute = () => { };

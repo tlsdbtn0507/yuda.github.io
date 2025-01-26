@@ -1,59 +1,62 @@
 import { diaryStore } from 'store/diary/diaryStore';
-import { SelectedDiaryWeahter, WriteDiaryEnum, WriteDiaryFeeling } from 'model/interfaces';
-import { lessThan7letters, selectedSumTitle } from 'utils/util';
+import { DiaryToSendToSurver, IsDiaryWritten, } from 'model/interfaces';
+import { dayMakerToSend, handleAlertPerDevice, isEmptyObj, whichDayIsitToday } from 'utils/util';
+import { useMutation } from '@tanstack/react-query';
+import { writeTodayDiary } from 'api/diary/diaryApi';
+import { useEffect } from 'react';
+import { userStore } from 'store/user/userStore';
+import { queryClient } from 'App';
 
 import css from '../../../../css/write.module.css'
-import RemindBtn from './remindBtn'
+import SelectedMakeBtns from './selectedMakeBtns';
 import UI from 'constants/uiConstants';
+import APIS from 'constants/apiConstants';
+
+const { SUCCESS_ALERT, FAIL_ALERT } = UI.SelectedTsx;
+const { DIARIES } = APIS.QUERIES;
 
 const Selected = () => {
-  const { EMPTY_STRING } = UI;
-
-  const TITLES = ['기분은', '날씨는', '기록은'];
 
   const { isDiaryWritten } = diaryStore(state => state);
+  const { currentLoc, setCurrentLoc } = userStore(state => state);
+  const { toggleWriteDairy } = diaryStore(state => state);
 
-  const selectedMaker = TITLES.map((e, i) => {
-    let toReturn = { title: EMPTY_STRING, type: EMPTY_STRING };
-    switch (i) {
-      case 0:
-        const { ment: fMent } = isDiaryWritten.feeling as WriteDiaryFeeling;
-        toReturn.title = fMent;
-        toReturn.type = WriteDiaryEnum.Feeling;
-        break;
+  const { mutate } = useMutation({
+    mutationFn: writeTodayDiary,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [DIARIES], exact: true });
+      handlePostResult(true)
+    },
+    onError: () => handlePostResult(false),
+  });
 
-      case 1:
-        const { weatherCond, weatherLevel: { ment: wMent, level } } =
-          isDiaryWritten.weather as SelectedDiaryWeahter;
+  const handlePostResult = (result: boolean) => {
+    handleAlertPerDevice(result ? SUCCESS_ALERT : FAIL_ALERT);
+    toggleWriteDairy(false);
+  }
 
-        const weatherLevelCond = level === 2 ? EMPTY_STRING : wMent.slice(0, -1);
-
-        toReturn.title = `${selectedSumTitle(weatherLevelCond, weatherCond)}`;
-        toReturn.type = WriteDiaryEnum.Weather;
-        break;
-
-      case 2:
-        const { feelingReason } = isDiaryWritten;
-        toReturn.title = lessThan7letters(feelingReason as string);
-        toReturn.type = WriteDiaryEnum.FeelingReason;
-        break;
-      default:
-        break;
+  useEffect(() => {
+    //현재위치가 없는 상태에서 일기 요청 가능성 대처
+    if (Object.values(currentLoc).every(loc => isEmptyObj(loc))) {
+      setCurrentLoc()
     }
-    return (
-      <div key={i}>
-        <p>{e}</p>
-        <RemindBtn content={toReturn} />
-      </div>
-    )
   })
 
+  const submitDiary = () => {
 
-  const submitDiary = () => { };
+    const diaryToSendToSurver: DiaryToSendToSurver = {
+      ...isDiaryWritten as Required<IsDiaryWritten>,
+      ...currentLoc,
+      diaryDate: dayMakerToSend(),
+      dayOfWeek: whichDayIsitToday()
+    };
+
+    mutate(diaryToSendToSurver)
+  };
 
   return (
     <div className={css.selected}>
-      {selectedMaker}
+      <SelectedMakeBtns />
       <button className={css.sumDoneBtn} onClick={submitDiary}>끝내기!</button>
     </div>
   )

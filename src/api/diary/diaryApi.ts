@@ -1,4 +1,4 @@
-import { DiaryType } from "../../model/interfaces";
+import { DiaryToSendToSurver, DiaryType } from "../../model/interfaces";
 
 import ERROR from "constants/ErrorConstants";
 import API from "../api";
@@ -19,4 +19,11 @@ export const fetchMoreDiaries = async (id: number): Promise<DiaryType[]> => {
   } catch (error) {
     throw new Error();
   }
+};
+
+export const writeTodayDiary = async (diaryObject: DiaryToSendToSurver) => {
+  try {
+    const { data } = await API.post(`/diary`, diaryObject);
+    return data;
+  } catch (error) {}
 };
