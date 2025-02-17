@@ -1,9 +1,8 @@
 import { diaryStore } from 'store/diary/diaryStore';
 import { DiaryToSendToSurver, IsDiaryWritten, } from 'model/interfaces';
-import { dayMakerToSend, handleAlertPerDevice, isEmptyObj, whichDayIsitToday } from 'utils/util';
+import { dayMakerToSend, handleAlertPerDevice, whichDayIsitToday } from 'utils/util';
 import { useMutation } from '@tanstack/react-query';
 import { writeTodayDiary } from 'api/diary/diaryApi';
-import { useEffect } from 'react';
 import { userStore } from 'store/user/userStore';
 import { queryClient } from 'App';
 
@@ -35,18 +34,19 @@ const Selected = () => {
     toggleWriteDairy(false);
   }
 
-  useEffect(() => {
-    //현재위치가 없는 상태에서 일기 요청 가능성 대처
-    if (Object.values(currentLoc).every(loc => isEmptyObj(loc))) {
-      setCurrentLoc()
-    }
-  })
+  const checkIsLocEmpty = (loc: { lat: string, long: string }) => {
+    return !loc.lat || !loc.long;
+  }
 
-  const submitDiary = () => {
+  const submitDiary = async () => {
+    //현재위치가 없는 상태에서 일기 요청 가능성 대처
+    if (checkIsLocEmpty(currentLoc)) {
+      await setCurrentLoc();
+    }
 
     const diaryToSendToSurver: DiaryToSendToSurver = {
       ...isDiaryWritten as Required<IsDiaryWritten>,
-      ...currentLoc,
+      ...userStore.getState().currentLoc,
       diaryDate: dayMakerToSend(),
       dayOfWeek: whichDayIsitToday()
     };
