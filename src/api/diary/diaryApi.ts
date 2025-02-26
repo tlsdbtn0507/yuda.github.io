@@ -25,5 +25,7 @@ export const writeTodayDiary = async (diaryObject: DiaryToSendToSurver) => {
   try {
     const { data } = await API.post(`/diary`, diaryObject);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    throw new Error();
+  }
 };

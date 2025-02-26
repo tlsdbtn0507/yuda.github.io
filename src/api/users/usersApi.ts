@@ -35,7 +35,7 @@ export const login = async (request: { id: string, pw: string }) => {
 
     return data;
   } catch (error) {
-    console.log(error)
+    throw new Error()
   }
 }
 
