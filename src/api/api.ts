@@ -7,7 +7,7 @@ const API = axios.create({
 });
 
 export const getLocation = async () => {
-  const { data } = await axios.get(process.env.REACT_APP_IPINFO_URL as string);
+  const { data } = await axios.get(`https://ipinfo.io/?token=${process.env.REACT_APP_IPINFO_TOKEN}`);
   return data.loc.split(",") as string[];
 };
 

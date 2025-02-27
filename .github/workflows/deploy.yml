@@ -25,7 +25,7 @@ jobs:
         env:
           REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
           REACT_APP_DELAY: ${{ secrets.REACT_APP_DELAY }}
-          REACT_APP_IPINFO_URL: ${{ secrets.REACT_APP_IPINFO_URL }}
+          REACT_APP_IPINFO_TOKEN: ${{ secrets.REACT_APP_IPINFO_TOKEN }}
         run: CI=false npm run build
 
       - name: Archive production artifacts
