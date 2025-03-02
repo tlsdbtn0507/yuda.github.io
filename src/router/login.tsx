@@ -36,17 +36,16 @@ const Login = () => {
     onSettled() {
       setShowLoadingSpin(false);
     },
-    onSuccess(data) {
-      if (data) {
-        localStorage.setItem(IS_USER_LOGINED_STR, `${IS_USER_LOGINED_TRUE}`);
-        return navigate(MAIN);
-      }
-
+    onSuccess() {
+      localStorage.setItem(IS_USER_LOGINED_STR, `${IS_USER_LOGINED_TRUE}`);
+      return navigate(MAIN);
+    },
+    onError() {
       handleAlertPerDevice(ERROR.LOGIN_FAIL);
 
       idRef.current!.value = EMPTY_STRING;
       pwRef.current!.value = EMPTY_STRING;
-    },
+    }
   });
 
   const submitLogin = (e: React.FormEvent) => {
