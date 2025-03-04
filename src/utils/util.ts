@@ -153,3 +153,7 @@ export const dayMakerToSend = () => {
 
   return `${year}-${month}-${date}`;
 };
+
+export const isValidDay = (day: string): day is Days => {
+  return Object.values(Days).includes(day as Days);
+}
