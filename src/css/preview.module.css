@@ -1,0 +1,55 @@
+.diaryPreview {
+  background-color: #defdff;
+  height: 10vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5%;
+}
+
+.diaryDate {
+  margin: 0.3rem;
+  font-size: small;
+  font-weight: 800;
+}
+
+.wrapper {
+  height: 6vh;
+  width: 52vw;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.contentWrapper {
+  display: flex;
+  height: 6vh;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sideBtns {
+  color: black;
+  font-size: 1.1rem;
+}
+.content {
+  height: 100%;
+  display: grid;
+  align-content: space-evenly;
+}
+.contentText {
+  font-size: small;
+  margin: 0;
+  font-weight: 800;
+}
+
+.carouselBtns {
+  color: #d9d9d9;
+  font-size: xx-small;
+  padding: 0% 4% 0% 4%;
+}
+
+.carouselBtnsWrapper {
+  display: flex;
+  justify-content: center;
+}
