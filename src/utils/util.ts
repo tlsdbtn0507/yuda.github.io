@@ -1,4 +1,4 @@
-import APIS from "constants/apiConstants";
+import APIS from "../constants/apiConstants";
 import {
   WriteDiaryFeeling,
   WriteDiaryWeather,
@@ -6,9 +6,10 @@ import {
   WriteDiaryEnum,
   Days,
   IsDiaryWritten,
+  DiaryCameFromServer,
 } from "../model/interfaces";
 
-import UI from "constants/uiConstants";
+import UI from "../constants/uiConstants";
 
 const { STRING_PWCHECK, DATE_LITERAL_METHODS } = APIS;
 const {
@@ -157,3 +158,29 @@ export const dayMakerToSend = () => {
 export const isValidDay = (day: string): day is Days => {
   return Object.values(Days).includes(day as Days);
 }
+
+export const previewContentArrayMaker = (diaryPreviewDetails:DiaryCameFromServer) => {
+  // const feelingPreview = feelingPreviewMaker();
+};
+export const feelingPreviewMaker = (feeling: { ment: string, level: number }) => {
+  let result = "";
+
+  switch (feeling.level) {
+    case 1:
+      result = `${feeling.ment}였던 하루`;
+      break;
+    case 2:
+      result = `${feeling.ment.slice(0, 2)}던 하루`;
+      break;
+    case 3:
+      break;
+    default:
+      break;
+  }
+
+  return result;
+};
+
+
+export const weatherPreviewMaker = () => {};
+export const realWeatherPreviewMaker = () => {};
