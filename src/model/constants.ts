@@ -28,11 +28,11 @@ export const WEATHER_LEVELS: WriteDiaryFeeling[] = [
 
 export const WEATHERS: WriteDiaryWeather[] = [
   {
-    weatherCond: "화창 했어",
+    weatherCond: "화창했어",
     weatherLevel: [],
   },
   {
-    weatherCond: "비가 왔어",
+    weatherCond: "비가왔어",
     weatherLevel: [],
   },
   {
@@ -52,7 +52,7 @@ export const WEATHERS: WriteDiaryWeather[] = [
     weatherLevel: [],
   },
   {
-    weatherCond: "우중충 했어",
+    weatherCond: "우중충했어",
     weatherLevel: [],
   },
 ];
