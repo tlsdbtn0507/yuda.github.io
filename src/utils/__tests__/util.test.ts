@@ -1,5 +1,6 @@
 import { SelectedDiaryWeahter } from "model/interfaces";
-import { feelingPreviewMaker, weatherPreviewMaker } from "../util";
+import { feelingPreviewMaker, rainCondChecker, weatherPreviewMaker } from "../util";
+import { RAIN_COND_ARR } from "../../model/constants";
 
 describe("util파일의 함수들 테스트", () => {
   test("feelingPreviewMaker함수가 올바른 문자열을 뱉는가?", () => {
@@ -32,6 +33,14 @@ describe("util파일의 함수들 테스트", () => {
     expect(weatherPreviewMaker(TEST_WEATHER_HOT_2)).not.toBe("보통 더웠던 하루");
     expect(weatherPreviewMaker(TEST_WEATHER_SUN_1)).not.toBe("약간 화창했던 하루");
     expect(weatherPreviewMaker(TEST_WEATHER_RAIN_1)).not.toBe("비가  왔던 하루");
+  });
+
+  const TEST_RAIN_COND_ARR = RAIN_COND_ARR;
+
+  TEST_RAIN_COND_ARR.forEach((rainCond) => {
+    test("realWeatherPreviewMaker함수가 올바른 객체스타일로 뱉는가", () => {
+      expect(rainCondChecker(rainCond[0])).toEqual(rainCond[1]);
+    });
   });
 
 });
