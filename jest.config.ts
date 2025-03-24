@@ -1,5 +1,6 @@
-// jest.config.ts
 import type { Config } from "jest";
+import { pathsToModuleNameMapper } from "ts-jest";
+import { compilerOptions } from "./tsconfig.json";
 
 const config: Config = {
   preset: "ts-jest",
@@ -11,6 +12,9 @@ const config: Config = {
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
+      prefix: "<rootDir>/",
+    }),
   },
 };
 
