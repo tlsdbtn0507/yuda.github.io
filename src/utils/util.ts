@@ -7,6 +7,8 @@ import {
   Days,
   IsDiaryWritten,
   DiaryCameFromServer,
+  SelectedDiaryWeahter,
+  RealWeatherData,
 } from "../model/interfaces";
 
 import UI from "../constants/uiConstants";
@@ -102,6 +104,10 @@ export const selectedSumTitle = (level: string, ment: string) => {
       break;
 
     default:
+      if (level === EMPTY_STRING) {
+        toReturn = `${ment}`;
+        break;
+      }
       toReturn = `${level} ${ment}`;
       break;
   }
@@ -167,12 +173,13 @@ export const feelingPreviewMaker = (feeling: { ment: string, level: number }) =>
 
   switch (feeling.level) {
     case 1:
-      result = `${feeling.ment}였던 하루`;
+      result = `${feeling.ment.slice(0, 2)} 였던 하루`;
       break;
     case 2:
-      result = `${feeling.ment.slice(0, 2)}던 하루`;
+      result = `${feeling.ment.slice(0, feeling.ment.length - 1)}던 하루`;
       break;
     case 3:
+      result = `${feeling.ment}했던 하루`;
       break;
     default:
       break;
@@ -181,6 +188,33 @@ export const feelingPreviewMaker = (feeling: { ment: string, level: number }) =>
   return result;
 };
 
-
-export const weatherPreviewMaker = () => {};
-export const realWeatherPreviewMaker = () => {};
+export const weatherPreviewMaker = (weather: SelectedDiaryWeahter) => {
+  const { weatherCond, weatherLevel } = weather;
+  const wMent =
+    weatherLevel.level === 2 ? EMPTY_STRING : weatherLevel.ment.slice(0, -1);
+  const weatherSummary = `${selectedSumTitle(wMent, weatherCond).slice(0, -1)}`
+  
+  return `${weatherSummary}던 하루`;
+};
+export const rainCondChecker = (rainCond: string) => {
+  switch (rainCond) {
+    case "0":
+      return "맑음";
+    case "1":
+      return "비";
+    case "2":
+      return "흐림";
+    case "3":
+      return "눈";
+    case "4":
+      return "소나기";
+    case "5":
+      return "폭우";
+    case "6":
+      return "진눈깨비";
+    case "7":
+      return "폭설";
+    default:
+      return "알 수 없음";
+  }
+};
