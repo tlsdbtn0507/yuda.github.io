@@ -3,7 +3,7 @@ import {
   WriteDiaryFeeling,
   WriteDiaryWeather,
 } from "./interfaces";
-import UI from "constants/uiConstants";
+import UI from "../constants/uiConstants";
 
 export const FEELINGS: WriteDiaryFeeling[] = [
   {
@@ -63,3 +63,14 @@ export const WRITING_DIARY: IsDiaryWritten = {
   feelingReason: UI.EMPTY_STRING,
   diaryDate: "",
 };
+
+export const RAIN_COND_ARR:string[][] = [
+  ["0", "맑음"],
+  ["1", "비"],
+  ["2", "흐림"],
+  ["3", "눈"],
+  ["4", "소나기"],
+  ["5", "폭우"],
+  ["6", "진눈깨비"],
+  ["7", "폭설"],
+]
