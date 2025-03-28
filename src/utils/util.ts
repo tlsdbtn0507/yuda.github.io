@@ -8,10 +8,10 @@ import {
   IsDiaryWritten,
   DiaryCameFromServer,
   SelectedDiaryWeahter,
-  RealWeatherData,
 } from "../model/interfaces";
 
 import UI from "../constants/uiConstants";
+import { RAIN_COND_ARR } from "../model/constants";
 
 const { STRING_PWCHECK, DATE_LITERAL_METHODS } = APIS;
 const {
@@ -197,24 +197,5 @@ export const weatherPreviewMaker = (weather: SelectedDiaryWeahter) => {
   return `${weatherSummary}던 하루`;
 };
 export const rainCondChecker = (rainCond: string) => {
-  switch (rainCond) {
-    case "0":
-      return "맑음";
-    case "1":
-      return "비";
-    case "2":
-      return "흐림";
-    case "3":
-      return "눈";
-    case "4":
-      return "소나기";
-    case "5":
-      return "폭우";
-    case "6":
-      return "진눈깨비";
-    case "7":
-      return "폭설";
-    default:
-      return "알 수 없음";
-  }
+  return RAIN_COND_ARR.find((rain) => rain[0] === rainCond)![1]
 };
