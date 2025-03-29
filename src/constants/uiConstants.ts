@@ -1,4 +1,4 @@
-import { Days } from "model/interfaces";
+import { Days } from "../model/interfaces";
 
 const UI = {
   EMPTY_STRING: "",
