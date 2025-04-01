@@ -165,27 +165,36 @@ export const isValidDay = (day: string): day is Days => {
   return Object.values(Days).includes(day as Days);
 }
 
-export const previewContentArrayMaker = (diaryPreviewDetails:DiaryCameFromServer) => {
-  // const feelingPreview = feelingPreviewMaker();
+export const previewContentArrayMaker = (diaryPreviewDetails: DiaryCameFromServer) => {
+  const { feeling, weather, humidity, rainAmount, rainCod, temp } = diaryPreviewDetails;
+
+  const feelingPreview = feelingPreviewMaker(feeling as WriteDiaryFeeling);
+  const weatherPreview = weatherPreviewMaker(weather as SelectedDiaryWeahter);
+  const rainCondPreview = rainCondChecker(rainCod);
+
+  return {
+    feelingInDiary: feelingPreview,
+    weatherInDiary: weatherPreview,
+    specificWeatherInDiary: {
+      cond: rainCondPreview,
+      temp: `${temp}도`,
+      humidity : `${humidity}%`,
+      rainAmount: `${rainAmount}mm`,
+    }
+  }
 };
+
 export const feelingPreviewMaker = (feeling: { ment: string, level: number }) => {
-  let result = "";
+  const STRING_SLICED_LAST = feeling.ment.slice(0, feeling.ment.length - 1);
 
   switch (feeling.level) {
     case 1:
-      result = `${feeling.ment.slice(0, 2)} 였던 하루`;
-      break;
-    case 2:
-      result = `${feeling.ment.slice(0, feeling.ment.length - 1)}던 하루`;
-      break;
+      return `${feeling.ment.slice(0, 2)} 였던 하루`;
     case 3:
-      result = `${feeling.ment}했던 하루`;
-      break;
+      return `${STRING_SLICED_LAST}했던 하루`;
     default:
-      break;
+      return `${STRING_SLICED_LAST}던 하루`;
   }
-
-  return result;
 };
 
 export const weatherPreviewMaker = (weather: SelectedDiaryWeahter) => {
@@ -196,6 +205,7 @@ export const weatherPreviewMaker = (weather: SelectedDiaryWeahter) => {
   
   return `${weatherSummary}던 하루`;
 };
+
 export const rainCondChecker = (rainCond: string) => {
   return RAIN_COND_ARR.find((rain) => rain[0] === rainCond)![1]
 };
