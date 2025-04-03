@@ -24,7 +24,7 @@
 .contentWrapper {
   display: flex;
   height: 6vh;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -33,23 +33,47 @@
   font-size: 1.1rem;
 }
 .content {
-  height: 100%;
-  display: grid;
-  align-content: space-evenly;
+    height: 100%;
+    width: 90%;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    align-items: center;
 }
 .contentText {
   font-size: small;
   margin: 0;
   font-weight: 800;
+  margin-top: 1vh;
 }
 
 .carouselBtns {
   color: #d9d9d9;
   font-size: xx-small;
   padding: 0% 4% 0% 4%;
+  margin-bottom: 1vh;
 }
 
 .carouselBtnsWrapper {
   display: flex;
   justify-content: center;
+}
+
+.specificWeatherWrapper {
+  margin-top: 1vh;
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.specificWeatherParagraph {
+  margin: 0;
+  font-size: x-small;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
 }
