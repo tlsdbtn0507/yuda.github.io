@@ -4,10 +4,13 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import css from "../../css/preview.module.css"
 
-const CarouselBtns = (props: { id: string }) => {
+const CarouselBtns = (props: { id: string, isToggleBtn: boolean }) => {
 
   return (
-    <button data-testid={"carouselBtns"} className={css.carouselBtns} id={props.id}>
+    <button data-testid={"carouselBtns"}
+      style={{ color: props.isToggleBtn ? "dimgray" : "" }}
+      className={css.carouselBtns}
+      id={props.id}>
       <FontAwesomeIcon icon={faCircle} />
     </button>
   )
