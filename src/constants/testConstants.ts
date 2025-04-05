@@ -5,7 +5,7 @@ export const TEST = {
     id: 4,
     feeling: { ment: "완전 행복!", level: 3 },
     weather: {
-      weatherCond: "화창 했어",
+      weatherCond: "화창했어",
       weatherLevel: { ment: "너무!", level: 3 },
     },
     feelingReason: "테스트입니다",
