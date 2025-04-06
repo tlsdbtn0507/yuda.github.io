@@ -33,15 +33,90 @@
   font-size: 1.1rem;
 }
 .content {
-    height: 100%;
-    width: 90%;
-    display: flex
-;
-    flex-direction: column;
-    justify-content: space-between;
-    /* flex-wrap: wrap; */
-    align-items: center;
+  height: 100%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.constent-slide-out-left {
+  font-size: small;
+  margin: 0;
+  font-weight: 800;
+  margin-top: 1vh;
+  -webkit-animation: slide-out-left 0.5s ease-in-out both;
+  animation: slide-out-left 0.5s ease-in-out both;
+}
+/**
+ * ----------------------------------------
+ * animation slide-out-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-60%);
+    transform: translateX(-60%);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-60%);
+    transform: translateX(-60%);
+    opacity: 0;
+  }
+}
+/**
+ * ----------------------------------------
+ * animation slide-out-right
+ * ----------------------------------------
+ */
+
+.constent-slide-in-right {
+  font-size: small;
+  margin: 0;
+  font-weight: 800;
+  margin-top: 1vh;
+  -webkit-animation: slide-in-right 0.5s ease-in-out both;
+  animation: slide-in-right 0.5s ease-in-out both;
+}
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(60%);
+    transform: translateX(60%);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(60%);
+    transform: translateX(60%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .contentText {
   font-size: small;
   margin: 0;
@@ -75,5 +150,5 @@
   font-weight: 800;
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  justify-content: space-between;
 }
