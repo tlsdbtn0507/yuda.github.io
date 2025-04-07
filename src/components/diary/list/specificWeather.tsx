@@ -7,13 +7,14 @@ interface SpecificWeatherProps {
     humidity: string
     cond: string
     rainAmount: string   
-  }
+  },
+  animationDirection: string
 }
 
-const SpecificWeather:React.FC<SpecificWeatherProps> = ({specificWeather}) => {
+const SpecificWeather:React.FC<SpecificWeatherProps> = ({specificWeather,animationDirection}) => {
   const { temp, humidity, cond, rainAmount } = specificWeather;
   return (
-    <div className={css.specificWeatherWrapper}>
+    <div className={css.specificWeatherWrapper + " " + animationDirection}>
       <p className={css.specificWeatherParagraph}>
         <span>온도 : { temp }</span>
         <span>강우 형태 : { cond }</span>
