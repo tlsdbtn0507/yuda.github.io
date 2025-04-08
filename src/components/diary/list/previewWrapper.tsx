@@ -20,8 +20,11 @@ const PreviewWrapper: React.FC<PreviewWrapperProps> = ({ diaryPreviewContent }) 
   const [animationDirection, setAnimationDirection] = useState(`${css.contentText}`);
 
   const content = currentContentIndex === 2 ?
-    <SpecificWeather specificWeather={previewContents.specificWeatherInDiary} /> :
-    <p className={animationDirection}>{currentContentArray[currentContentIndex] as string}</p>
+    <SpecificWeather animationDirection={animationDirection} specificWeather={previewContents.specificWeatherInDiary} /> :
+    <p style={{ "--slide-x": "40%" } as React.CSSProperties}
+      className={css.contentText + " " + animationDirection}>
+      {currentContentArray[currentContentIndex] as string}
+    </p>
 
 
   const carouselBtns =
