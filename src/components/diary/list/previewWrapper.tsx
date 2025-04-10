@@ -3,7 +3,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { DiaryCameFromServer } from "model/interfaces";
 import { previewContentArrayMaker } from "../../../utils/util";
 
-import React, { act, useState } from "react";
+import React, { useState } from "react";
 import css from "../../../css/preview.module.css";
 import CarouselBtns from "../../util/caroselBtn";
 import SpecificWeather from "./specificWeather";
@@ -13,6 +13,16 @@ interface PreviewWrapperProps {
 }
 
 const PreviewWrapper: React.FC<PreviewWrapperProps> = ({ diaryPreviewContent }) => {
+  const ANIMA_DIRECTIONS_OBJ = {
+    toRight: [
+      `${css["constent-slide-out-left"]}`,
+      `${css["constent-slide-in-right"]}`
+    ],
+    toLeft: [
+      `${css["constent-slide-out-right"]}`,
+      `${css["constent-slide-in-left"]}`
+    ]
+  };
   
   const previewContents = previewContentArrayMaker(diaryPreviewContent);
   const currentContentArray = Object.values(previewContents);
@@ -43,30 +53,25 @@ const PreviewWrapper: React.FC<PreviewWrapperProps> = ({ diaryPreviewContent }) 
     setCurrentContentIndex(currentContentIndex + direction);
   }
 
-  const moveToRight = () => {
-    setAnimationDirection(`${css["constent-slide-out-left"]}`);
+  const changeContentHandler = (direction:number,animaStrings:string[]) => {
+    setAnimationDirection(animaStrings[0]);
     setTimeout(() => {
-      moveContentHandler(1);
-      setAnimationDirection(`${css["constent-slide-in-right"]}`);
+      moveContentHandler(direction);
+      setAnimationDirection(animaStrings[1]);
     }, 400);
   };
-
-  const moveToLeft = () => {
-
-  }
 
   return (
     <div className={css.wrapper}>
       <div className={css.contentWrapper}>
-        <button data-testid="sideBtns" className={css.sideBtns} onClick={moveToLeft}>
+        <button data-testid="sideBtns" className={css.sideBtns} onClick={()=> changeContentHandler(-1,ANIMA_DIRECTIONS_OBJ.toLeft)}>
           <FontAwesomeIcon icon={faAngleLeft}/>
         </button>
         <div className={css.content}>
           { content }
-          {carouselBtns}
+          { carouselBtns }
         </div>
-        {/* <button data-testid="sideBtns" className={css.sideBtns} onClick={() => activeClickHandler(1)}> */}
-        <button data-testid="sideBtns" className={css.sideBtns} onClick={moveToRight}>
+        <button data-testid="sideBtns" className={css.sideBtns} onClick={()=> changeContentHandler(1,ANIMA_DIRECTIONS_OBJ.toRight)}>
           <FontAwesomeIcon icon={faAngleRight}/>
         </button>
       </div>

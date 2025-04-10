@@ -1,8 +1,8 @@
-import { DiaryCameFromServer, DiaryToSendToSurver, DiaryType } from "../../model/interfaces";
+import { DiaryCameFromServer, DiaryToSendToSurver } from "../../model/interfaces";
+import { isValidDay } from "utils/util";
 
 import ERROR from "constants/ErrorConstants";
 import API from "../api";
-import { isValidDay } from "utils/util";
 
 export const fetchDiaries = async () => {
   try {
@@ -24,7 +24,7 @@ export const fetchDiaries = async () => {
   }
 };
 
-export const fetchMoreDiaries = async (id: number): Promise<DiaryType[]> => {
+export const fetchMoreDiaries = async (id: number): Promise<DiaryCameFromServer[]> => {
   try {
     const { data } = await API.get(`/diary/${id}`);
     return data;
