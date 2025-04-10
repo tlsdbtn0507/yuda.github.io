@@ -161,8 +161,8 @@ export const dayMakerToSend = () => {
   return `${year}-${month}-${date}`;
 };
 
-export const isValidDay = (day: string): day is Days => {
-  return Object.values(Days).includes(day as Days);
+export const isValidDay = (day: string): string | boolean => {
+  return Object.values(Days).includes(day as Days) ? day : false;
 }
 
 export const previewContentArrayMaker = (diaryPreviewDetails: DiaryCameFromServer) => {
