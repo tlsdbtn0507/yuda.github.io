@@ -82,6 +82,17 @@ export interface DiaryToSendToSurver extends Required<IsDiaryWritten> {
   dayOfWeek: Days;
 }
 
+export interface RealWeatherData {
+  humidity: string;
+  rainAmount: string;
+  rainCod: string;
+  temp: string;
+}
+
+export interface DiaryCameFromServer extends DiaryToSendToSurver,RealWeatherData {
+  id: number;
+}
+
 /* eslint-disable no-unused-vars */
 export const enum WriteDiaryEnum {
   Feeling = "feeling",

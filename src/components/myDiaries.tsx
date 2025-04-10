@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import { diaryStore } from "../store/diary/diaryStore";
 
-import Diary from "./diary/diary";
 import css from '../css/diaryList.module.css'
 import NullDiary from "./diary/nullDiary";
 import LoadingSpin from "./util/loadingSpin";
 import UI from "constants/uiConstants";
 import APIS from "constants/apiConstants";
+import DiaryPreview from "./diary/list/diaryPreview";
 
 const { NO_DIARY_YET } = UI.NullDiaryTsx;
 const { H5_TITLE, DIARY_LENGTH, SCROLL_COUNT } = UI.MyDiariesTsx;
@@ -22,7 +22,7 @@ const MyDiaries = () => {
 
   let content
 
-  if (diaries) content = diaries.map(e => <Diary key={e.id} diaryInfo={e} />);
+  if (diaries) content = diaries.map(e => <DiaryPreview key={e.id} diaryDetails={e} />);
 
   if (diaries.length === APIS.NUM_ZERO) content = <NullDiary msg={NO_DIARY_YET} />;
 

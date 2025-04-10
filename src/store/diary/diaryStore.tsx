@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import { DiaryType, IsDiaryWritten } from "../../model/interfaces";
+import { DiaryCameFromServer, IsDiaryWritten } from "../../model/interfaces";
 import { fetchMoreDiaries } from "../../api/diary/diaryApi";
 
 import UI from "constants/uiConstants";
 
 type DiaryStore = {
-  diaries: DiaryType[],
+  diaries: DiaryCameFromServer[],
   isWritingDairy: boolean,
   isDiaryWritten: IsDiaryWritten,
   diaryFeelingReason: string,
@@ -26,7 +26,7 @@ export const diaryStore = create<DiaryStore>((set) => ({
     window.scrollTo(0, 0)
     set(state => ({ isWritingDairy: tog }))
   },
-  getDiaries: (arr: DiaryType[]) => set((state) => ({ ...state, diaries: arr })),
+  getDiaries: (arr: DiaryCameFromServer[]) => set((state) => ({ ...state, diaries: arr })),
   getMoreDiaries: async (id: number) => {
     const res = await fetchMoreDiaries(id);
     if (res.length === 0) return false;
