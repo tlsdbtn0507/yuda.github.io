@@ -10,7 +10,6 @@ interface DiaryPreviewProps {
 
 const DiaryPreview: React.FC<DiaryPreviewProps> = ({ diaryDetails }) => {
   const { diaryDate, dayOfWeek } = diaryDetails;
-  console.log(dayOfWeek);
   const dateContent = `${diaryDate.replaceAll("-", " . ")} ${dayOfWeek}`;
 
   return (
