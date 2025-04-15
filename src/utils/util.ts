@@ -139,7 +139,7 @@ export const whichDayIsitToday = (): Days => {
   return DAYS_OF_WEEK[new Date().getDay()];
 };
 
-const datesForStringMaker = () => {
+export const datesForStringMaker = () => {
   const now = new Date();
   const methods = DATE_LITERAL_METHODS;
 
