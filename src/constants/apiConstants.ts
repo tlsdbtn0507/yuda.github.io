@@ -21,6 +21,7 @@ const APIS = {
   QUERIES: {
     DIARIES: "diaries",
     LOGOUT: "logout",
+    LAST_TODAY: "lastToday",
   },
   DATA: {
     FETCHING: "fetching",
