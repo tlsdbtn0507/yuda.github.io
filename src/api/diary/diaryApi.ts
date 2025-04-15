@@ -33,14 +33,14 @@ export const fetchMoreDiaries = async (id: number): Promise<DiaryCameFromServer[
   }
 };
 
-export const fetchLastTodayDiary = async (today:string): Promise< DiaryCameFromServer | boolean > => {
+export const sendTodayForLastDiary = async (diaryDate: string): Promise<DiaryCameFromServer | boolean> => {
   try {
-    const { data } = await API.get(`/diary/${today}`);
+    const { data } = await API.post(`/diary/today`, { diaryDate });
     return data;
   } catch (error) {
     throw new Error();
   }
-}
+};
 
 export const writeTodayDiary = async (diaryObject: DiaryToSendToSurver) => {
   try {
