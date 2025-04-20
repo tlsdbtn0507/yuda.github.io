@@ -1,5 +1,5 @@
 .div {
-  width: 65vw;
+  width: 16rem;
   background-color: white;
   border-radius: 20px;
   text-align: left;
@@ -30,7 +30,7 @@ input {
   background-color: deepskyblue;
   color: white;
   padding: 10px;
-  width: 30vw;
+  width: 15rem;
 }
 .sign {
   width: auto;
