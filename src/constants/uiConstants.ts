@@ -92,7 +92,8 @@ const UI = {
   },
   SelectedTsx: {
     SUCCESS_ALERT:"일기 작성이 완료되었습니다!",
-    FAIL_ALERT:"일기 작성이 실패했습니다!"
+    FAIL_ALERT: "일기 작성이 실패했습니다!",
+    WRITING_DIARY_DONE: "작성 완료!",
   },
   DAYS_OF_WEEK: Object.values(Days),
 };

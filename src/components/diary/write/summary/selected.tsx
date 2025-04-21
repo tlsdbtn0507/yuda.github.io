@@ -11,7 +11,7 @@ import SelectedMakeBtns from './selectedMakeBtns';
 import UI from 'constants/uiConstants';
 import APIS from 'constants/apiConstants';
 
-const { SUCCESS_ALERT, FAIL_ALERT } = UI.SelectedTsx;
+const { SUCCESS_ALERT, FAIL_ALERT, WRITING_DIARY_DONE } = UI.SelectedTsx;
 const { DIARIES } = APIS.QUERIES;
 
 const Selected = () => {
@@ -24,7 +24,7 @@ const Selected = () => {
     mutationFn: writeTodayDiary,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [DIARIES], exact: true });
-      handlePostResult(true)
+      handlePostResult(true);
     },
     onError: () => handlePostResult(false),
   });
@@ -51,13 +51,13 @@ const Selected = () => {
       dayOfWeek: whichDayIsitToday()
     };
 
-    mutate(diaryToSendToSurver)
+    mutate(diaryToSendToSurver);
   };
 
   return (
     <div className={css.selected}>
       <SelectedMakeBtns />
-      <button className={css.sumDoneBtn} onClick={submitDiary}>끝내기!</button>
+      <button className={css.sumDoneBtn} onClick={submitDiary}>{ WRITING_DIARY_DONE }</button>
     </div>
   )
 }
