@@ -3,13 +3,15 @@ import { useMutation } from "@tanstack/react-query"
 import { logoutPost } from "../../api/users/usersApi"
 import { useNavigate } from "react-router"
 import { LogoutReturnType, NavProps } from "model/interfaces"
-import { handleAlertPerDevice, handleConfirmPerDevice } from "utils/util"
+import { dayMakerToSend, handleAlertPerDevice, handleConfirmPerDevice, whichObjIsEmpty } from "utils/util"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
 import APIS from "constants/apiConstants"
 import ERROR from "constants/ErrorConstants"
 import UI from "constants/uiConstants"
+import { useEffect } from "react"
+import { writeTodayDiary } from "api/diary/diaryApi"
 
 const { CONFIRM_LOGOUT, TODAY_DIARY, WRITE_DIARY, LOGOUT } = UI.NavTsx;
 
@@ -34,6 +36,21 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
 
 
   const todayRoute = () => { };
+
+  useEffect(() => {
+    const writingDiary = JSON.parse(localStorage.getItem("writingDiary") as string);
+    const today = dayMakerToSend();
+    const diaryWrittenSoFar = whichObjIsEmpty(writingDiary);
+    console.log(diaryWrittenSoFar);
+    
+    if (writingDiary.diaryDate !== today) {
+      if (diaryWrittenSoFar === UI.DONE) {
+        writeTodayDiary(writingDiary)
+      }
+      localStorage.removeItem("writingDiary");
+    }
+  
+  },[])
 
   return (
     <div className={css.lowNav}>
