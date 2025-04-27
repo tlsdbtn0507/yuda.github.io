@@ -15,6 +15,12 @@ const config: Config = {
     ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
       prefix: "<rootDir>/",
     }),
+    "^constants/(.*)$": "<rootDir>/src/constants/$1",
+    "^api/(.*)$": "<rootDir>/src/api/$1",
+    "^utils/(.*)$": "<rootDir>/src/utils/$1",
+    "^model/(.*)$": "<rootDir>/src/model/$1",
+    "^store/(.*)$": "<rootDir>/src/store/$1",
+    "^router/(.*)$": "<rootDir>/src/router/$1",
   },
 };
 
