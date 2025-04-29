@@ -36,28 +36,23 @@ type ObjEntryType = [
   string | {} | WriteDiaryFeeling | WriteDiaryWeather
 ];
 
-export const whichObjIsEmpty = (checkObj: IsDiaryWritten) => {
-  if (checkObj === null) return checkObj;
+export const whichObjIsEmpty = (checkObj: IsDiaryWritten): WriteDiaryEnum | string => {
+  if (checkObj === null) return DONE;
 
   const obj = Object.entries(checkObj);
-
-  let ret;
 
   for (let i = 0; i < obj.length; i++) {
     const [key, values]: ObjEntryType = obj[i];
     const isValueWeather = values as WriteDiaryWeather;
 
     if (Array.isArray(isValueWeather.weatherLevel)) {
-      ret = WriteDiaryEnum.WeatherLevel;
-      break;
+      return WriteDiaryEnum.WeatherLevel;
     }
     if (isEmptyObj(values)) {
-      ret = key;
-      break;
+      return key;
     }
-    ret = DONE;
   }
-  return ret;
+  return DONE;
 };
 
 export const isEmptyObj = (obj: {} | []) => {
