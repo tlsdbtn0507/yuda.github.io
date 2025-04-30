@@ -37,7 +37,7 @@
   color: deepskyblue;
   text-align: center;
   border-radius: 10px;
-  width: 80%;
+  width: 20rem;
 }
 
 .ment {
@@ -70,8 +70,8 @@
 .button {
   color: white;
   color: rgb(0, 115, 255);
-  width: 25%;
-  height: 10%;
+  width: 10rem;
+  height: 10rem;
   font-size: large;
   border-radius: 20px;
   border: 1px rgb(0, 115, 255);

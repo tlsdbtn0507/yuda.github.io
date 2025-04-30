@@ -2,16 +2,30 @@ import { faCirclePlus, faClipboard, faUser } from "@fortawesome/free-solid-svg-i
 import { useMutation } from "@tanstack/react-query"
 import { logoutPost } from "../../api/users/usersApi"
 import { useNavigate } from "react-router"
-import { LogoutReturnType, NavProps } from "model/interfaces"
-import { handleAlertPerDevice, handleConfirmPerDevice } from "utils/util"
+import { DiaryToSendToSurver, LogoutReturnType, NavProps } from "model/interfaces"
+import { dayMakerToSend, handleAlertPerDevice, handleConfirmPerDevice, whichObjIsEmpty } from "utils/util"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
 import APIS from "constants/apiConstants"
 import ERROR from "constants/ErrorConstants"
 import UI from "constants/uiConstants"
+import { useEffect } from "react"
+import { writeTodayDiary } from "api/diary/diaryApi"
 
 const { CONFIRM_LOGOUT, TODAY_DIARY, WRITE_DIARY, LOGOUT } = UI.NavTsx;
+
+export const checkIsDiaryToUpdate = (writingDiary: DiaryToSendToSurver) => {
+  const today = dayMakerToSend();
+  const diaryWrittenSoFar = whichObjIsEmpty(writingDiary);
+
+  if (writingDiary.diaryDate !== today) {
+    if (diaryWrittenSoFar === UI.DONE) {
+      writeTodayDiary(writingDiary)
+    }
+    localStorage.removeItem("writingDiary");
+  }
+}
 
 const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   const navigate = useNavigate();
@@ -35,6 +49,15 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
 
   const todayRoute = () => { };
 
+
+
+  useEffect(() => {
+    const writingDiary = JSON.parse(localStorage.getItem("writingDiary") as string) as DiaryToSendToSurver;
+    if (!writingDiary) return;
+
+    checkIsDiaryToUpdate(writingDiary);
+  },[])
+
   return (
     <div className={css.lowNav}>
       <NavBtn icon={faClipboard} onClick={todayRoute} p={TODAY_DIARY} />
@@ -44,4 +67,4 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   )
 };
 
-export default Nav
+export default Nav;

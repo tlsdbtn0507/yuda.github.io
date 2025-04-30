@@ -7,14 +7,16 @@
   transition: all 0.8s ease;
 }
 
-.total.home {
-  width: 21rem;
+.home {
+  width:  19rem;
   height: 68vh;
 }
 
-.total.expand {
-  width: 90vw;
+.expand {
+  width: 21rem;
   height: 70vh;
+  display: flex;
+  align-items: center;
 }
 
 .wrapper {

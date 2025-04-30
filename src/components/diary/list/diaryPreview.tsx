@@ -5,15 +5,16 @@ import PreviewWrapper from "./previewWrapper";
 import css from "../../../css/preview.module.css";
 
 interface DiaryPreviewProps {
-  diaryDetails:DiaryCameFromServer
+  diaryDetails: DiaryCameFromServer,
+  style: React.CSSProperties
 }
 
-const DiaryPreview: React.FC<DiaryPreviewProps> = ({ diaryDetails }) => {
+const DiaryPreview: React.FC<DiaryPreviewProps> = ({ diaryDetails, style }) => {
   const { diaryDate, dayOfWeek } = diaryDetails;
   const dateContent = `${diaryDate.replaceAll("-", " . ")} ${dayOfWeek}`;
 
   return (
-    <div data-testid="diaryPreview" className={css.diaryPreview}>
+    <div style={style} data-testid="diaryPreview" className={css.diaryPreview}>
       <p className={css.diaryDate}>{dateContent}</p>
       <PreviewWrapper diaryPreviewContent={diaryDetails} data-testid="diaryPreviewWrapper"/>
     </div>

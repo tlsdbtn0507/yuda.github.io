@@ -18,7 +18,7 @@ afterEach(() => {
 describe("DiaryPreview", () => {
   test("DiaryPreview컴포넌트가 잘 나올까요?", () => {
     
-    render(<DiaryPreview diaryDetails={DUMMI_DIARY_DATA} />);
+    render(<DiaryPreview style={{ "--preview-height": "30rem" } as React.CSSProperties} diaryDetails={DUMMI_DIARY_DATA} />);
     
     const fullText = `${DUMMI_DIARY_DATA.diaryDate.replaceAll("-", " . ")} ${String(DUMMI_DIARY_DATA.dayOfWeek)}`;
     const isFullTextExist = screen.getByText(fullText,{exact: false});

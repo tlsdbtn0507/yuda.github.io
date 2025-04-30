@@ -2,7 +2,7 @@
   background-color: white;
   font-family: Arial;
   border-radius: 20px;
-  width: 75vw;
+  width: 19rem;
   display: flex;
   flex-direction: column;
 }
@@ -15,7 +15,7 @@
 
 input {
   margin-bottom: 10%;
-  width: 50vw;
+  width: 11rem;
 }
 
 .divpw {
@@ -25,11 +25,11 @@ input {
   justify-content: space-between;
 }
 .pwInput {
-  width: 50vw;
+  width: 13rem;
   margin-bottom: 3%;
 }
 .pwInputVal {
-  width: 50vw;
+  width: 13rem;
   margin-bottom: 3%;
   border: 1px solid red;
 }
