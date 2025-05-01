@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {
-  // WriteDiary,
   WriteDiaryFeeling,
   WriteDiaryWeather,
   WriteDiaryEnum,
@@ -65,7 +64,7 @@ const Write = () => {
       setWritingDiary(writingDiary);
       return whichSelectRender(FEELING);
     }
-    return whichSelectRender(whichComponentRender);
+    return whichSelectRender(whichComponentRender as string);
 
   }, [isDiaryWritten, setWritingDiary]);
 
