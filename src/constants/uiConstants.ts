@@ -40,6 +40,7 @@ const UI = {
     CONFIRM_LOGOUT: "정말 로그 아웃 하시겠습니까?",
     TODAY_DIARY: "오늘의 일기",
     WRITE_DIARY: "일기 쓰기",
+    SEARCH_DIARY: "지난날 검색",
     LOGOUT: "로그아웃",
   },
   IdCheckBtnTsx: {
