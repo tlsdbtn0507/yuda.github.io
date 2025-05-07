@@ -1,21 +1,21 @@
-import { faCirclePlus, faClipboard, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faCirclePlus, faClipboard, faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons"
 import { useMutation } from "@tanstack/react-query"
 import { logoutPost } from "../../api/users/usersApi"
 import { useNavigate } from "react-router"
 import { DiaryToSendToSurver, LogoutReturnType, NavProps } from "model/interfaces"
 import { dayMakerToSend, handleAlertPerDevice, handleConfirmPerDevice, whichObjIsEmpty } from "utils/util"
+import { useEffect, useState } from "react"
+import { writeTodayDiary } from "api/diary/diaryApi"
 
 import css from '../../css/lowNav.module.css'
 import NavBtn from "./navBtn"
 import APIS from "constants/apiConstants"
 import ERROR from "constants/ErrorConstants"
 import UI from "constants/uiConstants"
-import { useEffect } from "react"
-import { writeTodayDiary } from "api/diary/diaryApi"
 
-const { CONFIRM_LOGOUT, TODAY_DIARY, WRITE_DIARY, LOGOUT } = UI.NavTsx;
+const { CONFIRM_LOGOUT, TODAY_DIARY, WRITE_DIARY, LOGOUT, SEARCH_DIARY } = UI.NavTsx;
 
-export const checkIsDiaryToUpdate = (writingDiary: DiaryToSendToSurver) => {
+export const checkIsDiaryToUpdate = (writingDiary: DiaryToSendToSurver):boolean => {
   const today = dayMakerToSend();
   const diaryWrittenSoFar = whichObjIsEmpty(writingDiary);
 
@@ -24,11 +24,14 @@ export const checkIsDiaryToUpdate = (writingDiary: DiaryToSendToSurver) => {
       writeTodayDiary(writingDiary)
     }
     localStorage.removeItem("writingDiary");
+    return false;
   }
+  return true
 }
 
 const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   const navigate = useNavigate();
+  const [isTodayDiaryExist, setTodayDiaryExist] = useState<boolean>(false);
 
   const { mutate } = useMutation({
     mutationFn: logoutPost,
@@ -47,21 +50,21 @@ const Nav: React.FC<NavProps> = ({ onDiaryClick }) => {
   const logoutConfirm = () => handleConfirmPerDevice(CONFIRM_LOGOUT) && mutate();
 
 
-  const todayRoute = () => { };
-
-
-
   useEffect(() => {
     const writingDiary = JSON.parse(localStorage.getItem("writingDiary") as string) as DiaryToSendToSurver;
     if (!writingDiary) return;
 
-    checkIsDiaryToUpdate(writingDiary);
+    setTodayDiaryExist(checkIsDiaryToUpdate(writingDiary));
   },[])
 
   return (
     <div className={css.lowNav}>
-      <NavBtn icon={faClipboard} onClick={todayRoute} p={TODAY_DIARY} />
-      <NavBtn icon={faCirclePlus} onClick={() => onDiaryClick()} p={WRITE_DIARY} />
+      <NavBtn icon={faMagnifyingGlass} onClick={()=>handleAlertPerDevice("이 기능은 아직 개발 중 입니다")} p={SEARCH_DIARY} />
+      {
+        isTodayDiaryExist
+        ? <NavBtn icon={faClipboard} onClick={() => onDiaryClick()} p={TODAY_DIARY} />
+        : <NavBtn icon={faCirclePlus} onClick={() => onDiaryClick()} p={WRITE_DIARY} />
+      }
       <NavBtn icon={faUser} onClick={logoutConfirm} p={LOGOUT} />
     </div>
   )
