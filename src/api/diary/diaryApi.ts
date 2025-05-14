@@ -33,9 +33,9 @@ export const fetchMoreDiaries = async (id: number): Promise<DiaryCameFromServer[
   }
 };
 
-export const sendTodayForLastDiary = async (diaryDate: string): Promise<DiaryCameFromServer | boolean> => {
+export const sendTodayForLastDiary = async (timezone: string): Promise<DiaryCameFromServer | boolean> => {
   try {
-    const { data } = await API.post(`/diary/today`, { diaryDate });
+    const { data } = await API.post(`/diary/today`, { timezone });
     return data;
   } catch (error) {
     throw new Error();

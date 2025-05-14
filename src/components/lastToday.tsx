@@ -1,8 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { sendTodayForLastDiary } from 'api/diary/diaryApi';
-import { datesForStringMaker } from 'utils/util';
 import { DiaryCameFromServer } from 'model/interfaces';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { renewToken } from 'api/users/usersApi';
 
 import css from '../css/laTod.module.css'
@@ -14,23 +13,29 @@ import APIS from 'constants/apiConstants';
 const { TITLE } = UI.LastTodayTsx;
 const { LAST_TODAY_MESSAGE } = UI.NullDiaryTsx;
 
-const LastToday = () => {
-  const [year, month, day] = datesForStringMaker();
+const TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  const fetchLastTodayDiary = async () => {
+const LastToday = () => {
+
+  const hasMutated = useRef(false);
+  
+  const handleFetchingToday = async() => {
     await renewToken();
     mutate();
   }
 
   const { mutate,data } = useMutation({
-    mutationFn: () => sendTodayForLastDiary(`${year}-${month}-${day}`),
+    mutationFn: () => sendTodayForLastDiary(TIME_ZONE),
     mutationKey: [APIS.QUERIES.LAST_TODAY],
-    onError:()=>fetchLastTodayDiary(),
+    onError:handleFetchingToday,
   })
 
   useEffect(() => {
-    fetchLastTodayDiary()
-  }, [])
+    if (!hasMutated.current) {
+      mutate();
+      hasMutated.current = true;
+    }
+  }, [mutate])
 
   const content = data
     ? <DiaryPreview style={{"--preview-height": "30%" } as React.CSSProperties} diaryDetails={data as DiaryCameFromServer} />
