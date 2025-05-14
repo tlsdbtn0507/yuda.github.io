@@ -36,8 +36,10 @@ type ObjEntryType = [
   string | {} | WriteDiaryFeeling | WriteDiaryWeather
 ];
 
-export const whichObjIsEmpty = (checkObj: IsDiaryWritten): WriteDiaryEnum | string => {
-  if (checkObj === null) return DONE;
+type ObjEnums = WriteDiaryEnum | string | boolean;
+
+export const whichObjIsEmpty = (checkObj: IsDiaryWritten | null): ObjEnums=> {
+  if (checkObj === null) return false;
 
   const obj = Object.entries(checkObj);
 
